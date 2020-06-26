@@ -6,7 +6,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // добавили плагин
 module.exports = {
   entry: {
-    main: './src/js/main.js',
+    index: './src/js/index.js',
     add: './src/js/add.js',
   },
   output: {
@@ -44,7 +44,6 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({ //
-    //  path: path.resolve(__dirname, 'style'),
       filename: './css/[name].[contenthash].css',
     }),
     new OptimizeCssAssetsPlugin({
@@ -58,9 +57,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/main.html',
-      chunks: ['main'],
-      filename: 'main.html',
+      template: './src/index.html',
+      chunks: ['index'],
+      filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
       inject: false,

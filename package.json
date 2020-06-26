@@ -3,7 +3,7 @@
   "homepage": "https://github.com/IrinaUzkikh/news-frontend",
   "version": "1.0.0",
   "description": "news-frontend",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "build": "rimraf dist && webpack --mode production",
     "dev": "webpack-dev-server --mode development --open --watch",
@@ -24,7 +24,7 @@
     "eslint-plugin-import": "2.21.2",
     "eslint-plugin-react": "7.20.0",
     "file-loader": "6.0.0",
-    "gh-pages": "2.0.1",
+    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "3.2.0",
     "image-webpack-loader": "6.0.0",
     "mini-css-extract-plugin": "0.9.0",
