@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>News-explorer-2</title>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.add.css %>">
+</head>
+<body>
+  <div>
+    <h1>Hello</h1>
+    <img src = "<%=require('./images/wifi.png').default%>">
+    <img src = "<%=require('./images/rectangle.jpg').default%>">
+
+  </div>
+      <h2>Вторая страница</h1>
+      <a href = "./main.html">Первая страница</a>
+
+    <script src="<%= htmlWebpackPlugin.files.chunks.add.entry %>"></script>
+</body>
+</html>
