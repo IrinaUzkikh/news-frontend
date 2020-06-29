@@ -2,10 +2,13 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News-explorer-2</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.add.css %>">
 </head>
 <body>
+  <div class="root">
   <div>
     <h1>Hello</h1>
     <img src = "<%=require('./images/wifi.png').default%>">
@@ -15,6 +18,8 @@
       <h2>Вторая страница</h1>
       <a href = "./index.html">Первая страница</a>
 
-    <script src="<%= htmlWebpackPlugin.files.chunks.add.entry %>"></script>
+
+  </div>
 </body>
+<script src="<%= htmlWebpackPlugin.files.chunks.add.entry %>"></script>
 </html>
