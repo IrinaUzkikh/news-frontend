@@ -1,21 +1,29 @@
 @import url('./__title/search__title.css');
 @import url('./__subtitle/search__subtitle.css');
+@import url('./__form/search__form.css');
+@import url('./__button/search__button.css');
+@import url('./__text/search__text.css');
+
+
+
 
 .search {
 
     width: 100%;
-    padding-bottom: 20%;
+    height: 621px;
+   /*padding-bottom: 20%;*/
     background-size: cover;
     display: flex;
     color: #fff;
 
     background-image: url(../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg);
-
-
     flex-direction: column;
     align-items: center;
     position: relative;
 
     border: 1px double red;
 
+}
+input{
+  padding: 0 24px;
 }

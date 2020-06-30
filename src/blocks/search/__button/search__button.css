@@ -1,0 +1,20 @@
+.search__button {
+  background: #2F71E5;
+box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+border-radius: 100px;
+margin-left: 500px;
+position: absolute;
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 24px;
+
+align-items: center;
+text-align: center;
+width: 168px;
+height: 69px;
+color: #fff;
+z-index: 2;
+
+}
