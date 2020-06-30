@@ -1,0 +1,22 @@
+@import url('./__button/card__button.css');
+@import url('./__container/card__container.css');
+@import url('./__bookmark/card__bookmark.css');
+@import url('./__date/card__date.css');
+@import url('./__source/card__source.css');
+@import url('./__text/card__text.css');
+@import url('./__title/card__title.css');
+
+
+.card {
+  /*width: calc((100vw - 208px - 20px)/3);*/
+  width: 400px;
+  height: 576px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+
+}
+
+.card:last-of-type {
+  margin-right: 0px;
+}

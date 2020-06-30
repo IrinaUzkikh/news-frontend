@@ -1,0 +1,12 @@
+@import url('./__title/results__title.css');
+@import url('./__container/results__container.css');
+@import url('../button/button.css');
+@import url('./__button/results__button.css');
+
+@import url('../card/card.css');
+
+
+.results {
+  margin: 80px 104px 0 104px;
+
+}

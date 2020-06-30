@@ -10,27 +10,88 @@
 <body>
   <div class="root">
     <section class="search">
-      <footer class="footer">
-        <div class="footer__newsexplorer">NewsExplorer</div>
-        <div class="footer__container">
-          <div class="footer__main">
-            <div class="footer__text">Главная</div>
-            <hr class="footer__vector">
+      <footer class="header">
+        <div class="header__newsexplorer">NewsExplorer</div>
+        <div class="header__container">
+          <div class="header__main">
+            <div class="header__text">Главная</div>
+            <hr class="header__vector"> <!--TODO сделать через вектор-->
           </div>
-          <button class="button footer__text">Авторизоваться</button>
+          <button class="button header__text">Авторизоваться</button>
         </div>
       </footer>
       <h1 class="search__title">Что в мире творится?</h1>
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
-      <!--<fieldset class="search__fieldset">-->
-       <input type="text" class="search__text" placeholder="Введите тему новости" required>
+        <input type="text" class="search__text" placeholder="Введите тему новости" required>
         <input type="submit" class="search__button" value="Искать">
-
-     <!-- </fieldset>-->
-    </form>
-
+      </form>
     </section>
+
+    <section class="results">
+      <h2 class="results__title">Результаты поиска</h2>
+      <div class="results__container">
+        <div class="card">
+          <div class="card__container">
+             <img src="<%=require('./images/image_01.jpg').default%>" alt="image">
+             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>"></button>
+          </div>
+          <h3 class="card__date">2 августа, 2019</h3>
+          <h2 class="card__title">Национальное достояние – парки</h2>
+          <p class="card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться
+            система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
+          <h3 class="card__source">Медуза</h3>
+        </div>
+
+
+        <div class="card">
+          <div class="card__container">
+             <img src="<%=require('./images/image_02.jpg').default%>" alt="image">
+             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>"></button>
+          </div>
+          <h3 class="card__date">2 августа, 2019</h3>
+          <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
+          <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
+            из местных чудес природы.</p>
+          <h3 class="card__source">Лента.ру</h3>
+        </div>
+
+        <div class="card">
+          <div class="card__container">
+             <img src="<%=require('./images/image_03.jpg').default%>" alt="image">
+             <button class="card__button">Войдите, чтобы сохранять статьи</button>
+             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>"></button>
+          </div>
+          <h3 class="card__date">2 августа, 2019</h3>
+          <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
+          <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
+          <h3 class="card__source">Риа</h3>
+        </div>
+      </div>
+      <button class="results__button">Показать еще</button>
+    </section>
+
+    <section class="author">
+      <img src="<%=require('./images/photo.png').default%>" class="author__photo" alt="photo">
+      <div class="author__about">
+        <h3 class="author__title">Об авторе</h3>
+        <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.
+          Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.</p>
+      </div>
+    </section>
+    
+    <footer class="footer">
+      <a href="https://ya.ru" target="_blank" class="footer__enter">© 2020 Supersite, Powered by News API</a>
+      <div class="footer__group">
+        <a href="https://ya.ru" target="_blank" class="footer__text">Главная</a>
+        <a href="https://praktikum.yandex.ru/profile/web-developer/" target="_blank" class="footer__text">Яндекс.Практикум</a>
+      </div>
+      <div class="footer__social">
+        <a href="https://github.com/IrinaUzkikh/news-frontend" target="_blank"><img src="<%=require('./images/github.png').default%>" alt="icon_github"></a>
+        <a href="https://www.facebook.com/" target="_blank"><img src="<%=require('./images/iconmonstr-facebook-6.png').default%>" alt="icon_facebook"></a>
+      </div>
+
+    </footer>
     <h1>Hello</h1>
     <a href = "./add.html">Вторая страница</a>
     <img src="<%=require('./images/rectangle.jpg').default%>">

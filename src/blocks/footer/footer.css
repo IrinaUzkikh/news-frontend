@@ -1,15 +1,13 @@
-@import url('./__container/footer__container.css');
-@import url('./__newsexplorer/footer__newsexplorer.css');
-@import url('./__vector/footer__vector.css');
-@import url('./__main/footer__main.css');
+@import url('./__group/footer__group.css');
+@import url('./__enter/footer__enter.css');
+@import url('./__social/footer__social.css');
 @import url('./__text/footer__text.css');
+
+
 
 .footer {
   display: flex;
-  height: 80px;
-  width: 100%;
   flex-direction: row;
-  justify-content: space-between;
-  border: 1px double green;
 
+  margin: 0 104px;
 }
