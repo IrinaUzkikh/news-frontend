@@ -88,18 +88,41 @@
     </section>
     <div class="popup">
       <div class="popup__content">
-        <img src="./images/close.png" alt="popup_close" class="popup__close">
+        <img src="<%=require('./images/close.png').default%>" alt="popup_close" class="popup__close">
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="new">
-            <input type="text" name="Email" class="popup__input popup__input_type_email" placeholder="Введите почту">
-            <input type="text" name="Пароль" class="popup__input popup__input_type_password" placeholder="Введите пароль">
-            <button type class="button popup__button"></button>
-            <p><a href = "" class="header__text header__text_white">Зарегистрироваться</a>или</p>
+          <label class="popup__label" for="email">Email</label>
+           <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
+           <p class="popup__error popup__error_active">Неправильный формат email</p>
+           <label class="popup__label" for="password">Пароль</label>
+           <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
+           <button class="popup__button">Войти</button>
+           <a href = "" class="popup__register"><span class="popup__text">или</span>Зарегистрироваться</a>
         </form>
       </div>
     </div>
+
+    <div class="popup popup_is-opened">
+      <div class="popup__content">
+        <img src="<%=require('./images/close.png').default%>" alt="popup_close" class="popup__close">
+        <h3 class="popup__title">Регистрация</h3>
+        <form class="popup__form" name="new">
+          <label class="popup__label" for="email">Email</label>
+           <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
+           <p class="popup__error">Неправильный формат email</p>
+           <label class="popup__label" for="password">Пароль</label>
+           <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
+           <label class="popup__label" for="name">Имя</label>
+           <input type="text" name="name" class="popup__input" placeholder="Введите своё имя" required>
+           <p class="popup__error popup__error_user">Такой пользователь уже есть</p>
+           <button class="popup__button popup__button_register">Зарегистрироваться</button>
+           <a href = "" class="popup__register"><span class="popup__text">или</span>Войти</a>
+        </form>
       </div>
     </div>
+
+
+
 
     <footer class="footer">
       <a href="https://ya.ru" target="_blank" class="footer__enter">© 2020 Supersite, Powered by News API</a>
