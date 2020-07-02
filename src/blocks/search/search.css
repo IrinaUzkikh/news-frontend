@@ -4,9 +4,6 @@
 @import url('./__button/search__button.css');
 @import url('./__text/search__text.css');
 
-
-
-
 .search {
 
     width: 100%;
@@ -20,8 +17,6 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-
-    border: 1px double red;
 
 }
 input{

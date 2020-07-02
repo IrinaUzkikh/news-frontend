@@ -1,7 +1,10 @@
-.button {
+@import url('./_dark/header__button_dark.css');
+@import url('./_white/header__button_white.css');
+
+.header__button {
   background: rgba(255, 255, 255, 0);
   border-radius: 100px;
-  border: 1px solid #fff;
+
   text-align: center;
   margin-bottom: 13px;
   /*border: none;*/

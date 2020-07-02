@@ -1,0 +1,8 @@
+@import url('./__text/content__text.css');
+@import url('./__text1/content__text1.css');
+@import url('./__text2/content__text2.css');
+
+.content {
+  margin-top: 40px;
+  margin-left: 104px;
+}

@@ -7,11 +7,10 @@
 @import url('../blocks/author/author.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/results/results.css');
+@import url('../blocks/block/block.css');
 
 
-
-
-h1 {
-    color: white;
-  }
+/*h1 {
+    color: goldenrod;
+  }*/
 

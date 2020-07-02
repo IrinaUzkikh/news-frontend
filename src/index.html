@@ -6,20 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News-explorer</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.index.css%>">
+    <link rel="icon" href="<%=require('./images/Favicon.png').default%>">
+   <!-- <link rel="icon" href="<%=require('./images/Favicon.png')%>" type="images/png">-->
 </head>
 <body>
   <div class="root">
     <section class="search">
-      <footer class="header">
+      <header class="header">
         <div class="header__newsexplorer">NewsExplorer</div>
         <div class="header__container">
           <div class="header__main">
-            <div class="header__text">Главная</div>
+            <a href = "index.html" class="header__text header__text_white">Главная</a>
+            <hr class="header__vector hide-block header__text_white"> <!--TODO сделать через вектор-->
+          </div>
+          <button class="button header__text hide-block">Авторизоваться</button>
+          <div class="header__main">
+            <a href = "./add.html" class="header__text header__text_gray">Сохранённые статьи</a>
             <hr class="header__vector"> <!--TODO сделать через вектор-->
           </div>
-          <button class="button header__text">Авторизоваться</button>
+          <button class="header__button header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
-      </footer>
+      </header>
       <h1 class="search__title">Что в мире творится?</h1>
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
@@ -79,7 +86,21 @@
           Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.</p>
       </div>
     </section>
-    
+    <div class="popup">
+      <div class="popup__content">
+        <img src="./images/close.png" alt="popup_close" class="popup__close">
+        <h3 class="popup__title">Вход</h3>
+        <form class="popup__form" name="new">
+            <input type="text" name="Email" class="popup__input popup__input_type_email" placeholder="Введите почту">
+            <input type="text" name="Пароль" class="popup__input popup__input_type_password" placeholder="Введите пароль">
+            <button type class="button popup__button"></button>
+            <p><a href = "" class="header__text header__text_white">Зарегистрироваться</a>или</p>
+        </form>
+      </div>
+    </div>
+      </div>
+    </div>
+
     <footer class="footer">
       <a href="https://ya.ru" target="_blank" class="footer__enter">© 2020 Supersite, Powered by News API</a>
       <div class="footer__group">

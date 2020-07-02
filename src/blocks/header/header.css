@@ -3,6 +3,12 @@
 @import url('./__vector/header__vector.css');
 @import url('./__main/header__main.css');
 @import url('./__text/header__text.css');
+@import url('./__transition/header__transition.css');
+@import url('./__icon/header__icon.css');
+@import url('./__button/header__button.css');
+
+
+
 
 .header {
   display: flex;
@@ -10,6 +16,5 @@
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px double green;
-
+ 
 }

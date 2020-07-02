@@ -1,6 +1,15 @@
+@import url('./_dark/header__text_dark.css');
+@import url('./_gray/header__text_gray.css');
+@import url('./_white/header__text_white.css');
+
 .header__text {
-  font-size: 18px;
-  font-family: 'Roboto Medium';
-  line-height: 24px;
-  color: #fff;
+  font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 24px;
+
+  text-decoration: none;
+
+
 }
