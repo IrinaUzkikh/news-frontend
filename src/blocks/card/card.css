@@ -6,15 +6,21 @@
 @import url('./__text/card__text.css');
 @import url('./__title/card__title.css');
 @import url('./__keyword/card__keyword.css');
+@import url('./__image/card__image.css');
+
 
 
 .card {
   /*width: calc((100vw - 208px - 20px)/3);*/
   width: 400px;
-  height: 576px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   margin-right: 16px;
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 16px;
 
 }
 

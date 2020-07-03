@@ -1,8 +1,9 @@
+@import url('./_pressed/search__button_pressed.css');
 .search__button {
   background: #2F71E5;
 /*box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);*/
 border-radius: 100px;
-margin-left: 500px;
+margin-left: 440px;
 position: absolute;
 font-family: Roboto;
 font-style: normal;

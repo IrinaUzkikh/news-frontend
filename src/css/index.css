@@ -7,8 +7,9 @@
 @import url('../blocks/author/author.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/results/results.css');
-@import url('../blocks/block/block.css');
 @import url('../blocks/popup/popup.css');
+@import url('../blocks/process/process.css');
+
 
 
 /*h1 {

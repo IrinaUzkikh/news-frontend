@@ -1,3 +1,5 @@
+@import url(./_left/popup__register_left.css);
+
 .popup__register {
   display: flex;
   flex-direction: row;

@@ -6,6 +6,7 @@
 @import url('./__transition/header__transition.css');
 @import url('./__icon/header__icon.css');
 @import url('./__button/header__button.css');
+@import url('./__hide/header__hide.css');
 
 
 
@@ -16,5 +17,5 @@
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
- 
+
 }

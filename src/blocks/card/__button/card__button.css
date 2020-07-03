@@ -1,3 +1,7 @@
+@import url('./_remove/card__button_remove.css');
+@import url('./_is-opened/card__button_is-opened.css');
+
+
 .card__button {
   /*background: rgba(255, 255, 255, 0);*/
 
@@ -16,5 +20,6 @@ margin: 24px 0 0 149px;
 border-radius: 10px;
 z-index: 1;
 border: none;
+display: none;
 
 }

@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News-explorer</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.index.css%>">
-    <link rel="icon" href="<%=require('./images/Favicon.png').default%>">
-   <!-- <link rel="icon" href="<%=require('./images/Favicon.png')%>" type="images/png">-->
+    <link rel="icon" href="<%=require('./images/Favicon.png').default%>" type="image/png">
 </head>
 <body>
   <div class="root">
@@ -17,11 +16,11 @@
         <div class="header__container">
           <div class="header__main">
             <a href = "index.html" class="header__text header__text_white">Главная</a>
-            <hr class="header__vector hide-block header__text_white"> <!--TODO сделать через вектор-->
+            <hr class="header__vector header__hide header__text_white"> <!--TODO не БЭМ-->
           </div>
-          <button class="button header__text hide-block">Авторизоваться</button>
+          <button class="button header__text header__hide">Авторизоваться</button>
           <div class="header__main">
-            <a href = "./add.html" class="header__text header__text_gray">Сохранённые статьи</a>
+            <a href = "./add.html" class="header__text header__text_gray" target="_blank">Сохранённые статьи</a>
             <hr class="header__vector"> <!--TODO сделать через вектор-->
           </div>
           <button class="header__button header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
@@ -31,8 +30,21 @@
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
         <input type="text" class="search__text" placeholder="Введите тему новости" required>
-        <input type="submit" class="search__button" value="Искать">
+        <div class="search__container">
+          <input type="submit" class="search__button search__button_pressed" value="Искать">
+          <img src="<%=require('./images/lapka.png').default%>" alt="image" class="search__lapka">
+        </div>
       </form>
+    </section>
+
+    <section class="process">
+      <i class="process__preloader"></i>
+      <p class="process__text">Идет поиск новостей...</p>
+    </section>
+    <section class="process">
+      <img src="<%=require('./images/not-found_v1.png').default%>" class="process__image" alt="image">
+      <p class="process__text1">Ничего не найдено</p>
+      <p class="process__text">К сожалению по вашему запросу ничего не найдено.</p>
     </section>
 
     <section class="results">
@@ -40,8 +52,9 @@
       <div class="results__container">
         <div class="card">
           <div class="card__container">
-             <img src="<%=require('./images/image_01.jpg').default%>" alt="image">
-             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>"></button>
+             <img src="<%=require('./images/image_01.jpg').default%>" alt="image" class="card__image">
+             <button class="card__button card__button_is-opened">Войдите, чтобы сохранять статьи</button>
+             <button class="card__bookmark"><img src="<%=require('./images/bookmark_gray1.png').default%>"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Национальное достояние – парки</h2>
@@ -50,11 +63,11 @@
           <h3 class="card__source">Медуза</h3>
         </div>
 
-
         <div class="card">
           <div class="card__container">
-             <img src="<%=require('./images/image_02.jpg').default%>" alt="image">
-             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>"></button>
+             <img src="<%=require('./images/image_02.jpg').default%>" alt="image" class="card__image">
+             <button class="card__button card__button_is-opened">Войдите, чтобы сохранять статьи</button>
+             <button class="card__bookmark"><img src="<%=require('./images/bookmark_blue1.png').default%>"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -66,8 +79,8 @@
         <div class="card">
           <div class="card__container">
              <img src="<%=require('./images/image_03.jpg').default%>" alt="image">
-             <button class="card__button">Войдите, чтобы сохранять статьи</button>
-             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>"></button>
+             <button class="card__button card__button_is-opened">Войдите, чтобы сохранять статьи</button>
+             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>" class="card__image"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
@@ -75,7 +88,10 @@
           <h3 class="card__source">Риа</h3>
         </div>
       </div>
+
       <button class="results__button">Показать еще</button>
+     <!-- <img src="<%=require('./images/lapka.png').default%>" alt="image"> -->
+
     </section>
 
     <section class="author">
@@ -90,44 +106,52 @@
       <div class="popup__content">
         <img src="<%=require('./images/close.png').default%>" alt="popup_close" class="popup__close">
         <h3 class="popup__title">Вход</h3>
-        <form class="popup__form" name="new">
+        <form class="popup__form" name="input">
           <label class="popup__label" for="email">Email</label>
            <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
            <p class="popup__error popup__error_active">Неправильный формат email</p>
            <label class="popup__label" for="password">Пароль</label>
            <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
-           <button class="popup__button">Войти</button>
-           <a href = "" class="popup__register"><span class="popup__text">или</span>Зарегистрироваться</a>
-        </form>
+         </form>
+         <button class="popup__button">Войти</button>
+         <a href = "./index.html" class="popup__register"><span class="popup__text">или</span>Зарегистрироваться</a>
+
       </div>
     </div>
 
-    <div class="popup popup_is-opened">
+    <div class="popup">
       <div class="popup__content">
         <img src="<%=require('./images/close.png').default%>" alt="popup_close" class="popup__close">
         <h3 class="popup__title">Регистрация</h3>
-        <form class="popup__form" name="new">
-          <label class="popup__label" for="email">Email</label>
+        <form class="popup__form" name="registration">
+           <label class="popup__label" for="email">Email</label>
            <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
            <p class="popup__error">Неправильный формат email</p>
            <label class="popup__label" for="password">Пароль</label>
            <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
            <label class="popup__label" for="name">Имя</label>
            <input type="text" name="name" class="popup__input" placeholder="Введите своё имя" required>
-           <p class="popup__error popup__error_user">Такой пользователь уже есть</p>
-           <button class="popup__button popup__button_register">Зарегистрироваться</button>
-           <a href = "" class="popup__register"><span class="popup__text">или</span>Войти</a>
+        </form>
+        <p class="popup__error popup__error_user">Такой пользователь уже есть</p>
+        <button class="popup__button popup__button_register">Зарегистрироваться</button>
+        <a href = "./index.html"  class="popup__register"><span class="popup__text">или</span>Войти</a>
+
+      </div>
+    </div>
+
+    <div class="popup">
+      <div class="popup__content">
+        <img src="<%=require('./images/close.png').default%>" alt="popup_close" class="popup__close">
+        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+          <a href = "./index.html"  class="popup__register popup__register_left">Выполнить вход</a>
         </form>
       </div>
     </div>
 
-
-
-
     <footer class="footer">
-      <a href="https://ya.ru" target="_blank" class="footer__enter">© 2020 Supersite, Powered by News API</a>
+      <a href="./index.html"  target="_blank" class="footer__enter">© 2020 Supersite, Powered by News API</a>
       <div class="footer__group">
-        <a href="https://ya.ru" target="_blank" class="footer__text">Главная</a>
+        <a href="./index.html"  target="_blank" class="footer__text">Главная</a>
         <a href="https://praktikum.yandex.ru/profile/web-developer/" target="_blank" class="footer__text">Яндекс.Практикум</a>
       </div>
       <div class="footer__social">
@@ -136,9 +160,6 @@
       </div>
 
     </footer>
-    <h1>Hello</h1>
-    <a href = "./add.html">Вторая страница</a>
-    <img src="<%=require('./images/rectangle.jpg').default%>">
 
   </div>
 </body>

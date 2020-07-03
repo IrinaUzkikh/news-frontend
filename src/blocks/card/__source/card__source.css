@@ -7,9 +7,13 @@ line-height: 20px;
 
 letter-spacing: 0.4px;
 text-transform: uppercase;
-margin-left: 24px;
-margin-bottom: 24px;
+position: absolute;
+
+left: 24px;
+bottom: 24px;
 display: flex;
-align-items: flex-end;
+/*align-items: flex-end;*/
 color: #b6bcbf;
+z-index: 2;
+
 }
