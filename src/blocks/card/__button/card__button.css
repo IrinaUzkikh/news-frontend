@@ -15,7 +15,10 @@ height: 40px;
 
 color: #000000;
 position: absolute;
-margin: 24px 0 0 149px;
+top: 24px;
+left: 149px;
+
+/*margin: 24px 0 0 149px;*/
 
 border-radius: 10px;
 z-index: 1;

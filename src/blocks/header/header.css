@@ -8,14 +8,13 @@
 @import url('./__button/header__button.css');
 @import url('./__hide/header__hide.css');
 
-
-
-
 .header {
   display: flex;
   height: 80px;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+  /*position: absolute;
+  top: 0;*/
 
 }

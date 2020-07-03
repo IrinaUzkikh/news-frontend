@@ -11,6 +11,7 @@
 </head>
 <body>
   <div class="root">
+    <section class="search">
     <header class="header">
       <div class="header__newsexplorer header__newsexplorer_dark">NewsExplorer</div>
       <div class="header__container">
@@ -24,6 +25,7 @@
         <button class="header__button header__button_dark header__text header__text_dark">Грета<img src="<%=require('./images/Union-dark.png').default%>" alt="icon_logout" class="header__icon"></button>
       </div>
     </header>
+  </section>
     <section class="content">
       <p class="content__text">Сохранённые статьи</p>
       <p class="content__text1">Грета, у вас 5 сохранённых статей</p>
@@ -45,10 +47,10 @@
         </div>
         <div class="card">
           <div class="card__container">
-             <img src="<%=require('./images/image_22.jpg').default%>" alt="image">
+             <img src="<%=require('./images/image_22.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Природа</p>
              <button class="card__button card__button_is-opened card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('./images/trash_black.png').default%>" class="card__image"></button>
+             <button class="card__bookmark"><img src="<%=require('./images/trash_black.png').default%>"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -111,7 +113,7 @@
     </footer>
 
 
-  
+
 
   </div>
 </body>

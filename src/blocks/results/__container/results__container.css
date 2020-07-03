@@ -6,3 +6,14 @@
   flex-wrap: wrap;
 
 }
+/*
+.results__container {
+    width: 92%;
+    display: grid;
+    margin: 64px auto 0;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+ grid-template-rows: repeat(3, 1fr);*/
+
+

@@ -11,17 +11,18 @@
 <body>
   <div class="root">
     <section class="search">
+    <!--  <img src="<%=require('./images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg').default%>" alt="image" class="search__img"-->
       <header class="header">
         <div class="header__newsexplorer">NewsExplorer</div>
         <div class="header__container">
           <div class="header__main">
             <a href = "index.html" class="header__text header__text_white">Главная</a>
-            <hr class="header__vector header__hide header__text_white"> <!--TODO не БЭМ-->
+            <hr class="header__vector header__hide">
           </div>
-          <button class="button header__text header__hide">Авторизоваться</button>
+          <button class="button header__text header__text_white header__hide">Авторизоваться</button>
           <div class="header__main">
             <a href = "./add.html" class="header__text header__text_gray" target="_blank">Сохранённые статьи</a>
-            <hr class="header__vector"> <!--TODO сделать через вектор-->
+            <hr class="header__vector">
           </div>
           <button class="header__button header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
@@ -53,7 +54,7 @@
         <div class="card">
           <div class="card__container">
              <img src="<%=require('./images/image_01.jpg').default%>" alt="image" class="card__image">
-             <button class="card__button card__button_is-opened">Войдите, чтобы сохранять статьи</button>
+             <button class="card__button">Войдите, чтобы сохранять статьи</button>
              <button class="card__bookmark"><img src="<%=require('./images/bookmark_gray1.png').default%>"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
@@ -66,7 +67,7 @@
         <div class="card">
           <div class="card__container">
              <img src="<%=require('./images/image_02.jpg').default%>" alt="image" class="card__image">
-             <button class="card__button card__button_is-opened">Войдите, чтобы сохранять статьи</button>
+             <button class="card__button">Войдите, чтобы сохранять статьи</button>
              <button class="card__bookmark"><img src="<%=require('./images/bookmark_blue1.png').default%>"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
@@ -78,9 +79,9 @@
 
         <div class="card">
           <div class="card__container">
-             <img src="<%=require('./images/image_03.jpg').default%>" alt="image">
+             <img src="<%=require('./images/image_03.jpg').default%>" alt="image"  class="card__image">
              <button class="card__button card__button_is-opened">Войдите, чтобы сохранять статьи</button>
-             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>" class="card__image"></button>
+             <button class="card__bookmark"><img src="<%=require('./images/bookmark.png').default%>"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
