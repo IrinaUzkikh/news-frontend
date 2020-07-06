@@ -4,9 +4,14 @@
 .header__button {
   background: rgba(255, 255, 255, 0);
   border-radius: 100px;
-
+  
   text-align: center;
   margin-bottom: 13px;
   /*border: none;*/
 
 }
+@media (max-width: 768px) {
+  .header__button {
+    margin-bottom: -2px;
+    }
+  }

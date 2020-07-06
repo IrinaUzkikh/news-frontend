@@ -17,3 +17,12 @@ color: #b6bcbf;
 z-index: 2;
 
 }
+
+@media (max-width: 850px) {
+  .card__source {
+    left: 16px;
+    bottom: 16px;
+
+
+  }
+}

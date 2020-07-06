@@ -7,5 +7,15 @@ line-height: 46px;
 
 color: #1a1b22;
 margin-top: 28px;
-width: 530px;
+width: 44%;
 }
+
+@media (max-width: 768px) {
+  .content__text1 {
+    font-size: 30px;
+    line-height: 34px;
+    margin-top: 16px;
+
+  }
+}
+

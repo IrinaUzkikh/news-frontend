@@ -6,3 +6,9 @@ text-decoration: none;
 color: #b6bcbf;
 margin: 32px 0 26px;
 }
+
+@media (max-width: 768px) {
+  .footer__enter {
+    margin: 24px 0 18px;
+    }
+  }

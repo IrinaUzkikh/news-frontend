@@ -2,10 +2,17 @@
   font-family: Roboto;
   font-size: 18px;
   line-height: 24px;
-  margin: 34.5px 479px 0 416px;
+  margin-top: 32px;
+  margin-bottom: 0;
   /*position: absolute;
   top: 310px;
   left: 420px;
 width: 608px;*/
 
 }
+
+@media (max-width: 768px) {
+  .search__subtitle {
+    margin-top: 16px
+    }
+  }

@@ -10,3 +10,11 @@
   line-height: 24px;
 
 }
+
+@media (max-width: 768px) {
+  .header__newsexplorer {
+    margin-top: 22.73px;
+    margin-bottom: 18.47px;
+    margin-left: 40px;
+  }
+}

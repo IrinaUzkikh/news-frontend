@@ -1,0 +1,10 @@
+.search__content {
+  margin: 70px 28% 80px;
+}
+
+@media (max-width: 790px) {
+  .search__content {
+    margin: 38px 25% 48px;
+
+  }
+}

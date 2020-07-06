@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News-explorer</title>
+    <meta name="description" content="Удобный сервис для поиска новостей в Интернете по разным темам"/>
+    <meta name="author" content="Узких Ирина"/>
+    <title>Поиск новостей</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.index.css%>">
     <link rel="icon" href="<%=require('./images/Favicon.png').default%>" type="image/png">
 </head>
@@ -12,30 +14,38 @@
   <div class="root">
     <section class="search">
     <!--  <img src="<%=require('./images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg').default%>" alt="image" class="search__img"-->
+
+    <!-- блоки скрываются добавлением класса header__hide и показываются без класса header__hide-->
+    <!-- в закоментированных строках состояние меню LOGOUT-->
       <header class="header">
         <div class="header__newsexplorer">NewsExplorer</div>
         <div class="header__container">
           <div class="header__main">
             <a href = "index.html" class="header__text header__text_white">Главная</a>
             <hr class="header__vector header__hide">
+            <!--<hr class="header__vector">-->
           </div>
-          <button class="button header__text header__text_white header__hide">Авторизоваться</button>
+          <!--<button class="header__button header__text header__text_white">Авторизоваться</button>-->
+          <button class="header__button header__text header__text_white header__hide">Авторизоваться</button>
           <div class="header__main">
             <a href = "./add.html" class="header__text header__text_gray" target="_blank">Сохранённые статьи</a>
-            <hr class="header__vector">
+            <!--<a href = "./add.html" class="header__text header__text_gray  header__hide" target="_blank">Сохранённые статьи</a>-->
+            <hr class="header__vector  header__hide">
           </div>
+          <!--<button class="header__button header__button_white header__text header__text_white header__hide">Грета<img src="<%=require('./images/Union.png').default%>"
+            alt="icon_logout" class="header__icon"></button>-->
           <button class="header__button header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
       </header>
+      <div class="search__content">
       <h1 class="search__title">Что в мире творится?</h1>
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
         <input type="text" class="search__text" placeholder="Введите тему новости" required>
-        <div class="search__container">
-          <input type="submit" class="search__button search__button_pressed" value="Искать">
-          <img src="<%=require('./images/lapka.png').default%>" alt="image" class="search__lapka">
-        </div>
+        <input type="submit" class="search__button" value="Искать">
+
       </form>
+    </div>
     </section>
 
     <section class="process">
@@ -96,11 +106,12 @@
     </section>
 
     <section class="author">
-      <img src="<%=require('./images/photo.png').default%>" class="author__photo" alt="photo">
+      <img src="<%=require('./images/photo2.png').default%>" class="author__photo" alt="photo">
       <div class="author__about">
         <h3 class="author__title">Об авторе</h3>
-        <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.
-          Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.</p>
+        <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.</p>
+
+        <p class="author__description">Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.</p>
       </div>
     </section>
     <div class="popup">

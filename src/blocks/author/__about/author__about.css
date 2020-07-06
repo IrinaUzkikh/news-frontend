@@ -3,5 +3,13 @@
   margin-left: 56px;
   display: flex;
   flex-direction: column;
-  margin-right: 216px;
+  margin-right: 15%;
+}
+
+@media (max-width: 768px) {
+  .author__about {
+    margin-top: 40px;
+  margin-left: 32px;
+  margin-right: 5%;
+  }
 }

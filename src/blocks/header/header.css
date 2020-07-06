@@ -7,6 +7,8 @@
 @import url('./__icon/header__icon.css');
 @import url('./__button/header__button.css');
 @import url('./__hide/header__hide.css');
+@import url('./_articles/header_articles.css');
+
 
 .header {
   display: flex;
@@ -16,5 +18,12 @@
   justify-content: space-between;
   /*position: absolute;
   top: 0;*/
+  background: rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
 
+@media (max-width: 768px) {
+.header {
+    height: 66px;
+  }
 }

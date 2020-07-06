@@ -1,10 +1,10 @@
-@import url('./_pressed/search__button_pressed.css');
 .search__button {
   background: #2F71E5;
 /*box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);*/
 border-radius: 100px;
-margin-left: 440px;
+
 position: absolute;
+right: 0;
 font-family: Roboto;
 font-style: normal;
 font-weight: 500;
@@ -19,4 +19,16 @@ color: #fff;
 z-index: 2;
 border: none;
 
+}
+.search__button:hover {
+  background: #2A65CC;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+}
+
+@media (max-width: 768px) {
+.search__button {
+width: 160px;
+height: 56px;
+
+}
 }

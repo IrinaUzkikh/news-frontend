@@ -1,9 +1,10 @@
 .search__form {
-  margin: 69px 416px 86.25px 416px;
+  margin-top: 64px;
+  margin-bottom: 80px;
   position: relative;
   display: flex;
 
-width: 608px;
+width: 100%;
 height: 69px;
 
 border-radius: 100px;
@@ -11,7 +12,12 @@ border-radius: 100px;
   top: 422px;
   left: 420px;*/
 
+}
 
-
-
+@media (max-width: 768px) {
+  .search__form {
+    margin-top: 48px;
+    margin-bottom: 48px;
+    height: 56px;
+  }
 }

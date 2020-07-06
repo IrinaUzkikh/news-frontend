@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News-explorer</title>
+    <title>Сохраненные статьи</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.add.css %>">
     <link rel="icon" href="<%=require('./images/Favicon.png').default%>">
 
@@ -12,7 +12,7 @@
 <body>
   <div class="root">
     <section class="search">
-    <header class="header">
+    <header class="header header_articles">
       <div class="header__newsexplorer header__newsexplorer_dark">NewsExplorer</div>
       <div class="header__container">
         <div class="header__main">
@@ -29,7 +29,7 @@
     <section class="content">
       <p class="content__text">Сохранённые статьи</p>
       <p class="content__text1">Грета, у вас 5 сохранённых статей</p>
-      <p class="content__text3">По ключевым словам: <b>Природа, Тайга и 2 другим</b></p>
+      <p class="content__text2">По ключевым словам: <b>Природа, Тайга и 2 другим</b></p>
     </section>
     <section class="results">
       <div class="results__container">
@@ -37,7 +37,7 @@
           <div class="card__container">
              <img src="<%=require('./images/image_21.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Природа</p>
-             <button class="card__button card__button_remove">Убрать из сохранённых</button>
+             <button class="card__button">Убрать из сохранённых</button>
              <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>

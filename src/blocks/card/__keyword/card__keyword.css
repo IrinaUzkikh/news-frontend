@@ -20,3 +20,11 @@ border-radius: 10px;
 background-color: #fff;
 z-index: 1;
 }
+
+@media (max-width: 850px) {
+  .card__keyword {
+    margin: 8px 0 0 8px;
+
+
+  }
+}

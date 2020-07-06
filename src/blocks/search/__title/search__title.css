@@ -2,12 +2,19 @@
   font-family: Roboto Slab;
   font-size: 60px;
   line-height: 64px;
-  margin: 92.5px 416px 0 416px;
+  margin-top: 0;
+  margin-bottom: 0;
+  
   /*position: absolute;
   top: 150px;
   left: 420px;
 width: 608px;*/
 
-
-
 }
+@media (max-width: 768px) {
+  .search__title {
+    font-size: 36px;
+  line-height: 40px;
+  /*margin-top: 48px;*/
+    }
+  }

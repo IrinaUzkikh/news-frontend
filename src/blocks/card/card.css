@@ -11,9 +11,11 @@
 
 
 .card {
-  width: calc((100vw - 208px - 20px)/3);
+  width: calc((100% - 32px)/3);
   /*width: 300px;*/
+
  height: 600px;
+
   display: flex;
   flex-direction: column;
   margin-right: 16px;
@@ -24,6 +26,25 @@
 
 }
 
-.card:last-of-type {
+.card:nth-child(3n) {
   margin-right: 0px;
 }
+
+@media (max-width: 1020px) {
+  .card {
+    width: calc((100% - 16px)/3);
+    margin-right: 8px;
+    margin-bottom: 8px;
+    height: 500px;
+
+    }
+  }
+@media (max-width: 768px) {
+  .card {
+    width: calc((100% - 16px)/3);
+    margin-right: 8px;
+    margin-bottom: 8px;
+    height: 420px;
+
+    }
+  }

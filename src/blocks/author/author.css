@@ -6,6 +6,8 @@
 .author {
   display: flex;
   flex-direction: row;
+  background: #FFF;
+  width: 100%;
 }
 
 
