@@ -1,8 +1,17 @@
 .footer__social {
   display: flex;
   flex-direction: row;
-  margin: 28px 0 28px 40px;
-  width: 80px;
+  margin-left: 30px;
+  width: 72px;
   display: flex;
   justify-content: space-between;
 }
+
+@media (max-width: 768px) {
+  .footer__social {
+    margin-left: 14px;
+    width: 72px;
+    display: flex;
+    justify-content: space-between;
+  }
+  }
