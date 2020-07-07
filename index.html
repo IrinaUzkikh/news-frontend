@@ -4,38 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News-explorer</title>
-    <link rel="stylesheet" href="./index.94e5a04a1fa492630013.css">
+    <meta name="description" content="Удобный сервис для поиска новостей в Интернете по разным темам"/>
+    <meta name="author" content="Узких Ирина"/>
+    <title>Поиск новостей</title>
+    <link rel="stylesheet" href="./index.b322a1d67a1469a9886d.css">
     <link rel="icon" href="./images/Favicon.png" type="image/png">
 </head>
 <body>
   <div class="root">
     <section class="search">
     <!--  <img src="./images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg" alt="image" class="search__img"-->
+
+    <!-- блоки скрываются добавлением класса header__hide и показываются без класса header__hide-->
+    <!-- в закоментированных строках состояние меню LOGOUT-->
       <header class="header">
         <div class="header__newsexplorer">NewsExplorer</div>
+        <img src="./images/menu.png" alt="menu" class="header__menu">
         <div class="header__container">
           <div class="header__main">
             <a href = "index.html" class="header__text header__text_white">Главная</a>
             <hr class="header__vector header__hide">
           </div>
-          <button class="button header__text header__text_white header__hide">Авторизоваться</button>
+          <button class="header__button header__text header__text_white header__hide">Авторизоваться</button>
+
           <div class="header__main">
             <a href = "./add.html" class="header__text header__text_gray" target="_blank">Сохранённые статьи</a>
-            <hr class="header__vector">
+            <hr class="header__vector  header__hide">
           </div>
           <button class="header__button header__button_white header__text header__text_white">Грета<img src="./images/Union.png" alt="icon_logout" class="header__icon"></button>
         </div>
       </header>
+
+      <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened -->
+      <div class="menu">
+        <div class="menu__content">
+          <header class="header">
+            <div class="header__newsexplorer">NewsExplorer</div>
+            <img src="./images/close-mobil.png" alt="menu" class="header__menu">
+          </header>
+         <nav class="menu__nav">
+          <a href = "index.html" class="header__text header__text_mobil header__text_white">Главная</a>
+          <a href = "./add.html" class="header__text header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
+          <button class="header__button header__text_mobil header__button_mobil header__button_white header__text header__text_white">Грета<img src="./images/Union.png" alt="icon_logout" class="header__icon"></button>
+        </nav>
+        </div>
+      </div>
+
+    <div class="search__content">
       <h1 class="search__title">Что в мире творится?</h1>
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
         <input type="text" class="search__text" placeholder="Введите тему новости" required>
-        <div class="search__container">
-          <input type="submit" class="search__button search__button_pressed" value="Искать">
-          <img src="./images/lapka.png" alt="image" class="search__lapka">
-        </div>
+        <input type="submit" class="search__button" value="Искать">
+
       </form>
+    </div>
     </section>
 
     <section class="process">
@@ -47,8 +70,8 @@
       <p class="process__text1">Ничего не найдено</p>
       <p class="process__text">К сожалению по вашему запросу ничего не найдено.</p>
     </section>
-
-    <section class="results">
+<!-- Блок с карточками открывается добавлением классу results модификатора results_is-opened -->
+    <section class="results results_is-opened">
       <h2 class="results__title">Результаты поиска</h2>
       <div class="results__container">
         <div class="card">
@@ -96,14 +119,18 @@
     </section>
 
     <section class="author">
-      <img src="./images/photo.png" class="author__photo" alt="photo">
+      <img src="./images/photo2.png" class="author__photo" alt="photo">
       <div class="author__about">
         <h3 class="author__title">Об авторе</h3>
-        <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.
-          Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.</p>
+        <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.</p>
+
+        <p class="author__description">Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.</p>
       </div>
     </section>
-    <div class="popup">
+    <!-- Popup открывается добавлением классу popup модификатора popup_is-opened -->
+    <!-- Сообщение об ошибке открывается добавлением классу popup__error модификатора popup__error_active -->
+
+    <div class="popup popup_is-opened">
       <div class="popup__content">
         <img src="./images/close.png" alt="popup_close" class="popup__close">
         <h3 class="popup__title">Вход</h3>
@@ -113,12 +140,14 @@
            <p class="popup__error popup__error_active">Неправильный формат email</p>
            <label class="popup__label" for="password">Пароль</label>
            <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
+           <p class="popup__error popup__error_active">Это обязательное поле</p>
          </form>
          <button class="popup__button">Войти</button>
          <a href = "./index.html" class="popup__register"><span class="popup__text">или</span>Зарегистрироваться</a>
 
       </div>
     </div>
+<!-- Popup открывается добавлением классу popup модификатора popup_is-opened -->
 
     <div class="popup">
       <div class="popup__content">
@@ -132,6 +161,7 @@
            <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
            <label class="popup__label" for="name">Имя</label>
            <input type="text" name="name" class="popup__input" placeholder="Введите своё имя" required>
+
         </form>
         <p class="popup__error popup__error_user">Такой пользователь уже есть</p>
         <button class="popup__button popup__button_register">Зарегистрироваться</button>
@@ -139,7 +169,7 @@
 
       </div>
     </div>
-
+<!-- Popup открывается добавлением классу popup модификатора popup_is-opened -->
     <div class="popup">
       <div class="popup__content">
         <img src="./images/close.png" alt="popup_close" class="popup__close">
@@ -151,13 +181,15 @@
 
     <footer class="footer">
       <a href="./index.html"  target="_blank" class="footer__enter">© 2020 Supersite, Powered by News API</a>
-      <div class="footer__group">
-        <a href="./index.html"  target="_blank" class="footer__text">Главная</a>
-        <a href="https://praktikum.yandex.ru/profile/web-developer/" target="_blank" class="footer__text">Яндекс.Практикум</a>
-      </div>
-      <div class="footer__social">
-        <a href="https://github.com/IrinaUzkikh/news-frontend" target="_blank"><img src="./images/github.png" alt="icon_github"></a>
-        <a href="https://www.facebook.com/" target="_blank"><img src="./images/iconmonstr-facebook-6.png" alt="icon_facebook"></a>
+      <div class="footer__content">
+        <div class="footer__group">
+          <a href="./index.html"  target="_blank" class="footer__text">Главная</a>
+          <a href="https://praktikum.yandex.ru/profile/web-developer/" target="_blank" class="footer__text">Яндекс.Практикум</a>
+        </div>
+        <div class="footer__social">
+          <a href="https://github.com/IrinaUzkikh/news-frontend" target="_blank"><img src="./images/github.png" alt="icon_github"></a>
+          <a href="https://www.facebook.com/" target="_blank"><img src="./images/iconmonstr-facebook-6.png" alt="icon_facebook"></a>
+        </div>
       </div>
 
     </footer>
