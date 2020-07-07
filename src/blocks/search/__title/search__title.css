@@ -4,7 +4,9 @@
   line-height: 64px;
   margin-top: 0;
   margin-bottom: 0;
-  
+  font-style: normal;
+  font-weight: normal;
+
   /*position: absolute;
   top: 150px;
   left: 420px;
@@ -17,4 +19,5 @@ width: 608px;*/
   line-height: 40px;
   /*margin-top: 48px;*/
     }
-  }
+}
+

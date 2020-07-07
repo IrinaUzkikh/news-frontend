@@ -8,6 +8,11 @@
 @import url('./__button/header__button.css');
 @import url('./__hide/header__hide.css');
 @import url('./_articles/header_articles.css');
+@import url('./__menu/header__menu.css');
+@import url('./__mobil/header__mobil.css');
+@import url('./__content/header__content.css');
+
+
 
 
 .header {
@@ -27,3 +32,9 @@
     height: 66px;
   }
 }
+
+@media (max-width: 570px) {
+  .header {
+      height: 56px;
+    }
+  }

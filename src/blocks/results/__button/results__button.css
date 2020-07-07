@@ -27,3 +27,12 @@
       height: 56px;
       }
     }
+
+    @media (max-width: 420px) {
+      .results__button {
+
+        width: 260px;
+
+        }
+      }
+

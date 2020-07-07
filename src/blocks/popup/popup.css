@@ -25,3 +25,11 @@
   display: none;
 
 }
+
+@media screen and (max-width: 490px) {
+  .popup {
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+

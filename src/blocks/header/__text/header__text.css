@@ -1,6 +1,7 @@
 @import url('./_dark/header__text_dark.css');
 @import url('./_gray/header__text_gray.css');
 @import url('./_white/header__text_white.css');
+@import url('./_mobil/header__text_mobil.css');
 
 .header__text {
   font-family: Roboto;

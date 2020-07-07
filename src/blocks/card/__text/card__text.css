@@ -14,13 +14,20 @@ text-overflow: ellipsis;
 
 @media (max-width: 1020px) {
   .card__text {
-    margin-left: 16px;
-    margin: 16px 0 0 16px;
+    margin: 16px 16px 16px 16px;
     font-size: 16px;
     line-height: 22px;
     height: 88px;
     overflow: hidden;
 text-overflow: ellipsis;
+/*white-space: nowrap;*/
+  }
+}
+
+@media (max-width: 420px) {
+  .card__text {
+    margin: 10px 16px 8px 16px;
+
 /*white-space: nowrap;*/
   }
 }

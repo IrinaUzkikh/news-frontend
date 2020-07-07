@@ -11,8 +11,9 @@ color: #1a1b22;
 
 @media (max-width: 768px) {
   .author__description {
-    margin-top: 16px;
-    
+    margin: 16px 0 0;
+
+
 
   }
 

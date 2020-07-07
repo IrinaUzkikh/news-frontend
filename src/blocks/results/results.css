@@ -4,7 +4,7 @@
 @import url('./__button/results__button.css');
 
 @import url('../card/card.css');
-@import url('./_is-opened.css/results-is-opened.css');
+@import url('./_is-opened.css/results_is-opened.css');
 
 
 
@@ -22,5 +22,11 @@
 @media (max-width: 768px) {
   .results {
     margin: 0 5% 0;
+    }
+  }
+
+@media (max-width: 420px) {
+  .results {
+    margin: 0 16px 0;
     }
   }

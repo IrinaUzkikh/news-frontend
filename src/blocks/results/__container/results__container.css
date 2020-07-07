@@ -12,6 +12,15 @@
     margin-top: 32px;
     }
   }
+
+@media (max-width: 420px) {
+    .results__container {
+      margin-top: 24px;
+      flex-direction: column;
+      width: 100%;
+
+      }
+    }
 /*
 .results__container {
     width: 92%;

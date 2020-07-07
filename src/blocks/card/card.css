@@ -48,3 +48,15 @@
 
     }
   }
+
+@media (max-width: 420px) {
+    .card {
+      width: 100%;
+      margin: 0;
+    /*  margin-right: 8px;
+      margin-bottom: 8px;*/
+      height: 460px;
+
+      }
+    }
+

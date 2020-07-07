@@ -13,3 +13,9 @@
   margin-right: 5%;
   }
 }
+
+@media (max-width: 490px) {
+  .author__about {
+    margin: 0 16px;
+  }
+}

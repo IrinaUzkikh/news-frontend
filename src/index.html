@@ -19,25 +19,38 @@
     <!-- в закоментированных строках состояние меню LOGOUT-->
       <header class="header">
         <div class="header__newsexplorer">NewsExplorer</div>
+        <img src="<%=require('./images/menu.png').default%>" alt="menu" class="header__menu">
         <div class="header__container">
           <div class="header__main">
             <a href = "index.html" class="header__text header__text_white">Главная</a>
             <hr class="header__vector header__hide">
-            <!--<hr class="header__vector">-->
           </div>
-          <!--<button class="header__button header__text header__text_white">Авторизоваться</button>-->
           <button class="header__button header__text header__text_white header__hide">Авторизоваться</button>
+
           <div class="header__main">
             <a href = "./add.html" class="header__text header__text_gray" target="_blank">Сохранённые статьи</a>
-            <!--<a href = "./add.html" class="header__text header__text_gray  header__hide" target="_blank">Сохранённые статьи</a>-->
             <hr class="header__vector  header__hide">
           </div>
-          <!--<button class="header__button header__button_white header__text header__text_white header__hide">Грета<img src="<%=require('./images/Union.png').default%>"
-            alt="icon_logout" class="header__icon"></button>-->
           <button class="header__button header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
       </header>
-      <div class="search__content">
+
+      <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened -->
+      <div class="menu">
+        <div class="menu__content">
+          <header class="header">
+            <div class="header__newsexplorer">NewsExplorer</div>
+            <img src="<%=require('./images/close-mobil.png').default%>" alt="menu" class="header__menu">
+          </header>
+         <nav class="menu__nav">
+          <a href = "index.html" class="header__text header__text_mobil header__text_white">Главная</a>
+          <a href = "./add.html" class="header__text header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
+          <button class="header__button header__text_mobil header__button_mobil header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+        </nav>
+        </div>
+      </div>
+
+    <div class="search__content">
       <h1 class="search__title">Что в мире творится?</h1>
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
@@ -57,8 +70,8 @@
       <p class="process__text1">Ничего не найдено</p>
       <p class="process__text">К сожалению по вашему запросу ничего не найдено.</p>
     </section>
-
-    <section class="results results-is-opened">
+<!-- Блок с карточками открывается добавлением классу results модификатора results_is-opened -->
+    <section class="results results_is-opened">
       <h2 class="results__title">Результаты поиска</h2>
       <div class="results__container">
         <div class="card">
@@ -117,7 +130,7 @@
     <!-- Popup открывается добавлением классу popup модификатора popup_is-opened -->
     <!-- Сообщение об ошибке открывается добавлением классу popup__error модификатора popup__error_active -->
 
-    <div class="popup">
+    <div class="popup popup_is-opened">
       <div class="popup__content">
         <img src="<%=require('./images/close.png').default%>" alt="popup_close" class="popup__close">
         <h3 class="popup__title">Вход</h3>

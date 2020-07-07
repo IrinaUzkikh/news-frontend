@@ -3,13 +3,19 @@
 @import url('./__text2/content__text2.css');
 
 .content {
-  margin-top: 40px;
-  margin-left: 104px;
+  padding: 40px 104px 39px;
+  background-color: #fff;
+
 }
 
 @media (max-width: 768px) {
   .content {
-    margin-top: 24px;
-    margin-left: 40px;
-    }
+    padding: 24px 40px 32px;
   }
+  }
+
+  @media (max-width: 490px) {
+    .content {
+      padding: 8px 16px 16px;
+    }
+    }

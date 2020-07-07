@@ -21,3 +21,12 @@ border-radius: 100px;
     height: 56px;
   }
 }
+
+@media (max-width: 570px) {
+  .search__form {
+    margin-top: 122px;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 0;
+  }
+}
