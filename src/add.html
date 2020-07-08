@@ -53,7 +53,7 @@
              <img src="<%=require('./images/image_21.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Природа</p>
              <button class="card__button">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>"></button>
+             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>" alt="trash"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Национальное достояние – парки</h2>
@@ -65,7 +65,7 @@
              <img src="<%=require('./images/image_22.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Природа</p>
              <button class="card__button card__button_is-opened card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('./images/trash_black.png').default%>"></button>
+             <button class="card__bookmark"><img src="<%=require('./images/trash_black.png').default%>" alt="trash_black"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -78,7 +78,7 @@
              <img src="<%=require('./images/image_23.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Тайга</p>
              <button class="card__button card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>"></button>
+             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>" alt="trash"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
@@ -90,7 +90,7 @@
              <img src="<%=require('./images/image_21.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Парки</p>
              <button class="card__button card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>"></button>
+             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>" alt="trash"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Национальное достояние – парки</h2>
@@ -102,7 +102,7 @@
              <img src="<%=require('./images/image_22.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Фотография</p>
              <button class="card__button card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>"></button>
+             <button class="card__bookmark"><img src="<%=require('./images/trash.png').default%>" alt="trash"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -130,9 +130,8 @@
     </footer>
 
 
-
-
   </div>
+  <script src="<%= htmlWebpackPlugin.files.chunks.add.entry%>"></script>
 </body>
-<script src="<%= htmlWebpackPlugin.files.chunks.add.entry %>"></script>
+
 </html>

@@ -14,7 +14,7 @@
 
 @font-face {
   font-family: 'Roboto Medium';
-  font-style:  medium;
+  font-style:  normal;
   font-weight: 400;
   src: url("./fonts/roboto-medium.woff") format("woff");
 }
@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: 'Roboto Slab';
-  font-style:  bold;
+  font-style:  normal;
   font-weight: 400;
   src: url("./fonts/robotoslab-regular.woff") format("woff");
 }
