@@ -37,7 +37,7 @@
 
       <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened -->
 
-      <div class="menu menu_is-opened">
+      <div class="menu">
         <div class="menu__content">
           <header class="header">
             <div class="header__newsexplorer">NewsExplorer</div>
@@ -168,8 +168,10 @@
            <input type="text" id="name-reg" class="popup__input" placeholder="Введите своё имя" required>
            <p class="popup__error popup__error_active">Это обязательное поле</p>
         </form>
-        <p class="popup__error popup__error_user">Такой пользователь уже есть</p>
-        <button class="popup__button popup__button_register">Зарегистрироваться</button>
+        <p class="popup__error">Такой пользователь уже есть</p>
+        <!-- Цвет кнопки на синий и шрифта на белый меняется добавлением модификатора popup__button_ok -->
+        <!-- Отступ сверху при сообщении об ошибке меняется с помощью модификатора popup__button_register -->
+        <button class="popup__button popup__button_ok">Зарегистрироваться</button>
         <a href = "./index.html"  class="popup__register"><span class="popup__text">или</span>Войти</a>
       </div>
     </div>

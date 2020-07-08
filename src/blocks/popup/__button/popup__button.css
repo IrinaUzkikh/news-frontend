@@ -1,5 +1,6 @@
 @import url(./_active/popup__button_active.css);
 @import url(./_register/popup__button_register.css);
+@import url(./_ok/popup__button_ok.css);
 
 .popup__button {
   width: 100%;

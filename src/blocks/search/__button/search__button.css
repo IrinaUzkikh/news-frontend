@@ -1,3 +1,5 @@
+@import url('./_pressed/search__button-pressed.css');
+
 .search__button {
   background: #2F71E5;
   border-radius: 100px;
