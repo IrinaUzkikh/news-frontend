@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Удобный сервис для поиска новостей в Интернете по разным темам"/>
+    <meta name="author" content="Узких Ирина"/>
     <title>Сохраненные статьи</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.add.css %>">
     <link rel="icon" href="<%=require('./images/Favicon.png').default%>">
@@ -12,39 +14,39 @@
 <body>
   <div class="root">
     <section class="search">
-    <header class="header header_articles">
-      <div class="header__newsexplorer header__newsexplorer_dark">NewsExplorer</div>
-      <img src="<%=require('./images/menu-gray.png').default%>" alt="menu" class="header__menu">
-      <div class="header__container">
-        <div class="header__main">
-          <a href = "./index.html" class="header__text header__text_dark">Главная</a>
+      <header class="header header_articles">
+        <div class="header__newsexplorer header__newsexplorer_dark">NewsExplorer</div>
+        <img src="<%=require('./images/menu-gray.png').default%>" alt="menu" class="header__menu">
+        <div class="header__container">
+          <div class="header__main">
+            <a href = "./index.html" class="header__text header__text_is-opened header__text_dark" target="_blank">Главная</a>
+          </div>
+          <div class="header__main">
+            <a href = "./add.html" class="header__text header__text_is-opened header__text_dark">Сохранённые статьи</a>
+            <hr class="header__vector header__vector_is-opened">
+          </div>
+          <button class="header__button header__button_dark header__text header__text_is-opened header__text_dark">Грета<img src="<%=require('./images/Union-dark.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
-        <div class="header__main">
-          <a href = "./add.html" class="header__text header__text_dark">Сохранённые статьи</a>
-          <hr class="header__vector"> <!--TODO сделать через вектор-->
+      </header>
+      <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened -->
+      <div class="menu menu_is-opened">
+        <div class="menu__content">
+          <header class="header">
+            <div class="header__newsexplorer">NewsExplorer</div>
+            <img src="<%=require('./images/close-mobil.png').default%>" alt="menu" class="header__menu">
+          </header>
+         <nav class="menu__nav">
+          <a href = "./index.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Главная</a>
+          <a href = "./add.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
+          <button class="header__button header__text_mobil header__text_is-opened header__button_mobil header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+        </nav>
         </div>
-        <button class="header__button header__button_dark header__text header__text_dark">Грета<img src="<%=require('./images/Union-dark.png').default%>" alt="icon_logout" class="header__icon"></button>
       </div>
-    </header>
-    <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened -->
-    <div class="menu">
-      <div class="menu__content">
-        <header class="header">
-          <div class="header__newsexplorer">NewsExplorer</div>
-          <img src="<%=require('./images/close-mobil.png').default%>" alt="menu" class="header__menu">
-        </header>
-       <nav class="menu__nav">
-        <a href = "index.html" class="header__text header__text_mobil header__text_white">Главная</a>
-        <a href = "./add.html" class="header__text header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
-        <button class="header__button header__text_mobil header__button_mobil header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
-      </nav>
-      </div>
-    </div>
-  </section>
+    </section>
     <section class="content">
-      <p class="content__text">Сохранённые статьи</p>
-      <p class="content__text1">Грета, у вас 5 сохранённых статей</p>
-      <p class="content__text2">По ключевым словам: <b>Природа, Тайга и 2 другим</b></p>
+      <p class="content__articles">Сохранённые статьи</p>
+      <p class="content__number">Грета, у вас 5 сохранённых статей</p>
+      <p class="content__words">По ключевым словам: <b>Природа, Тайга и 2 другим</b></p>
     </section>
     <section class="results results_is-opened">
       <div class="results__container">
@@ -58,7 +60,7 @@
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Национальное достояние – парки</h2>
           <p class="card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-          <h3 class="card__source">Дзен</h3>
+          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
         <div class="card">
           <div class="card__container">
@@ -71,7 +73,7 @@
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
           <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
             из местных чудес природы.</p>
-          <h3 class="card__source">Афиша</h3>
+            <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
         <div class="card">
           <div class="card__container">
@@ -83,7 +85,7 @@
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
           <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
-          <h3 class="card__source">Риа</h3>
+          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
         <div class="card">
           <div class="card__container">
@@ -95,7 +97,7 @@
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Национальное достояние – парки</h2>
           <p class="card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-          <h3 class="card__source">Дзен</h3>
+          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
         <div class="card">
           <div class="card__container">
@@ -108,7 +110,7 @@
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
           <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
             из местных чудес природы.</p>
-          <h3 class="card__source">Афиша</h3>
+            <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
 
       </div>
@@ -126,9 +128,7 @@
           <a href="https://www.facebook.com/" target="_blank"><img src="<%=require('./images/iconmonstr-facebook-6.png').default%>" alt="icon_facebook"></a>
         </div>
       </div>
-
     </footer>
-
 
   </div>
   <script src="<%= htmlWebpackPlugin.files.chunks.add.entry%>"></script>

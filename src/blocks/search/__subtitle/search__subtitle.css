@@ -6,15 +6,10 @@
   font-weight: normal;
   margin-top: 32px;
   margin-bottom: 0;
-  /*position: absolute;
-  top: 310px;
-  left: 420px;
-width: 608px;*/
-
 }
 
 @media (max-width: 768px) {
   .search__subtitle {
     margin-top: 16px
-    }
   }
+}

@@ -5,12 +5,11 @@
 @media (max-width: 790px) {
   .search__content {
     margin: 38px 5% 48px;
-
   }
 }
 
 @media (max-width: 570px) {
   .search__content {
     margin: 30px 16px 32px;
-    }
   }
+}

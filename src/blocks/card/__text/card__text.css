@@ -1,15 +1,13 @@
 .card__text {
   font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 22px;
-margin: 16px 0 0 24px;
-height: 110px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 16px 0 0 24px;
+  height: 110px;
+  color: #1a1b22;
 
-color: #1a1b22;
-overflow: hidden;
-text-overflow: ellipsis;
 }
 
 @media (max-width: 1020px) {
@@ -18,16 +16,11 @@ text-overflow: ellipsis;
     font-size: 16px;
     line-height: 22px;
     height: 88px;
-    overflow: hidden;
-text-overflow: ellipsis;
-/*white-space: nowrap;*/
   }
 }
 
 @media (max-width: 420px) {
   .card__text {
     margin: 10px 16px 8px 16px;
-
-/*white-space: nowrap;*/
   }
 }

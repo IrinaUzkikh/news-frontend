@@ -8,13 +8,13 @@
 @media (max-width: 768px) {
   .footer__content {
     margin: 22px 0 20px;
-    }
   }
+}
 
-  @media (max-width: 490px) {
-    .footer__content {
-      order: 1;
-      justify-content: space-between;
-      margin: 20px 0 0;
-      }
-    }
+@media (max-width: 490px) {
+  .footer__content {
+    order: 1;
+    justify-content: space-between;
+    margin: 20px 0 0;
+  }
+}

@@ -1,15 +1,12 @@
 .card__image {
   border-radius: 16px 16px 0 0;
   width: 100%;
-  /*width: 300px;*/
   object-fit: cover;
-object-position: 0 0;
+  object-position: 0 0;
 }
 
 @media (max-width: 420px) {
   .card__image {
     height: 196px;
-
-/*white-space: nowrap;*/
   }
 }

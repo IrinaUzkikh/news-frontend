@@ -1,26 +1,22 @@
 @import url(./_active/popup__button_active.css);
 @import url(./_register/popup__button_register.css);
 
-
 .popup__button {
   width: 100%;
   height: 64px;
   font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 24px;
-
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-background-color: #e6e8eb;
-border-radius: 100px;
-
-border: none;
-color: #B6BCBF;
-
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #e6e8eb;
+  border-radius: 100px;
+  border: none;
+  color: #B6BCBF;
   margin-top: 43px;
 }
 

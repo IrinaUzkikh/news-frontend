@@ -1,28 +1,23 @@
 .card__source {
   font-family: Roboto Slab;
-font-style: normal;
-font-weight: bold;
-font-size: 16px;
-line-height: 20px;
-
-letter-spacing: 0.4px;
-text-transform: uppercase;
-position: absolute;
-
-left: 24px;
-bottom: 24px;
-display: flex;
-/*align-items: flex-end;*/
-color: #b6bcbf;
-z-index: 2;
-
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  display: flex;
+  color: #b6bcbf;
+  z-index: 2;
+  text-decoration: none;
 }
 
 @media (max-width: 850px) {
   .card__source {
     left: 16px;
     bottom: 16px;
-
-
   }
 }

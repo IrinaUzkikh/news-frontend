@@ -4,9 +4,6 @@
 @import url('./__text/footer__text.css');
 @import url('./__content/footer__content.css');
 
-
-
-
 .footer {
   display: flex;
   flex-direction: row;
@@ -21,10 +18,9 @@
     }
   }
 
-  @media (max-width: 490px) {
-    .footer {
-      padding: 0 16px;
-      flex-direction: column;
-
-      }
-    }
+@media (max-width: 490px) {
+  .footer {
+    padding: 0 16px;
+    flex-direction: column;
+  }
+}

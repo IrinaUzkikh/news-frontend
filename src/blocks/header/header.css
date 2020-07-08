@@ -12,17 +12,12 @@
 @import url('./__mobil/header__mobil.css');
 @import url('./__content/header__content.css');
 
-
-
-
 .header {
   display: flex;
   height: 80px;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  /*position: absolute;
-  top: 0;*/
   background: rgba(196, 196, 196, 0.01);
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
 }
@@ -37,4 +32,4 @@
   .header {
       height: 56px;
     }
-  }
+}

@@ -1,0 +1,17 @@
+.content__words {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1A1B22;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .content__words {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 16px 0 0;
+  }
+}

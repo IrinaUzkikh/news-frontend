@@ -6,18 +6,12 @@
   margin-bottom: 0;
   font-style: normal;
   font-weight: normal;
-
-  /*position: absolute;
-  top: 150px;
-  left: 420px;
-width: 608px;*/
-
 }
+
 @media (max-width: 768px) {
   .search__title {
     font-size: 36px;
-  line-height: 40px;
-  /*margin-top: 48px;*/
-    }
+    line-height: 40px;
+  }
 }
 

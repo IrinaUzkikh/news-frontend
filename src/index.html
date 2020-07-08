@@ -13,39 +13,40 @@
 <body>
   <div class="root">
     <section class="search">
-    <!--  <img src="<%=require('./images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg').default%>" alt="image" class="search__img"-->
-
-    <!-- блоки скрываются добавлением класса header__hide и показываются без класса header__hide-->
-    <!-- в закоментированных строках состояние меню LOGOUT-->
+      <!-- блоки header__text и header__vector по умолчанию скрыты (по аналогии с другими скрытыми блоками) -->
+      <!-- открываются добавлением модификаторов header__text_is-opened и header__vector_is-opened -->
       <header class="header">
         <div class="header__newsexplorer">NewsExplorer</div>
         <img src="<%=require('./images/menu.png').default%>" alt="menu" class="header__menu">
         <div class="header__container">
           <div class="header__main">
-            <a href = "index.html" class="header__text header__text_white">Главная</a>
-            <hr class="header__vector header__hide">
-          </div>
-          <button class="header__button header__text header__text_white header__hide">Авторизоваться</button>
-
-          <div class="header__main">
-            <a href = "./add.html" class="header__text header__text_gray" target="_blank">Сохранённые статьи</a>
+            <!-- header__text_is-opened -->
+            <a href = "./index.html" class="header__text header__text_is-opened header__text_white" target="_blank">Главная</a>
+            <!-- header__vector_is-opened -->
             <hr class="header__vector">
           </div>
-          <button class="header__button header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+          <!-- header__text_is-opened -->
+          <button class="header__button header__text header__text_white">Авторизоваться</button>
+          <div class="header__main">
+            <a href = "./add.html" class="header__text header__text_is-opened header__text_gray header__hide" target="_blank">Сохранённые статьи</a>
+            <hr class="header__vector header__vector_is-opened">
+          </div>
+          <button class="header__button header__button_white header__text_is-opened header__text header__text_white header__hide">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
       </header>
 
       <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened -->
-      <div class="menu">
+
+      <div class="menu menu_is-opened">
         <div class="menu__content">
           <header class="header">
             <div class="header__newsexplorer">NewsExplorer</div>
             <img src="<%=require('./images/close-mobil.png').default%>" alt="menu" class="header__menu">
           </header>
          <nav class="menu__nav">
-          <a href = "index.html" class="header__text header__text_mobil header__text_white">Главная</a>
-          <a href = "./add.html" class="header__text header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
-          <button class="header__button header__text_mobil header__button_mobil header__button_white header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+          <a href = "./index.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Главная</a>
+          <a href = "./add.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
+          <button class="header__button header__text_mobil header__button_mobil header__button_white header__text_is-opened header__text header__text_white">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </nav>
         </div>
       </div>
@@ -56,21 +57,23 @@
       <form class="search__form">
         <input type="text" class="search__text" placeholder="Введите тему новости" required>
         <input type="submit" class="search__button" value="Искать">
-
       </form>
     </div>
     </section>
-
+    <!-- Блок для прелоудера, открывается добавлением классу process модификатора process_is-opened -->
     <section class="process">
       <i class="process__preloader"></i>
       <p class="process__text">Идет поиск новостей...</p>
     </section>
+
+    <!-- Блок для "ничего не найдено", открывается добавлением классу process модификатора process_is-opened -->
     <section class="process">
       <img src="<%=require('./images/not-found_v1.png').default%>" class="process__image" alt="image">
-      <p class="process__text1">Ничего не найдено</p>
+      <p class="process__no">Ничего не найдено</p>
       <p class="process__text">К сожалению по вашему запросу ничего не найдено.</p>
     </section>
-<!-- Блок с карточками открывается добавлением классу results модификатора results_is-opened -->
+
+<!-- Блок с карточками, открывается добавлением классу results модификатора results_is-opened -->
     <section class="results results_is-opened">
       <h2 class="results__title">Результаты поиска</h2>
       <div class="results__container">
@@ -84,7 +87,7 @@
           <h2 class="card__title">Национальное достояние – парки</h2>
           <p class="card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться
             система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-          <h3 class="card__source">Медуза</h3>
+          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
 
         <div class="card">
@@ -97,7 +100,7 @@
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
           <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
             из местных чудес природы.</p>
-          <h3 class="card__source">Лента.ру</h3>
+          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
 
         <div class="card">
@@ -109,24 +112,25 @@
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
           <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
-          <h3 class="card__source">Риа</h3>
+          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
       </div>
-
       <button class="results__button">Показать еще</button>
-     <!-- <img src="<%=require('./images/lapka.png').default%>" alt="image"> -->
-
     </section>
 
     <section class="author">
-      <img src="<%=require('./images/photo2.png').default%>" class="author__photo" alt="photo">
+      <picture class="author__photo">
+        <source srcset="<%=require('./images/photo.jpg').default%>" alt="photo" media="(min-width: 1052px)">
+        <source srcset="<%=require('./images/photo-pl.jpg').default%>" alt="photo" media="(min-width: 490px)">
+        <img src="<%=require('./images/photo-mob.jpg').default%>" alt="photo">
+      </picture>
       <div class="author__about">
         <h3 class="author__title">Об авторе</h3>
         <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.</p>
-
         <p class="author__description">Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.</p>
       </div>
     </section>
+
     <!-- Popup открывается добавлением классу popup модификатора popup_is-opened -->
     <!-- Сообщение об ошибке открывается добавлением классу popup__error модификатора popup__error_active -->
 
@@ -144,10 +148,10 @@
          </form>
          <button class="popup__button">Войти</button>
          <a href = "./index.html" class="popup__register"><span class="popup__text">или</span>Зарегистрироваться</a>
-
       </div>
     </div>
 <!-- Popup открывается добавлением классу popup модификатора popup_is-opened -->
+<!-- Сообщение об ошибке открывается добавлением классу popup__error модификатора popup__error_active -->
 
     <div class="popup">
       <div class="popup__content">
@@ -163,12 +167,10 @@
            <label class="popup__label" for="name-reg">Имя</label>
            <input type="text" id="name-reg" class="popup__input" placeholder="Введите своё имя" required>
            <p class="popup__error popup__error_active">Это обязательное поле</p>
-
         </form>
         <p class="popup__error popup__error_user">Такой пользователь уже есть</p>
         <button class="popup__button popup__button_register">Зарегистрироваться</button>
         <a href = "./index.html"  class="popup__register"><span class="popup__text">или</span>Войти</a>
-
       </div>
     </div>
 <!-- Popup открывается добавлением классу popup модификатора popup_is-opened -->

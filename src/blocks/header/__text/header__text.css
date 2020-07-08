@@ -2,6 +2,7 @@
 @import url('./_gray/header__text_gray.css');
 @import url('./_white/header__text_white.css');
 @import url('./_mobil/header__text_mobil.css');
+@import url('./_is-opened/header__text_is-opened.css');
 
 .header__text {
   font-family: Roboto;
@@ -10,6 +11,7 @@
   font-size: 18px;
   line-height: 24px;
   text-decoration: none;
+  display: none;
 }
 
 @media (max-width: 768px) {

@@ -1,3 +1,9 @@
 .menu.menu_is-opened {
-  display: flex;
+  display: none;
+}
+
+@media (max-width: 570px) {
+  .menu.menu_is-opened {
+    display: flex;
+  }
 }

@@ -10,8 +10,6 @@
 @import url(./__text/popup__text.css);
 @import url(./__error/popup__error.css);
 
-
-
 .popup {
   position: fixed;
   top: 0;
@@ -23,7 +21,6 @@
   align-items: center;
   justify-content: center;
   display: none;
-
 }
 
 @media screen and (max-width: 490px) {
@@ -32,4 +29,3 @@
     justify-content: center;
   }
 }
-

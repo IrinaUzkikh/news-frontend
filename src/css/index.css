@@ -3,7 +3,6 @@
 @import url('../blocks/root/root.css');
 @import url('../blocks/header/header.css');
 @import url('../blocks/search/search.css');
-@import url('../blocks/button/button.css');
 @import url('../blocks/author/author.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/results/results.css');
@@ -11,8 +10,13 @@
 @import url('../blocks/process/process.css');
 @import url('../blocks/menu/menu.css');
 
+input{
+  padding: 0 24px;
+}
 
-
-
-
+input:focus{
+  outline: none;
+  border: 1px solid #D1D2D6;
+  opacity: 0.7;
+}
 
