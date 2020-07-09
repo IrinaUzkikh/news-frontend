@@ -1,5 +1,5 @@
 .results__button {
-  font-family: Roboto;
+  font-family: Roboto, Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -9,7 +9,7 @@
   text-align: center;
   justify-content: center;
   color: #1a1b22;
-  margin: 0 auto 48px;
+  margin: 0 auto 80px;
   width: 288px;
   height: 64px;
   background: #fff;

@@ -1,6 +1,7 @@
 @import url('./_is-opened/card__button_is-opened.css');
 
 .card__button {
+  font-family: Roboto, Arial, sans-serif;
   font-weight: 500;
   font-size: 10px;
   line-height: 12px;

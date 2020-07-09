@@ -1,7 +1,7 @@
 @import url('./_dark/header__newsexplorer_dark.css');
 
 .header__newsexplorer {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', Arial, sans-serif;
   margin-top: 30px;
   margin-bottom: 26px;
   margin-left: 104px;
