@@ -1,0 +1,13 @@
+.header__main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 11px;
+  margin-right: 32px;
+}
+
+@media (max-width: 768px) {
+  .header__main {
+    margin-right: 16px;
+  }
+}
+

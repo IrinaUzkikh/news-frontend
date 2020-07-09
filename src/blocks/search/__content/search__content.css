@@ -1,0 +1,15 @@
+.search__content {
+  margin: 80px 28% 0;
+}
+
+@media (max-width: 790px) {
+  .search__content {
+    margin: 38px 5% 0;
+  }
+}
+
+@media (max-width: 570px) {
+  .search__content {
+    margin: 30px 16px 0;
+  }
+}

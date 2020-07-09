@@ -1,0 +1,70 @@
+@import url('./__button/card__button.css');
+@import url('./__container/card__container.css');
+@import url('./__bookmark/card__bookmark.css');
+@import url('./__date/card__date.css');
+@import url('./__source/card__source.css');
+@import url('./__text/card__text.css');
+@import url('./__title/card__title.css');
+@import url('./__keyword/card__keyword.css');
+@import url('./__image/card__image.css');
+
+.card {
+  width: calc((100% - 32px)/3);
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  margin-top: 16px;
+}
+
+.card:nth-child(3n) {
+  margin-right: 0px;
+}
+
+.card:nth-child(-n+3) {
+  margin-top: 0px;
+}
+
+@media (max-width: 1020px) {
+  .card {
+    width: calc((100% - 16px)/3);
+    margin-right: 8px;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 680px) {
+  .card {
+    width: calc((100% - 16px)/2);
+    margin-right: 8px;
+    margin-top: 8px;
+  }
+  .card:nth-child(-n+3) {
+    margin-top: 8px;
+  }
+  .card:nth-child(3n) {
+    margin-right: 8px;
+  }
+  .card:nth-child(2n) {
+    margin-right: 0px;
+  }
+  .card:nth-child(-n+2) {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 470px) {
+  .card {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .card:nth-child(-n+2) {
+    margin-top: 10px;
+  }
+  .card:nth-child(-n+1) {
+    margin-top: 0px;
+  }
+}

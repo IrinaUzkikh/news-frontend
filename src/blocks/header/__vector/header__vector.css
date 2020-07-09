@@ -1,0 +1,14 @@
+@import url('./_is-opened/header__vector_is-opened.css');
+
+.header__vector {
+  font-size: 3px;
+  width: 100%;
+  margin-top: 23px;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header__vector {
+    margin-top: 17px;
+  }
+}

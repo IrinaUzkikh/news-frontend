@@ -1,0 +1,25 @@
+.footer__enter {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #b6bcbf;
+  margin: 32px 0 26px;
+}
+
+@media (max-width: 768px) {
+  .footer__enter {
+    margin: 24px 0 18px;
+  }
+}
+@media (max-width: 490px) {
+  .footer__enter {
+    order: 2;
+    margin: 38px 0 22px;
+  }
+}
+@media (max-width: 340px) {
+  .footer__enter {
+    font-size: 15px;
+  }
+}

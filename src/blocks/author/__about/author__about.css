@@ -1,0 +1,21 @@
+.author__about {
+  margin-top: 113px;
+  margin-left: 56px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15%;
+}
+
+@media (max-width: 768px) {
+  .author__about {
+    margin-top: 40px;
+    margin-left: 32px;
+    margin-right: 5%;
+  }
+}
+
+@media (max-width: 490px) {
+  .author__about {
+    margin: 0 16px;
+  }
+}

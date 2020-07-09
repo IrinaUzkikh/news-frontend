@@ -1,0 +1,29 @@
+@import url('./_dark/header__newsexplorer_dark.css');
+
+.header__newsexplorer {
+  font-family: 'Roboto Slab', Arial, sans-serif;
+  margin-top: 30px;
+  margin-bottom: 26px;
+  margin-left: 104px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .header__newsexplorer {
+    margin-top: 22.73px;
+    margin-bottom: 18.47px;
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 570px) {
+  .header__newsexplorer {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    font-size: 16px;
+  }
+}

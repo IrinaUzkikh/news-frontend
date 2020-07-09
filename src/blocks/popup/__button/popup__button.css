@@ -1,0 +1,31 @@
+@import url(./_active/popup__button_active.css);
+@import url(./_register/popup__button_register.css);
+@import url(./_ok/popup__button_ok.css);
+
+.popup__button {
+  width: 100%;
+  height: 64px;
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #e6e8eb;
+  border-radius: 100px;
+  border: none;
+  color: #B6BCBF;
+  margin-top: 43px;
+}
+
+@media screen and (max-width: 490px) {
+  .popup__button {
+    margin-top: 8px;
+  }
+}
+
+
+

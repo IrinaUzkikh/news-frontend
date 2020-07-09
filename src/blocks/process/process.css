@@ -1,0 +1,15 @@
+@import url('./__preloader/process__preloader.css');
+@import url('./_is-opened/process_is-opened.css');
+@import url('./__text/process__text.css');
+@import url('./__image/process__image.css');
+@import url('./__no/process__no.css');
+
+.process {
+  max-width: 356px;
+	/*height: 282px;*/
+	background-color: #f5f6f7;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}

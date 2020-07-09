@@ -1,0 +1,26 @@
+@import url('./__group/footer__group.css');
+@import url('./__enter/footer__enter.css');
+@import url('./__social/footer__social.css');
+@import url('./__text/footer__text.css');
+@import url('./__content/footer__content.css');
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  padding: 0 104px;
+  background: #FFF;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    padding: 0 40px;
+    }
+  }
+
+@media (max-width: 490px) {
+  .footer {
+    padding: 0 16px;
+    flex-direction: column;
+  }
+}

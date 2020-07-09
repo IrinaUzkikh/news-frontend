@@ -1,0 +1,25 @@
+.card__keyword {
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  position: absolute;
+  margin: 24px 0 0 24px;
+  height: 40px;
+  width: 88px;
+  border-radius: 10px;
+  background-color: #fff;
+  z-index: 1;
+}
+
+@media (max-width: 850px) {
+  .card__keyword {
+    margin: 8px 0 0 8px;
+  }
+}

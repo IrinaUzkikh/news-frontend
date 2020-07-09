@@ -1,0 +1,17 @@
+.card__bookmark {
+  background-color: #fff;
+  border-radius: 8px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  height: 40px;
+  z-index: 2;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .card__bookmark {
+    top: 8px;
+    right: 8px;
+  }
+}
