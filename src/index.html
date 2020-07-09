@@ -35,7 +35,7 @@
         </div>
       </header>
 
-      <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened -->
+      <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened на разрешении экрана меньше 570px-->
 
       <div class="menu">
         <div class="menu__content">
@@ -120,8 +120,8 @@
 
     <section class="author">
       <picture class="author__photo">
-        <source srcset="<%=require('./images/photo.jpg').default%>" alt="photo" media="(min-width: 1052px)">
-        <source srcset="<%=require('./images/photo-pl.jpg').default%>" alt="photo" media="(min-width: 490px)">
+        <source srcset="<%=require('./images/photo.jpg').default%>" media="(min-width: 1052px)">
+        <source srcset="<%=require('./images/photo-pl.jpg').default%>" media="(min-width: 490px)">
         <img src="<%=require('./images/photo-mob.jpg').default%>" alt="photo">
       </picture>
       <div class="author__about">
