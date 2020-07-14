@@ -6,8 +6,8 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // добавили плагин
 module.exports = {
   entry: {
-    index: './src/js/index.js',
-    add: './src/js/add.js',
+    index: './src/index.js',
+    add: './src/articles/add.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -63,7 +63,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/add.html',
+      template: './src/articles/add.html',
       chunks: ['add'],
       filename: 'add.html',
     }),
