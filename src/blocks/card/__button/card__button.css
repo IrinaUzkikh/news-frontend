@@ -17,6 +17,7 @@
   z-index: 1;
   border: none;
   display: none;
+  cursor: url(../../../images/lapka.png), pointer;
 }
 
 @media (max-width: 768px) {

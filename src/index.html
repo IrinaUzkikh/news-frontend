@@ -23,15 +23,15 @@
             <!-- header__text_is-opened -->
             <a href = "./index.html" class="header__text header__text_is-opened header__text_white" target="_blank">Главная</a>
             <!-- header__vector_is-opened -->
-            <hr class="header__vector">
-          </div>
-          <!-- header__text_is-opened -->
-          <button class="header__button header__text header__text_white">Авторизоваться</button>
-          <div class="header__main">
-            <a href = "./add.html" class="header__text header__text_is-opened header__text_gray header__hide" target="_blank">Сохранённые статьи</a>
             <hr class="header__vector header__vector_is-opened">
           </div>
-          <button class="header__button header__button_white header__text_is-opened header__text header__text_white header__hide">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+          <!-- header__text_is-opened -->
+          <button class="header__button header__button_white header__text_is-opened header__text header__text_white">Авторизоваться</button>
+          <div class="header__main">
+            <a href = "./add.html" class="header__text header__text_gray header__hide" target="_blank">Сохранённые статьи</a>
+            <hr class="header__vector">
+          </div>
+          <button class="header__button header__button_white header__text header__text_white header__hide">Грета<img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
       </header>
 
@@ -55,7 +55,7 @@
       <h1 class="search__title">Что в мире творится?</h1>
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
-        <input type="text" class="search__text" placeholder="Введите тему новости" required>
+        <input type="text" minlength = "2" class="search__text" placeholder="Введите тему новости" required>
         <input type="submit" class="search__button" value="Искать">
       </form>
     </div>
@@ -78,8 +78,8 @@
       <h2 class="results__title">Результаты поиска</h2>
       <div class="results__container">
         <div class="card">
-          <div class="card__container">
-             <img src="<%=require('./images/image_01.jpg').default%>" alt="image" class="card__image">
+          <div class="card__image" style="background-image: url(./images/image_01.jpg)">
+           <!--  <img src="<%=require('./images/image_01.jpg').default%>" alt="image" class="card__image"> -->
              <button class="card__button">Войдите, чтобы сохранять статьи</button>
              <button class="card__bookmark"><img src="<%=require('./images/bookmark_gray1.png').default%>" alt="bookmark_gray"></button>
           </div>
@@ -90,9 +90,10 @@
           <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
 
-        <div class="card">
-          <div class="card__container">
-             <img src="<%=require('./images/image_02.jpg').default%>" alt="image" class="card__image">
+
+          <a href="https://yandex.ru/" target="_blank" class="card">
+            <div class="card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
+           <!--  <img src="<%=require('./images/image_02.jpg').default%>" alt="image" class="card__image"> -->
              <button class="card__button">Войдите, чтобы сохранять статьи</button>
              <button class="card__bookmark"><img src="<%=require('./images/bookmark_blue1.png').default%>" alt="bookmark_blue"></button>
           </div>
@@ -100,9 +101,8 @@
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
           <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
             из местных чудес природы.</p>
-          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
-        </div>
-
+          <p class="card__source">Яндекс</p>
+          </a>
         <div class="card">
           <div class="card__container">
              <img src="<%=require('./images/image_03.jpg').default%>" alt="image"  class="card__image">

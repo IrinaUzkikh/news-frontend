@@ -16,6 +16,8 @@
   height: 69px;
   color: #fff;
   border: none;
+  cursor: url(../../../images/lapka.png), pointer;
+
 }
 
 .search__button:hover {
