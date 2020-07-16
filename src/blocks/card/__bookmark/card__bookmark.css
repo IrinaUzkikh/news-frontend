@@ -1,13 +1,17 @@
 .card__bookmark {
   background-color: #fff;
   border-radius: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
   position: absolute;
+  width: 40px;
+  height: 40px;
   top: 24px;
   right: 24px;
-  height: 40px;
+
   z-index: 2;
   border: none;
-  cursor: url(../../../images/lapka.png), pointer;
+  
 }
 
 @media (max-width: 768px) {

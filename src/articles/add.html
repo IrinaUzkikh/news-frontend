@@ -25,7 +25,7 @@
             <a href = "./add.html" class="header__text header__text_is-opened header__text_dark">Сохранённые статьи</a>
             <hr class="header__vector header__vector_is-opened">
           </div>
-          <button class="header__button header__button_dark header__text header__text_is-opened header__text_dark">Грета<img src="<%=require('../images/Union-dark.png').default%>" alt="icon_logout" class="header__icon"></button>
+          <button class="header__button header__button_dark header__text header__text_is-opened header__text_dark"><span id="nameUserAdd"></span><img src="<%=require('../images/Union-dark.png').default%>" alt="icon_logout" class="header__icon"></button>
         </div>
       </header>
       <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened на разрешении экрана меньше 570px-->
@@ -38,19 +38,19 @@
          <nav class="menu__nav">
           <a href = "../index.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Главная</a>
           <a href = "./add.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
-          <button class="header__button header__text_mobil header__text_is-opened header__button_mobil header__button_white header__text header__text_white">Грета<img src="<%=require('../images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+          <button id="nameUserAddMobil" class="header__button header__text_mobil header__text_is-opened header__button_mobil header__button_white header__text header__text_white"><span id="nameUserAddMobil"><img src="<%=require('../images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </nav>
         </div>
       </div>
     </section>
     <section class="content">
       <p class="content__articles">Сохранённые статьи</p>
-      <p class="content__number">Грета, у вас 5 сохранённых статей</p>
+      <p class="content__number"><span id="nameUserContent"></span>, у вас 5 сохранённых статей</p>
       <p class="content__words">По ключевым словам: <b>Природа, Тайга и 2 другим</b></p>
     </section>
     <section class="results results_is-opened">
       <div class="results__container">
-        <div class="card">
+     <!--   <div class="card">
           <div class="card__container">
              <img src="<%=require('../images/image_21.jpg').default%>" alt="image" class="card__image">
              <p class="card__keyword">Природа</p>
@@ -62,57 +62,45 @@
           <p class="card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
           <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
         </div>
-        <div class="card">
-          <div class="card__container">
-             <img src="<%=require('../images/image_22.jpg').default%>" alt="image" class="card__image">
-             <p class="card__keyword">Природа</p>
-             <button class="card__button card__button_is-opened card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('../images/trash_black.png').default%>" alt="trash_black"></button>
+        -->
+        <a href="https://yandex.ru/" target="_blank" class="card">
+          <div class="card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
+            <p class="card__keyword card__keyword_is-opened">Природа</p>
+            <button class="card__button card__button_is-opened">Убрать из сохранённых</button>
+            <button class="card__bookmark" style="background-image: url(./images/trash.png)"></button>
           </div>
           <h3 class="card__date">2 августа, 2019</h3>
           <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
           <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-            из местных чудес природы.</p>
-            <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
-        </div>
-        <div class="card">
-          <div class="card__container">
-             <img src="<%=require('../images/image_23.jpg').default%>" alt="image" class="card__image">
-             <p class="card__keyword">Тайга</p>
-             <button class="card__button card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('../images/trash.png').default%>" alt="trash"></button>
-          </div>
-          <h3 class="card__date">2 августа, 2019</h3>
-          <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
-          <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
-          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
-        </div>
-        <div class="card">
-          <div class="card__container">
-             <img src="<%=require('../images/image_21.jpg').default%>" alt="image" class="card__image">
-             <p class="card__keyword">Парки</p>
-             <button class="card__button card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('../images/trash.png').default%>" alt="trash"></button>
-          </div>
-          <h3 class="card__date">2 августа, 2019</h3>
-          <h2 class="card__title">Национальное достояние – парки</h2>
-          <p class="card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-          <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
-        </div>
-        <div class="card">
-          <div class="card__container">
-             <img src="<%=require('../images/image_22.jpg').default%>" alt="image" class="card__image">
-             <p class="card__keyword">Фотография</p>
-             <button class="card__button card__button_remove">Убрать из сохранённых</button>
-             <button class="card__bookmark"><img src="<%=require('../images/trash.png').default%>" alt="trash"></button>
-          </div>
-          <h3 class="card__date">2 августа, 2019</h3>
-          <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
-          <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-            из местных чудес природы.</p>
-            <a href="https://yandex.ru/" target="_blank" class="card__source">Яндекс</a>
-        </div>
+          из местных чудес природы.</p>
+          <p class="card__source">Яндекс</p>
+        </a>
 
+        <a href="https://yandex.ru/" target="_blank" class="card">
+          <div class="card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
+            <p class="card__keyword card__keyword_is-opened">Природа</p>
+            <button class="card__button card__button_is-opened">Убрать из сохранённых</button>
+            <button class="card__bookmark" style="background-image: url(./images/trash.png)"></button>
+          </div>
+          <h3 class="card__date">2 августа, 2019</h3>
+          <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
+          <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
+          из местных чудес природы.</p>
+          <p class="card__source">Яндекс</p>
+        </a>
+
+        <a href="https://yandex.ru/" target="_blank" class="card">
+          <div class="card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
+            <p class="card__keyword card__keyword_is-opened">Природа</p>
+            <button class="card__button card__button_is-opened">Убрать из сохранённых</button>
+            <button class="card__bookmark" style="background-image: url(./images/trash.png)"></button>
+          </div>
+          <h3 class="card__date">2 августа, 2019</h3>
+          <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
+          <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
+          из местных чудес природы.</p>
+          <p class="card__source">Яндекс</p>
+        </a>
       </div>
     </section>
 
