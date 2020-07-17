@@ -16,6 +16,7 @@ export default class MainApi {
     })
       .then((res) => {
         if (res.ok) {
+          console.log(res);
           return res.json();
         }
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
@@ -47,7 +48,9 @@ export default class MainApi {
     });
   }
 
-  removeCard(event, articlesId) {
-    return this.requestToServer(`${this.baseUrl}/articles/${articlesId}`, 'DELETE');
+//  removeArticle(event, cardId) {
+  removeArticle(event, cardId) {
+  //  return this.requestToServer(`${this.baseUrl}/articles/5ef1d4170096a34261735242`, 'DELETE');
+  return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
   }
 }

@@ -16,7 +16,6 @@ const URL = 'http://localhost:3000';
 const userApi = new UserApi({
   baseUrl: URL,
   headers: {
-
     'Content-Type': 'application/json',
   },
 });
@@ -46,8 +45,6 @@ const vectorArticles = document.querySelector('#vector-articles');
 const savedArticles = document.querySelector('#saved-articles');
 const logout = document.querySelector('#logout');
 
-
-
 const dateTo = (new Date()).toISOString().substr(0, 10);
 const dateFrom = (new Date(new Date() - 1000 * 60 * 60 * 24 * 7)).toISOString().substr(0, 10);
 const apiKey = 'ce2d4e553e614a3fa2ef645ac1fac3ed';
@@ -56,8 +53,31 @@ const newsApiUrl = 'https://newsapi.org/v2/everything';
 
 const { searchForm, registrationForm, loginForm } = document.forms;
 
-//слушатель открытия попапа логина пользователя
+// слушатель добавления карточки
 
+document.querySelector('.results__container').addEventListener('click', (event) => {
+  if (event.target.classList.contains('card__bookmark')) {
+    const newCard = event.target.closest('.card');
+    const keyword = `${newCard.querySelector('.card__keyword').textContent}`;
+    const title = `${newCard.querySelector('.card__title').textContent}`;
+    const text = `${newCard.querySelector('.card__text').textContent}`;
+    const date = `${newCard.querySelector('.card__date').textContent}`;
+    const source = `${newCard.querySelector('.card__source').textContent}`;
+    const link = `${newCard.querySelector('.card__link').href}`;
+    const image = `${newCard.querySelector('.card__image').style.backgroundImage.slice(5, -2)}`;
+
+    console.log(keyword, title, text, date, source, link, image);
+
+    mainApi.createArticle.bind(mainApi)(keyword, title, text, date, source, link, image)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log('Ошибка. Запрос не выполнен: ', err);
+      });
+  }
+});
+// слушатель открытия попапа логина пользователя
 login.addEventListener('click', () => {
   popupRegistration.close();
   popupLogin.open();
@@ -71,7 +91,7 @@ popupLoginClose.addEventListener('click', () => {
 popupResultClose.addEventListener('click', () => {
   popupResult.close();
 });
-//logout пользователя
+// logout пользователя
 
 logout.addEventListener('click', () => {
   if (window.confirm('Вы действительно хотите выйти?')) {
@@ -84,8 +104,10 @@ logout.addEventListener('click', () => {
   }
 });
 
-
-//login пользователя
+// login пользователя
+// перерисовать еще мобильный экран!!!!!!!!!!!!!!!!!!!!!!!!
+// подтягиваются mail и пароль из формы registration !!!!!!
+// не чистятся формы!!!!!
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('login');
@@ -95,31 +117,26 @@ loginForm.addEventListener('submit', (event) => {
   loginForm.elements.email_login.value = '';
   loginForm.elements.password_login.value = '';
   userApi.signIn.bind(userApi)(emailLogin, passwordLogin)
-
-  .then((res) => {
-    console.log(res);
-    localStorage.setItem('token', res.token);
-
-    nameUser.textContent = localStorage.getItem('name');
-    nameUserMobil.textContent = localStorage.getItem('name');
-    console.log(loginForm);
-    loginForm.reset();
-    loginForm.elements.email_login.value = '';
-    loginForm.elements.password_login.value = '';
-    console.log(loginForm);
-    popupLogin.close();
-    buttonAuthorization.classList.remove('header__text_is-opened');
-    vectorMain.classList.remove('header__vector_is-opened');
-    savedArticles.classList.add('header__text_is-opened');
-    vectorArticles.classList.add('header__vector_is-opened');
-    logout.classList.add('header__text_is-opened');
-
-
-    //перерисовать еще мобильный экран!!!!!!!!!!!!!!!!!!!!!!!!
- })
-  .catch((err) => {
-    console.log(err);
-  });
+    .then((res) => {
+      console.log(res);
+      localStorage.setItem('token', res.token);
+      nameUser.textContent = localStorage.getItem('name');
+      nameUserMobil.textContent = localStorage.getItem('name');
+      console.log(loginForm);
+      loginForm.reset();
+      loginForm.elements.email_login.value = '';
+      loginForm.elements.password_login.value = '';
+      console.log(loginForm);
+      popupLogin.close();
+      buttonAuthorization.classList.remove('header__text_is-opened');
+      vectorMain.classList.remove('header__vector_is-opened');
+      savedArticles.classList.add('header__text_is-opened');
+      vectorArticles.classList.add('header__vector_is-opened');
+      logout.classList.add('header__text_is-opened');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // открытие попапа Зарегистрироваться из формы Войти ?????????????? доделать
@@ -129,8 +146,9 @@ loginRegistration.addEventListener('click', () => {
   popupLogin.open();
 });
 
-//первоначальная регистрация пользователя
-// Странно, что не работает закрытие и очистка формы, если их не вынести из промиса, внизу работает
+// первоначальная регистрация пользователя
+// Странно, что не работает закрытие и очистка формы,
+// если их не вынести из промиса, внизу работает???????
 
 registrationForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -150,28 +168,27 @@ registrationForm.addEventListener('submit', (event) => {
       registrationForm.elements.name_reg.value = '';
       popupRegistration.close();
       popupResult.open();
-
-
     })
     .catch((err) => {
       console.log(err);
       console.log('index');
     });
-
 });
 
-
-// слушатель открытия попапа регистрации (кнопка "Авторизоваться")
+// слушатель открытия попапа регистрации (кнопка "Авторизоваться") поменяла на Login
 // !!!!! проверить кнопку
-buttonAuthorization.addEventListener('click', (event) => {
-  popupRegistration.open();
+buttonAuthorization.addEventListener('click', () => {
+  popupLogin.open();
 });
 
 // слушатель закрытия попапа регистрации
-popupRegistrationClose.addEventListener('click', (event) => {
+popupRegistrationClose.addEventListener('click', () => {
   popupRegistration.close();
 });
-/*
+// загрузка статей с NewsApi
+// !!!!!! добавить в карточку иконкупо параметру
+// загружать по 3!!!!!!!!
+
 searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const newsTopic = searchForm.elements.newsTopic.value;
@@ -204,18 +221,19 @@ searchForm.addEventListener('submit', (event) => {
       console.log('Ошибка. Запрос не выполнен: ', err);
     });
 });
-*/
-/*
-const newsTopic = searchForm.elments.newsTopic.value;*/
-/*console.log('newsTopic' + newsTopic);
 
-console.log((new Date(date1)).toISOString().substr(0, 10));
+// загрузка второй страницы
 
-console.log('первая !!! страница');*/
-/*
-document.querySelector('.search__button').addEventListener('click', () => {
-/*  fetch('https://newsapi.org/v2/everything?q=Москва&from=2020-07-13&to=2020-07-14&apiKey=ce2d4e553e614a3fa2ef645ac1fac3ed&pageSize=7') */
-/*  fetch(`https://newsapi.org/v2/everything?q=${newsTopic}&from=${dateFrom}&to=${dateTo}&apiKey=ce2d4e553e614a3fa2ef645ac1fac3ed&pageSize=7`)
+
+
+/* const newsTopic = searchForm.elments.newsTopic.value; */
+// console.log('newsTopic' + newsTopic);
+// console.log((new Date(date1)).toISOString().substr(0, 10));
+// console.log('первая !!! страница');
+
+/* document.querySelector('.search__button').addEventListener('click', () => {
+  fetch('https://newsapi.org/v2/everything?q=Москва&from=2020-07-13&to=2020-07-14&apiKey=ce2d4e553e614a3fa2ef645ac1fac3ed&pageSize=7')
+  fetch(`https://newsapi.org/v2/everything?q=${newsTopic}&from=${dateFrom}&to=${dateTo}&apiKey=ce2d4e553e614a3fa2ef645ac1fac3ed&pageSize=7`)
     .then((res) => {
       console.log(res);
       return res.json();
@@ -243,8 +261,7 @@ document.querySelector('.search__button').addEventListener('click', () => {
       console.log('Ошибка. Запрос не выполнен: ', err);
     });
 });
-*/
-/*
+
 document.querySelector('.header__button').addEventListener('click', () => {
   fetch('http://localhost:3000/articles', {
     method: 'GET',
@@ -263,7 +280,7 @@ document.querySelector('.header__button').addEventListener('click', () => {
     .catch((err) => {
       console.log('Ошибка. Запрос не выполнен: ', err);
     });
-});*/
+}); */
 
 // регистрация пользователя КОПИЯ
 /*
@@ -283,7 +300,7 @@ registrationForm.addEventListener('submit', (event) => {
       console.log(err);
       console.log('index');
     });
-});*/
+}); */
 /*
 // загрузка статей
 document.querySelector('.header__button').addEventListener('click', () => {
