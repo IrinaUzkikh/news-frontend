@@ -3,8 +3,15 @@ import NewsCard from './js/components/NewsCard';
 import NewsCardList from './js/components/NewsCardList';
 import UserApi from './js/api/UserApi';
 import MainApi from './js/api/MainApi';
+import NewsApi from './js/api/NewsApi';
 
 import Popup from './js/components/Popup';
+
+const dateTo = (new Date()).toISOString().substr(0, 10);
+const dateFrom = (new Date(new Date() - 1000 * 60 * 60 * 24 * 7)).toISOString().substr(0, 10);
+const apiKey = 'ce2d4e553e614a3fa2ef645ac1fac3ed';
+const pageSize = 7;
+const newsApiUrl = 'https://newsapi.org/v2/everything';
 
 const newsCard = new NewsCard();
 const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
@@ -27,6 +34,11 @@ const mainApi = new MainApi({
     'Content-Type': 'application/json',
   },
 });
+/* сonst newsApi = new NewsApi(
+  {
+    dateTo, dateFrom, apiKey, pageSize, newsApiUrl,
+  },
+); */
 
 const buttonAuthorization = document.querySelector('#button-authorization');
 
@@ -45,13 +57,49 @@ const vectorArticles = document.querySelector('#vector-articles');
 const savedArticles = document.querySelector('#saved-articles');
 const logout = document.querySelector('#logout');
 
-const dateTo = (new Date()).toISOString().substr(0, 10);
-const dateFrom = (new Date(new Date() - 1000 * 60 * 60 * 24 * 7)).toISOString().substr(0, 10);
-const apiKey = 'ce2d4e553e614a3fa2ef645ac1fac3ed';
-const pageSize = 7;
-const newsApiUrl = 'https://newsapi.org/v2/everything';
-
 const { searchForm, registrationForm, loginForm } = document.forms;
+
+// загрузка статей с NewsApi
+// !!!!!! добавить в карточку иконкупо параметру
+// загружать по 3!!!!!!!!
+
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const newsTopic = searchForm.elements.newsTopic.value;
+  /* fetch(`${newsApiUrl}?q=${newsTopic}&from=${dateFrom}&to=${dateTo}&apiKey=${apiKey}&pageSize=${pageSize}`) */
+  console.log(dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic);
+
+  const newsApi = new NewsApi(
+    {
+      dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic,
+    },
+  );
+
+  newsApi.getNews.bind(newsApi)()
+    .then((data) => {
+      console.log(data);
+      const arr = data.articles.map((object) => {
+        const {
+          title,
+          description: text,
+          publishedAt: date,
+          urlToImage: image,
+          url: link,
+        } = object;
+        const source = object.source.name;
+        const keyword = newsTopic;
+        return {
+          keyword, title, text, date, source, link, image,
+        };
+      });
+      console.log(arr);
+      newsCardList.render.bind(newsCardList)(arr);
+      return arr;
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+});
 
 // слушатель добавления карточки
 
@@ -61,7 +109,7 @@ document.querySelector('.results__container').addEventListener('click', (event) 
     const keyword = `${newCard.querySelector('.card__keyword').textContent}`;
     const title = `${newCard.querySelector('.card__title').textContent}`;
     const text = `${newCard.querySelector('.card__text').textContent}`;
-    const date = `${newCard.querySelector('.card__date').textContent}`;
+    const date = `${newCard.querySelector('.card__date').textContent.substr(0, 10)}`;
     const source = `${newCard.querySelector('.card__source').textContent}`;
     const link = `${newCard.querySelector('.card__link').href}`;
     const image = `${newCard.querySelector('.card__image').style.backgroundImage.slice(5, -2)}`;
@@ -133,6 +181,15 @@ loginForm.addEventListener('submit', (event) => {
       savedArticles.classList.add('header__text_is-opened');
       vectorArticles.classList.add('header__vector_is-opened');
       logout.classList.add('header__text_is-opened');
+      // вставила запрос имени!!!!!
+      mainApi.getUserData.bind(mainApi)()
+        .then((result) => {
+          console.log('login name');
+          localStorage.setItem('name', result.name);
+        })
+        .catch((err) => {
+          console.log('Ошибка. Запрос не выполнен: ', err);
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -161,7 +218,7 @@ registrationForm.addEventListener('submit', (event) => {
 
     .then((res) => {
       console.log(res);
-      localStorage.setItem('name', res.name);
+      // localStorage.setItem('name', res.name);
       registrationForm.reset();
       registrationForm.elements.email_reg.value = '';
       registrationForm.elements.password_reg.value = '';
@@ -184,42 +241,6 @@ buttonAuthorization.addEventListener('click', () => {
 // слушатель закрытия попапа регистрации
 popupRegistrationClose.addEventListener('click', () => {
   popupRegistration.close();
-});
-// загрузка статей с NewsApi
-// !!!!!! добавить в карточку иконкупо параметру
-// загружать по 3!!!!!!!!
-
-searchForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const newsTopic = searchForm.elements.newsTopic.value;
-  fetch(`${newsApiUrl}?q=${newsTopic}&from=${dateFrom}&to=${dateTo}&apiKey=${apiKey}&pageSize=${pageSize}`)
-    .then((res) => {
-      console.log(res);
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-      const arr = data.articles.map((object) => {
-        const {
-          title,
-          description: text,
-          publishedAt: date,
-          urlToImage: image,
-          url: link,
-        } = object;
-        const source = object.source.name;
-        const keyword = newsTopic;
-        return {
-          keyword, title, text, date, source, link, image,
-        };
-      });
-      console.log(arr);
-      newsCardList.render.bind(newsCardList)(arr);
-      return arr;
-    })
-    .catch((err) => {
-      console.log('Ошибка. Запрос не выполнен: ', err);
-    });
 });
 
 // загрузка второй страницы

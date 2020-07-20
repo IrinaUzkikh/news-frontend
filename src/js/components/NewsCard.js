@@ -17,7 +17,8 @@ export default class NewsCard {
     </a>
     </div>`);
 
-    newsCard.querySelector('.card__link').href = `url(${card.link})`;
+    // newsCard.querySelector('.card__link').href = `url(${card.link})`;
+    newsCard.querySelector('.card__link').href = `${card.link}`;
     newsCard.querySelector('.card__image').style.backgroundImage = `url(${card.image})`;
     newsCard.querySelector('.card__keyword').textContent = card.keyword;
     newsCard.querySelector('.card__date').textContent = card.date;
@@ -38,11 +39,10 @@ export default class NewsCard {
 
     return newsCard;
   }
-/*
-  like(event) {
+  /* like(event) {
     event.target.classList.toggle('place-card__like-icon_liked');
-  }
-*/
+  } */
+
   remove(event) {
     event.target.closest('.card').remove();
   }

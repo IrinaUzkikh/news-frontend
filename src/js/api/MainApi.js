@@ -48,9 +48,7 @@ export default class MainApi {
     });
   }
 
-//  removeArticle(event, cardId) {
   removeArticle(event, cardId) {
-  //  return this.requestToServer(`${this.baseUrl}/articles/5ef1d4170096a34261735242`, 'DELETE');
-  return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
+    return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
   }
 }
