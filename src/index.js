@@ -59,6 +59,55 @@ const logout = document.querySelector('#logout');
 
 const { searchForm, registrationForm, loginForm } = document.forms;
 
+// даты
+const date = '2020-06-15T00:00:00.000Z';
+
+const arrMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+/*
+const date = new Date().toLocaleString('ru', {
+  month: 'long',
+});*/
+
+const dateFormatCard = `${parseInt(date.substr(8, 2))} ${arrMonth[parseInt(date.substr(5, 2)) - 1]}, ${date.substr(0, 4)}`;
+console.log(dateFormatCard);
+
+const dateFormatRequestArr = dateFormatCard.split(' ');
+console.log(dateFormatRequestArr);
+const numberMonth = arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1;
+console.log(numberMonth);
+let dateFormatRequestMonth = 0;
+if ((numberMonth) < 10) {
+  dateFormatRequestMonth = `0${numberMonth}`;
+  console.log(11111111);
+  console.log(dateFormatRequestMonth);
+} else {
+  dateFormatRequestMonth = numberMonth;
+  console.log(2222222);
+}
+console.log(dateFormatRequestMonth);
+
+// const dateFormatRequest = `${dateFormatRequestArr[2]}-${arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1}-${dateFormatRequestArr[0]}`;
+
+const dateFormatRequest = `${dateFormatRequestArr[2]}-${dateFormatRequestMonth}-${dateFormatRequestArr[0]}`;
+console.log(dateFormatRequest);
+
+// слушатель иконки сохранить
+
+document.querySelector('.results__container').addEventListener('mouseover', (event) => {
+  if (event.target.classList.contains('card__bookmark')) {
+    console.log(event.target.closest('.card').querySelector('.card__button'));
+    event.target.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
+  }
+});
+// слушатель иконки сохранить
+document.querySelector('.results__container').addEventListener('mouseout', (event) => {
+  if (event.target.classList.contains('card__bookmark')) {
+    console.log(event.target.closest('.card').querySelector('.card__button'));
+    event.target.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
+  }
+});
+
 // загрузка статей с NewsApi
 // !!!!!! добавить в карточку иконкупо параметру
 // загружать по 3!!!!!!!!
@@ -88,8 +137,11 @@ searchForm.addEventListener('submit', (event) => {
         } = object;
         const source = object.source.name;
         const keyword = newsTopic;
+        const bookmark = 'url(./images/bookmark_gray1.png)';
+        const page = 'home';
+
         return {
-          keyword, title, text, date, source, link, image,
+          keyword, title, text, date, source, link, image, bookmark, page,
         };
       });
       console.log(arr);
@@ -244,8 +296,6 @@ popupRegistrationClose.addEventListener('click', () => {
 });
 
 // загрузка второй страницы
-
-
 
 /* const newsTopic = searchForm.elments.newsTopic.value; */
 // console.log('newsTopic' + newsTopic);

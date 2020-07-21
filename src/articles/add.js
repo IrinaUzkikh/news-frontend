@@ -24,6 +24,22 @@ nameUserAdd.textContent = localStorage.getItem('name');
 nameUserAddMobil.textContent = localStorage.getItem('name');
 nameUserContent.textContent = localStorage.getItem('name');
 
+// слушатель иконки bookmark
+
+document.querySelector('.results__container').addEventListener('mouseover', (event) => {
+  if (event.target.classList.contains('card__bookmark')) {
+    console.log(event.target.closest('.card').querySelector('.card__button'));
+    event.target.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
+  }
+});
+
+document.querySelector('.results__container').addEventListener('mouseout', (event) => {
+  if (event.target.classList.contains('card__bookmark')) {
+    console.log(event.target.closest('.card').querySelector('.card__button'));
+    event.target.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
+  }
+});
+
 // удаление карточек по ID
 
 document.querySelector('.results__container').addEventListener('click', (event) => {
@@ -50,11 +66,75 @@ window.addEventListener('load', () => {
           date, image, keyword, link, source, text, title, _id: cardId,
         } = object;
         console.log(date, image, keyword, link, source, text, title, cardId);
+        const bookmark = 'url(../images/trash.png)';
+        const page = 'articles';
+
         return {
-          keyword, title, text, date, source, link, image, cardId,
+          keyword, title, text, date, source, link, image, cardId, bookmark, page,
         };
       });
-      console.log(arr);
+      console.log(arr.length);
+      const quantityArticles = document.querySelector('#quantityArticles');
+      const quantityArticlesText = document.querySelector('#quantityArticlesText');
+      quantityArticles.textContent = arr.length;
+      switch (quantityArticles) {
+        case 1:
+          quantityArticlesText.textContent = 'сохраненная статья';
+          break;
+        case 2:
+          quantityArticlesText.textContent = 'сохраненные статьи';
+          break;
+        case 3:
+          quantityArticlesText.textContent = 'сохраненные статьи';
+          break;
+        case 4:
+          quantityArticlesText.textContent = 'сохраненные статьи';
+          break;
+        default:
+          quantityArticlesText.textContent = 'сохраненных статей';
+      }
+      const keywords = arr.map((elem) => {
+      //  console.log(elem.keyword);
+        return elem.keyword;
+      });
+      // console.log(keywords);
+      const numberWords = keywords.reduce((prValue, item) => {
+        if (!prValue[item]) {
+          prValue[item] = 1;
+        } else {
+          prValue[item] += 1;
+        }
+        return prValue;
+      }, {});
+      // console.log(Object.entries(numberWords));
+      const numberWordsArr = Object.entries(numberWords);
+      // console.log(numberWordsArr);
+      const numberWordsArrSort = numberWordsArr.sort((a, b) => {
+        return b[1] - a[1];
+      });
+      console.log(numberWordsArrSort);
+      const numberKeyWords = numberWordsArrSort.length;
+      console.log(numberWordsArrSort[0][0]);
+
+      switch (numberKeyWords) {
+        case 1:
+          document.querySelector('#firstWord').textContent = numberWordsArrSort[0][0];
+          break;
+        case 2:
+          document.querySelector('#firstWord').textContent = numberWordsArrSort[0][0];
+          document.querySelector('#secondWord').textContent = numberWordsArrSort[1][0];
+          break;
+        case 3:
+          document.querySelector('#firstWord').textContent = numberWordsArrSort[0][0];
+          document.querySelector('#secondWord').textContent = numberWordsArrSort[1][0];
+          document.querySelector('#thirdWord').textContent = numberWordsArrSort[2][0];
+          break;
+        default:
+          document.querySelector('#firstWord').textContent = numberWordsArrSort[0][0];
+          document.querySelector('#secondWord').textContent = numberWordsArrSort[1][0];
+          document.querySelector('#thirdWord').textContent = `${numberKeyWords - 2} другим`;
+      }
+
       newsCardList.render.bind(newsCardList)(arr);
       return arr;
     })
