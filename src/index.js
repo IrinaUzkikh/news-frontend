@@ -48,6 +48,7 @@ const popupResultClose = document.querySelector('#result-close');
 
 const login = document.querySelector('#login');
 const loginRegistration = document.querySelector('#login-registration');
+const register = document.querySelector('#register');
 
 const nameUser = document.querySelector('#nameUser');
 const nameUserMobil = document.querySelector('#nameUserMobil');
@@ -56,41 +57,26 @@ const vectorMain = document.querySelector('#vector-main');
 const vectorArticles = document.querySelector('#vector-articles');
 const savedArticles = document.querySelector('#saved-articles');
 const logout = document.querySelector('#logout');
+const processPreloader = document.querySelector('#processPreloader');
+const nothingFound = document.querySelector('#nothingFound');
+const requestNewsApiError = document.querySelector('#requestNewsApiError');
+const results = document.querySelector('.results');
+const resultsContainer = document.querySelector('.results__container');
+const resultsButton = document.querySelector('.results__button');
 
 const { searchForm, registrationForm, loginForm } = document.forms;
 
-// даты
-const date = '2020-06-15T00:00:00.000Z';
+console.log(localStorage.getItem('token'));
 
-const arrMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+// функция, которая при загрузке запускает прелоудер или открывает сообщения"
 
-/*
-const date = new Date().toLocaleString('ru', {
-  month: 'long',
-});*/
-
-const dateFormatCard = `${parseInt(date.substr(8, 2))} ${arrMonth[parseInt(date.substr(5, 2)) - 1]}, ${date.substr(0, 4)}`;
-console.log(dateFormatCard);
-
-const dateFormatRequestArr = dateFormatCard.split(' ');
-console.log(dateFormatRequestArr);
-const numberMonth = arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1;
-console.log(numberMonth);
-let dateFormatRequestMonth = 0;
-if ((numberMonth) < 10) {
-  dateFormatRequestMonth = `0${numberMonth}`;
-  console.log(11111111);
-  console.log(dateFormatRequestMonth);
-} else {
-  dateFormatRequestMonth = numberMonth;
-  console.log(2222222);
+function renderLoading(isLoading, element) {
+  if (isLoading) {
+    element.classList.add('process_is-opened');
+  } else {
+    element.classList.remove('process_is-opened');
+  }
 }
-console.log(dateFormatRequestMonth);
-
-// const dateFormatRequest = `${dateFormatRequestArr[2]}-${arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1}-${dateFormatRequestArr[0]}`;
-
-const dateFormatRequest = `${dateFormatRequestArr[2]}-${dateFormatRequestMonth}-${dateFormatRequestArr[0]}`;
-console.log(dateFormatRequest);
 
 // слушатель иконки сохранить
 
@@ -114,20 +100,28 @@ document.querySelector('.results__container').addEventListener('mouseout', (even
 
 searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
+  results.classList.remove('results_is-opened');
+  const cards = resultsContainer.querySelectorAll('.card');
+  cards.forEach((item) => {
+    console.log(item);
+    resultsContainer.removeChild(item);
+  });
+  renderLoading(false, nothingFound);
+  renderLoading(false, requestNewsApiError);
+
   const newsTopic = searchForm.elements.newsTopic.value;
   /* fetch(`${newsApiUrl}?q=${newsTopic}&from=${dateFrom}&to=${dateTo}&apiKey=${apiKey}&pageSize=${pageSize}`) */
   console.log(dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic);
-
   const newsApi = new NewsApi(
     {
       dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic,
     },
   );
-
+  renderLoading(true, processPreloader);
   newsApi.getNews.bind(newsApi)()
     .then((data) => {
-      console.log(data);
-      const arr = data.articles.map((object) => {
+      //  console.log(data);
+      const arrArticles = data.articles.map((object) => {
         const {
           title,
           description: text,
@@ -138,17 +132,58 @@ searchForm.addEventListener('submit', (event) => {
         const source = object.source.name;
         const keyword = newsTopic;
         const bookmark = 'url(./images/bookmark_gray1.png)';
+        // const bookmark = 'url(./images/bookmark_gray1.png)';
         const page = 'home';
 
         return {
           keyword, title, text, date, source, link, image, bookmark, page,
         };
       });
-      console.log(arr);
-      newsCardList.render.bind(newsCardList)(arr);
-      return arr;
+      console.log(arrArticles);
+      const arrArticlesLength = arrArticles.length;
+      if (arrArticlesLength === 0) {
+        renderLoading(false, processPreloader);
+        renderLoading(true, nothingFound);
+      } else {
+        resultsButton.classList.remove('results__button_is-closed');
+        renderLoading(false, processPreloader);
+        //    const resultsContainer = document.createElement('div');
+        //    results.appendChild(resultsContainer);
+        //    resultsContainer.classList.add('results__container');
+
+        results.classList.add('results_is-opened');
+        //    const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
+        const arr = arrArticles.slice(0, 3);
+        newsCardList.render.bind(newsCardList)(arr);
+        // загрузили первые 3
+        if (arrArticlesLength < 4) {
+          resultsButton.classList.add('results__button_is-closed');
+        } else {
+          // по кнопке грузим дальше, если еще есть карточки
+
+          console.log('первые 3 до 7');
+          let startArr = 3;
+          let endArr = 6;
+          console.log(startArr);
+          console.log(endArr);
+          resultsButton.addEventListener('click', () => {
+            if (startArr <= arrArticlesLength) {
+              const array = arrArticles.slice(startArr, endArr);
+              console.log(array);
+              newsCardList.render.bind(newsCardList)(array);
+              startArr += 3;
+              endArr += 3;
+              console.log(startArr);
+              console.log(endArr);
+              if (startArr > arrArticlesLength) { resultsButton.classList.add('results__button_is-closed'); }
+            }
+          });
+        }
+      }
     })
     .catch((err) => {
+      renderLoading(false, processPreloader);
+      renderLoading(true, requestNewsApiError);
       console.log('Ошибка. Запрос не выполнен: ', err);
     });
 });
@@ -201,6 +236,7 @@ logout.addEventListener('click', () => {
     vectorArticles.classList.remove('header__vector_is-opened');
     logout.classList.remove('header__text_is-opened');
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
   }
 });
 
@@ -220,8 +256,6 @@ loginForm.addEventListener('submit', (event) => {
     .then((res) => {
       console.log(res);
       localStorage.setItem('token', res.token);
-      nameUser.textContent = localStorage.getItem('name');
-      nameUserMobil.textContent = localStorage.getItem('name');
       console.log(loginForm);
       loginForm.reset();
       loginForm.elements.email_login.value = '';
@@ -233,26 +267,35 @@ loginForm.addEventListener('submit', (event) => {
       savedArticles.classList.add('header__text_is-opened');
       vectorArticles.classList.add('header__vector_is-opened');
       logout.classList.add('header__text_is-opened');
-      // вставила запрос имени!!!!!
-      mainApi.getUserData.bind(mainApi)()
-        .then((result) => {
-          console.log('login name');
-          localStorage.setItem('name', result.name);
-        })
-        .catch((err) => {
-          console.log('Ошибка. Запрос не выполнен: ', err);
-        });
     })
     .catch((err) => {
       console.log(err);
     });
+  // вставила запрос имени!!!!!
+  mainApi.getUserData.bind(mainApi)()
+    .then((result) => {
+      console.log('login name');
+      localStorage.setItem('name', result.name);
+      nameUser.textContent = localStorage.getItem('name');
+      nameUserMobil.textContent = localStorage.getItem('name');
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
 });
 
-// открытие попапа Зарегистрироваться из формы Войти ?????????????? доделать
+// открытие попапа Логин из формы Успешно доделать
 
 loginRegistration.addEventListener('click', () => {
   popupResult.close();
   popupLogin.open();
+});
+
+// открытие попапа Зарегистрироваться из формы Войти ?????????????? ИСПРАВИЛА
+
+register.addEventListener('click', () => {
+  popupLogin.close();
+  popupRegistration.open();
 });
 
 // первоначальная регистрация пользователя
@@ -294,6 +337,41 @@ buttonAuthorization.addEventListener('click', () => {
 popupRegistrationClose.addEventListener('click', () => {
   popupRegistration.close();
 });
+
+// ДАТЫ!!!!!!!
+/*
+const date = '2020-06-15T00:00:00.000Z';
+
+const arrMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+/*
+const date = new Date().toLocaleString('ru', {
+  month: 'long',
+});*/
+/*
+const dateFormatCard = `${parseInt(date.substr(8, 2))} ${arrMonth[parseInt(date.substr(5, 2)) - 1]}, ${date.substr(0, 4)}`;
+console.log(dateFormatCard);
+
+const dateFormatRequestArr = dateFormatCard.split(' ');
+console.log(dateFormatRequestArr);
+const numberMonth = arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1;
+console.log(numberMonth);
+let dateFormatRequestMonth = 0;
+if ((numberMonth) < 10) {
+  dateFormatRequestMonth = `0${numberMonth}`;
+  console.log(11111111);
+  console.log(dateFormatRequestMonth);
+} else {
+  dateFormatRequestMonth = numberMonth;
+  console.log(2222222);
+}
+console.log(dateFormatRequestMonth);
+
+// const dateFormatRequest = `${dateFormatRequestArr[2]}-${arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1}-${dateFormatRequestArr[0]}`;
+
+const dateFormatRequest = `${dateFormatRequestArr[2]}-${dateFormatRequestMonth}-${dateFormatRequestArr[0]}`;
+console.log(dateFormatRequest);
+*/
 
 // загрузка второй страницы
 

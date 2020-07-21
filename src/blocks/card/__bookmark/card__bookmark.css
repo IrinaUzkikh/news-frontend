@@ -11,7 +11,8 @@
 
   z-index: 2;
   border: none;
-  
+  cursor: url(../../../images/lapka.png), pointer;
+
 }
 
 @media (max-width: 768px) {

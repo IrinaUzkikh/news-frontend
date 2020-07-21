@@ -77,7 +77,8 @@ window.addEventListener('load', () => {
       const quantityArticles = document.querySelector('#quantityArticles');
       const quantityArticlesText = document.querySelector('#quantityArticlesText');
       quantityArticles.textContent = arr.length;
-      switch (quantityArticles) {
+
+      switch (parseInt(quantityArticles.textContent, 10)) {
         case 1:
           quantityArticlesText.textContent = 'сохраненная статья';
           break;
@@ -94,7 +95,6 @@ window.addEventListener('load', () => {
           quantityArticlesText.textContent = 'сохраненных статей';
       }
       const keywords = arr.map((elem) => {
-      //  console.log(elem.keyword);
         return elem.keyword;
       });
       // console.log(keywords);
@@ -122,17 +122,17 @@ window.addEventListener('load', () => {
           break;
         case 2:
           document.querySelector('#firstWord').textContent = numberWordsArrSort[0][0];
-          document.querySelector('#secondWord').textContent = numberWordsArrSort[1][0];
+          document.querySelector('#secondWord').textContent = `и ${numberWordsArrSort[1][0]}`;
           break;
         case 3:
           document.querySelector('#firstWord').textContent = numberWordsArrSort[0][0];
-          document.querySelector('#secondWord').textContent = numberWordsArrSort[1][0];
-          document.querySelector('#thirdWord').textContent = numberWordsArrSort[2][0];
+          document.querySelector('#secondWord').textContent = `, ${numberWordsArrSort[1][0]}`;
+          document.querySelector('#thirdWord').textContent = `и ${numberWordsArrSort[2][0]}`;
           break;
         default:
           document.querySelector('#firstWord').textContent = numberWordsArrSort[0][0];
-          document.querySelector('#secondWord').textContent = numberWordsArrSort[1][0];
-          document.querySelector('#thirdWord').textContent = `${numberKeyWords - 2} другим`;
+          document.querySelector('#secondWord').textContent = `, ${numberWordsArrSort[1][0]}`;
+          document.querySelector('#thirdWord').textContent = `и ${numberKeyWords - 2} другим`;
       }
 
       newsCardList.render.bind(newsCardList)(arr);

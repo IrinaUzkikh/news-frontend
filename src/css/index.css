@@ -19,4 +19,16 @@ input:focus{
   border: 1px solid #D1D2D6;
   opacity: 0.7;
 }
+/*
+@-webkit-keyframes autofill {
+  to {
+    color: inherit;
+    background: transparent;
+  }
+}
 
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+*/

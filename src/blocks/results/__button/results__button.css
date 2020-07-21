@@ -1,3 +1,5 @@
+@import url(./_is-closed/results__button_is-closed.css);
+
 .results__button {
   font-family: Roboto, Arial, sans-serif;
   font-style: normal;
@@ -8,7 +10,7 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: #1a1b22;
+  color: #1a1b22; 
   margin: 0 auto 80px;
   width: 288px;
   height: 64px;

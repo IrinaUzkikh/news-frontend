@@ -31,13 +31,15 @@ export default class NewsCard {
     // !!!!Передавать здесь разные иконки: или удалить, или с первой страницы
 
     newsCard.querySelector('.card__bookmark').style.backgroundImage = card.bookmark;
-    console.log(card.page);
+
     if (card.page === 'articles') {
       newsCard.querySelector('.card__keyword').classList.add('card__keyword_is-opened');
       newsCard.querySelector('.card__button').textContent = 'Убрать из сохраненных';
+   //   newsCard.querySelector('.card__bookmark').style.backgroundImage = 'url(./images/trash.png)';
     } else {
       newsCard.querySelector('.card__button').textContent = 'Войдите, чтобы сохранять статьи';
       newsCard.querySelector('.card__keyword').style.display = 'no';
+  //    newsCard.querySelector('.card__bookmark').style.backgroundImage = 'url(./images/bookmark.png)';
     }
 
     // newsCard.querySelector('.card__bookmark').style.backgroundImage = 'url(./images/bookmark_gray1.png)';

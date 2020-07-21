@@ -1,0 +1,13 @@
+@import url(./_is-opened/search__error_is-opened.css);
+
+
+.search__error {
+  font-family: Inter, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  margin-top: 0;
+  display: none;
+}
