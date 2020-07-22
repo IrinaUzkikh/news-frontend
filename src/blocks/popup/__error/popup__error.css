@@ -1,5 +1,6 @@
 @import url(./_active/popup__error_active.css);
 @import url(./_user/popup__error_user.css);
+@import url(./_user/popup__error_user_active.css);
 
 .popup__error {
   font-family: Inter, Arial, sans-serif;

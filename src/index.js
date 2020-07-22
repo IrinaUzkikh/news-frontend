@@ -6,9 +6,11 @@ import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
 import Popup from './js/components/Popup';
+import FormValidator from './js/components/FormValidator';
+import { dateForApiFromNewDate, dateForCardsFromApi, dateForApiFromCards } from './js/utils/functionСonvertingDate';
 
-const dateTo = (new Date()).toISOString().substr(0, 10);
-const dateFrom = (new Date(new Date() - 1000 * 60 * 60 * 24 * 7)).toISOString().substr(0, 10);
+
+
 const apiKey = 'ce2d4e553e614a3fa2ef645ac1fac3ed';
 const pageSize = 7;
 const newsApiUrl = 'https://newsapi.org/v2/everything';
@@ -18,6 +20,11 @@ const newsCardList = new NewsCardList(document.querySelector('.results__containe
 const popupRegistration = new Popup(document.querySelector('#popup-registration'));
 const popupLogin = new Popup(document.querySelector('#popup-login'));
 const popupResult = new Popup(document.querySelector('#popup-result'));
+const formValidator = new FormValidator();
+
+const dateTo = dateForApiFromNewDate(new Date());
+const dateFrom = dateForApiFromNewDate(new Date(new Date() - 1000 * 60 * 60 * 24 * 7));
+
 const URL = 'http://localhost:3000';
 
 const userApi = new UserApi({
@@ -66,7 +73,59 @@ const resultsButton = document.querySelector('.results__button');
 
 const { searchForm, registrationForm, loginForm } = document.forms;
 
-console.log(localStorage.getItem('token'));
+/*
+function dateForApiFromNewDate(date) {
+  const dateFormatApi = date.toISOString().substr(0, 10);
+  return dateFormatApi;
+}
+const arrMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+function dateForCardsFromApi(date) {
+  const dateFormatCard = `${parseInt(date.substr(8, 2))} ${arrMonth[parseInt(date.substr(5, 2)) - 1]}, ${date.substr(0, 4)}`;
+  return dateFormatCard;
+}
+
+function dateForApiFromCards(date) {
+  const dateFormatRequestArr = date.split(' ');
+  const numberMonth = arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1;
+  let dateFormatRequestMonth = 0;
+  if ((numberMonth) < 10) {
+    dateFormatRequestMonth = `0${numberMonth}`;
+  } else {
+    dateFormatRequestMonth = numberMonth;
+  }
+  let dateFormatRequestDay = 0;
+  if (dateFormatRequestArr[0] < 10) {
+    dateFormatRequestDay = `0${dateFormatRequestArr[0]}`;
+  } else {
+    dateFormatRequestDay = dateFormatRequestArr[0];
+  }
+  console.log(dateFormatRequestMonth);
+  const dateFormatApi = `${dateFormatRequestArr[2]}-${dateFormatRequestMonth}-${dateFormatRequestDay}`;
+  return dateFormatApi;
+}
+*/
+// const dateTo = (new Date()).toISOString().substr(0, 10);
+// const dateFrom = (new Date(new Date() - 1000 * 60 * 60 * 24 * 7)).toISOString().substr(0, 10);
+// console.log(localStorage.getItem('token'));
+/*
+const dateTo = dateForApiFromNewDate(new Date());
+const dateFrom = dateForApiFromNewDate(new Date(new Date() - 1000 * 60 * 60 * 24 * 7));
+
+console.log(dateTo);
+console.log(dateFrom);
+*/
+
+// слушатели валидации полей ввода
+document.querySelector('#email_login').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#password_login').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#email_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#password_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#name_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('.search__text').addEventListener('input', () => {
+  document.querySelector('.search__error').classList.remove('search__error_is-opened');
+});
+
 
 // функция, которая при загрузке запускает прелоудер или открывает сообщения"
 
@@ -78,24 +137,30 @@ function renderLoading(isLoading, element) {
   }
 }
 
-// слушатель иконки сохранить
+// слушатель иконки сохранить !!!!! сделать условие через и - &&
 
 document.querySelector('.results__container').addEventListener('mouseover', (event) => {
-  if (event.target.classList.contains('card__bookmark')) {
-    console.log(event.target.closest('.card').querySelector('.card__button'));
-    event.target.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
+  if (event.target.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
+      console.log(localStorage.getItem('name'));
+    // console.log(event.target.closest('.card').querySelector('.card__button'));
+      event.target.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
+      event.target.style.backgroundImage = 'url(./images/icon-black.png)';
+
   }
 });
-// слушатель иконки сохранить
+// слушатель иконки сохранить !!!!! сделать условие через и - &&
 document.querySelector('.results__container').addEventListener('mouseout', (event) => {
-  if (event.target.classList.contains('card__bookmark')) {
-    console.log(event.target.closest('.card').querySelector('.card__button'));
-    event.target.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
+  if (event.target.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
+   // if (!localStorage.getItem('name')) {
+    // console.log(event.target.closest('.card').querySelector('.card__button'));
+      event.target.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
+      event.target.style.backgroundImage = 'url(./images/icon-gray.png)';
+  //  }
   }
 });
 
 // загрузка статей с NewsApi
-// !!!!!! добавить в карточку иконкупо параметру
+// !!!!!! добавить в карточку иконку по параметру
 // загружать по 3!!!!!!!!
 
 searchForm.addEventListener('submit', (event) => {
@@ -110,102 +175,110 @@ searchForm.addEventListener('submit', (event) => {
   renderLoading(false, requestNewsApiError);
 
   const newsTopic = searchForm.elements.newsTopic.value;
-  /* fetch(`${newsApiUrl}?q=${newsTopic}&from=${dateFrom}&to=${dateTo}&apiKey=${apiKey}&pageSize=${pageSize}`) */
-  console.log(dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic);
-  const newsApi = new NewsApi(
-    {
-      dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic,
-    },
-  );
-  renderLoading(true, processPreloader);
-  newsApi.getNews.bind(newsApi)()
-    .then((data) => {
-      //  console.log(data);
-      const arrArticles = data.articles.map((object) => {
-        const {
-          title,
-          description: text,
-          publishedAt: date,
-          urlToImage: image,
-          url: link,
-        } = object;
-        const source = object.source.name;
-        const keyword = newsTopic;
-        const bookmark = 'url(./images/bookmark_gray1.png)';
-        // const bookmark = 'url(./images/bookmark_gray1.png)';
-        const page = 'home';
+  if (newsTopic.length === 0) {
+    document.querySelector('.search__error').classList.add('search__error_is-opened');
+  } else {
+    /* fetch(`${newsApiUrl}?q=${newsTopic}&from=${dateFrom}&to=${dateTo}&apiKey=${apiKey}&pageSize=${pageSize}`) */
+    console.log(dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic);
+    const newsApi = new NewsApi(
+      {
+        dateTo, dateFrom, apiKey, pageSize, newsApiUrl, newsTopic,
+      },
+    );
+    renderLoading(true, processPreloader);
+    newsApi.getNews.bind(newsApi)()
+      .then((data) => {
+        //  console.log(data);
+        const arrArticles = data.articles.map((object) => {
+          const {
+            title,
+            description: text,
+            // publishedAt: date,
+            publishedAt: dateApi,
+            urlToImage: image,
+            url: link,
+          } = object;
+          const source = object.source.name;
+          const keyword = newsTopic;
+          const bookmark = 'url(./images/icon-gray.png)';
+          // const bookmark = 'url(./images/bookmark_gray1.png)';
+          const page = 'home';
+          const date = dateForCardsFromApi(dateApi);
 
-        return {
-          keyword, title, text, date, source, link, image, bookmark, page,
-        };
-      });
-      console.log(arrArticles);
-      const arrArticlesLength = arrArticles.length;
-      if (arrArticlesLength === 0) {
-        renderLoading(false, processPreloader);
-        renderLoading(true, nothingFound);
-      } else {
-        resultsButton.classList.remove('results__button_is-closed');
-        renderLoading(false, processPreloader);
-        //    const resultsContainer = document.createElement('div');
-        //    results.appendChild(resultsContainer);
-        //    resultsContainer.classList.add('results__container');
-
-        results.classList.add('results_is-opened');
-        //    const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
-        const arr = arrArticles.slice(0, 3);
-        newsCardList.render.bind(newsCardList)(arr);
-        // загрузили первые 3
-        if (arrArticlesLength < 4) {
-          resultsButton.classList.add('results__button_is-closed');
+          return {
+            keyword, title, text, date, source, link, image, bookmark, page,
+          };
+        });
+        console.log(arrArticles);
+        const arrArticlesLength = arrArticles.length;
+        if (arrArticlesLength === 0) {
+          renderLoading(false, processPreloader);
+          renderLoading(true, nothingFound);
         } else {
+          resultsButton.classList.remove('results__button_is-closed');
+          renderLoading(false, processPreloader);
+          //    const resultsContainer = document.createElement('div');
+          //    results.appendChild(resultsContainer);
+          //    resultsContainer.classList.add('results__container');
+          results.classList.add('results_is-opened');
+          //    const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
+          const arr = arrArticles.slice(0, 3);
+          newsCardList.render.bind(newsCardList)(arr);
+          // загрузили первые 3
+          if (arrArticlesLength < 4) {
+            resultsButton.classList.add('results__button_is-closed');
+          } else {
           // по кнопке грузим дальше, если еще есть карточки
 
-          console.log('первые 3 до 7');
-          let startArr = 3;
-          let endArr = 6;
-          console.log(startArr);
-          console.log(endArr);
-          resultsButton.addEventListener('click', () => {
-            if (startArr <= arrArticlesLength) {
-              const array = arrArticles.slice(startArr, endArr);
-              console.log(array);
-              newsCardList.render.bind(newsCardList)(array);
-              startArr += 3;
-              endArr += 3;
-              console.log(startArr);
-              console.log(endArr);
-              if (startArr > arrArticlesLength) { resultsButton.classList.add('results__button_is-closed'); }
-            }
-          });
+            console.log('первые 3 до 7');
+            let startArr = 3;
+            let endArr = 6;
+            console.log(startArr);
+            console.log(endArr);
+            resultsButton.addEventListener('click', () => {
+              if (startArr <= arrArticlesLength) {
+                const array = arrArticles.slice(startArr, endArr);
+                console.log(array);
+                newsCardList.render.bind(newsCardList)(array);
+                startArr += 3;
+                endArr += 3;
+                console.log(startArr);
+                console.log(endArr);
+                if (startArr > arrArticlesLength) { resultsButton.classList.add('results__button_is-closed'); }
+              }
+            });
+          }
         }
-      }
-    })
-    .catch((err) => {
-      renderLoading(false, processPreloader);
-      renderLoading(true, requestNewsApiError);
-      console.log('Ошибка. Запрос не выполнен: ', err);
-    });
+        searchForm.elements.newsTopic.value = '';
+      })
+      .catch((err) => {
+        renderLoading(false, processPreloader);
+        renderLoading(true, requestNewsApiError);
+        console.log('Ошибка. Запрос не выполнен: ', err);
+      });
+  }
 });
 
 // слушатель добавления карточки
 
 document.querySelector('.results__container').addEventListener('click', (event) => {
-  if (event.target.classList.contains('card__bookmark')) {
+  if (event.target.classList.contains('card__bookmark') && localStorage.getItem('name')) {
     const newCard = event.target.closest('.card');
     const keyword = `${newCard.querySelector('.card__keyword').textContent}`;
     const title = `${newCard.querySelector('.card__title').textContent}`;
     const text = `${newCard.querySelector('.card__text').textContent}`;
-    const date = `${newCard.querySelector('.card__date').textContent.substr(0, 10)}`;
+    const dateCard = `${newCard.querySelector('.card__date').textContent}`;
     const source = `${newCard.querySelector('.card__source').textContent}`;
     const link = `${newCard.querySelector('.card__link').href}`;
     const image = `${newCard.querySelector('.card__image').style.backgroundImage.slice(5, -2)}`;
+    const date = dateForApiFromCards(dateCard);
 
     console.log(keyword, title, text, date, source, link, image);
 
     mainApi.createArticle.bind(mainApi)(keyword, title, text, date, source, link, image)
       .then((data) => {
         console.log(data);
+        event.target.style.backgroundImage = 'url(./images/icon-blue.png)';
       })
       .catch((err) => {
         console.log('Ошибка. Запрос не выполнен: ', err);
@@ -247,6 +320,8 @@ logout.addEventListener('click', () => {
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('login');
+  console.log(localStorage.getItem('name'));
+
   const emailLogin = loginForm.elements.email_login.value;
   const passwordLogin = loginForm.elements.password_login.value;
   console.log(emailLogin, passwordLogin);
@@ -256,11 +331,6 @@ loginForm.addEventListener('submit', (event) => {
     .then((res) => {
       console.log(res);
       localStorage.setItem('token', res.token);
-      console.log(loginForm);
-      loginForm.reset();
-      loginForm.elements.email_login.value = '';
-      loginForm.elements.password_login.value = '';
-      console.log(loginForm);
       popupLogin.close();
       buttonAuthorization.classList.remove('header__text_is-opened');
       vectorMain.classList.remove('header__vector_is-opened');
@@ -276,6 +346,7 @@ loginForm.addEventListener('submit', (event) => {
     .then((result) => {
       console.log('login name');
       localStorage.setItem('name', result.name);
+
       nameUser.textContent = localStorage.getItem('name');
       nameUserMobil.textContent = localStorage.getItem('name');
     })
@@ -312,18 +383,12 @@ registrationForm.addEventListener('submit', (event) => {
   userApi.signUp.bind(userApi)(emailReg, passwordReg, nameReg)
 
     .then((res) => {
-      console.log(res);
-      // localStorage.setItem('name', res.name);
-      registrationForm.reset();
-      registrationForm.elements.email_reg.value = '';
-      registrationForm.elements.password_reg.value = '';
-      registrationForm.elements.name_reg.value = '';
       popupRegistration.close();
       popupResult.open();
     })
     .catch((err) => {
       console.log(err);
-      console.log('index');
+      document.querySelector('#error-registration').classList.add('popup__error_user_active');
     });
 });
 
@@ -340,6 +405,55 @@ popupRegistrationClose.addEventListener('click', () => {
 
 // ДАТЫ!!!!!!!
 /*
+function dateForApiFromNewDate(date) {
+  const dateFormatApi = date.toISOString().substr(0, 10);
+  return dateFormatApi;
+}
+const arrMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+function dateForCardsFromApi(date) {
+  const dateFormatCard = `${parseInt(date.substr(8, 2))} ${arrMonth[parseInt(date.substr(5, 2)) - 1]}, ${date.substr(0, 4)}`;
+  return dateFormatCard;
+}
+
+function dateForApiFromCards(date) {
+  const dateFormatRequestArr = date.split(' ');
+  const numberMonth = arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1;
+  let dateFormatRequestMonth = 0;
+  if ((numberMonth) < 10) {
+    dateFormatRequestMonth = `0${numberMonth}`;
+  } else {
+    dateFormatRequestMonth = numberMonth;
+  }
+  let dateFormatRequestDay = 0;
+  if (dateFormatRequestArr[0] < 10) {
+    dateFormatRequestDay = `0${dateFormatRequestArr[0]}`;
+  } else {
+    dateFormatRequestDay = dateFormatRequestArr[0];
+  }
+  console.log(dateFormatRequestMonth);
+  const dateFormatApi = `${dateFormatRequestArr[2]}-${dateFormatRequestMonth}-${dateFormatRequestDay}`;
+  return dateFormatApi;
+}
+
+const date1 = dateForApiFromNewDate(new Date());
+const date2 = dateForApiFromNewDate(new Date(new Date() - 1000 * 60 * 60 * 24 * 7));
+const date3 = dateForCardsFromApi('2020-06-15T00:00:00.000Z');
+const date4 = dateForApiFromCards('2 августа, 2019');
+
+console.log(date1);
+console.log(date2);
+console.log(date3);
+console.log(date4);
+
+
+/*
+const date1 = (new Date()).toISOString().substr(0, 10);
+const date2 = (new Date(new Date() - 1000 * 60 * 60 * 24 * 7)).toISOString().substr(0, 10);
+console.log((new Date()).toISOString());
+console.log(date1);
+console.log(date2);
+
 const date = '2020-06-15T00:00:00.000Z';
 
 const arrMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];

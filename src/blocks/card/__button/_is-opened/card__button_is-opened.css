@@ -1,9 +1,9 @@
 .card__button.card__button_is-opened {
   display: flex;
 }
-/*
-@media (max-width: 1200px) {
+
+@media (max-width: 700px) {
   .card__button.card__button_is-opened {
     display: none;
   }
-}*/
+}
