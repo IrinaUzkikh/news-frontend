@@ -17,7 +17,7 @@
       <!-- открываются добавлением модификаторов header__text_is-opened и header__vector_is-opened -->
       <header class="header">
         <div class="header__newsexplorer">NewsExplorer</div>
-        <img src="<%=require('./images/menu.png').default%>" alt="menu" class="header__menu">
+        <img src="<%=require('./images/menu.png').default%>" id="headerMenuMobil" alt="menu" class="header__menu">
         <div class="header__container">
           <div class="header__main">
             <!-- header__text_is-opened -->
@@ -37,16 +37,17 @@
 
       <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened на разрешении экрана меньше 570px-->
 
-      <div class="menu">
+      <div class="menu" id="menuMobil">
         <div class="menu__content">
           <header class="header">
             <div class="header__newsexplorer">NewsExplorer</div>
-            <img src="<%=require('./images/close-mobil.png').default%>" alt="menu" class="header__menu">
+            <img src="<%=require('./images/close-mobil.png').default%>" id="menuMobilClose" alt="menu" class="header__menu">
           </header>
          <nav class="menu__nav">
           <a href = "./index.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Главная</a>
-          <a href = "add.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
-          <button class="header__button header__text_mobil header__button_mobil header__button_white header__text_is-opened header__text header__text_white"><span id="nameUserMobil"></span><img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+          <button id = "buttonAuthorizationMobil" class="header__button header__text_mobil header__button_white header__text_is-opened header__text header__text_white">Авторизоваться</button>
+          <a href = "add.html" id="menuArticles" class="header__text header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
+          <button  id="menuLogout" class="header__button  header__text_mobil header__button_mobil header__button_white header__text header__text_white"><span id="nameUserMobil"></span><img src="<%=require('./images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
         </nav>
         </div>
       </div>
@@ -101,7 +102,7 @@
           </a>
         </div>
         <div class = "card">
-          <button class="card__bookmark" style="background-image: url(./images/icon.png)"></button>
+          <button class="card__bookmark" style="background-image: url(./images/icon-black.png)"></button>
             <a href="https://yandex.ru/" class="card__link" target="_blank">
               <div class="card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
 

@@ -22,7 +22,7 @@ export default class MainApi {
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
       })
       .catch((err) => {
-   //     alert('Что-то пошло не так...');
+      //  alert('Что-то пошло не так...');
         console.log(err);
         throw err;
       });
@@ -52,3 +52,29 @@ export default class MainApi {
     return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
   }
 }
+/*
+  getUserData() {
+    return this.requestToServer(`${this.baseUrl}/users/me`, 'GET');
+  }
+
+  getArticles() {
+    return this.requestToServer(`${this.baseUrl}/articles`, 'GET');
+  }
+
+  createArticle(newKeyword, newTitle, newText, newDate, newSource, newLink, newImage) {
+    return this.requestToServer(`${this.baseUrl}/articles`, 'POST', {
+      keyword: newKeyword,
+      title: newTitle,
+      text: newText,
+      date: newDate,
+      source: newSource,
+      link: newLink,
+      image: newImage,
+    });
+  }
+
+  removeArticle(event, cardId) {
+    return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
+  }
+}
+*/

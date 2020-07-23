@@ -7,13 +7,12 @@ import NewsApi from './js/api/NewsApi';
 
 import Popup from './js/components/Popup';
 import FormValidator from './js/components/FormValidator';
-import { dateForApiFromNewDate, dateForCardsFromApi, dateForApiFromCards } from './js/utils/functionСonvertingDate';
-
-
+import { dateForApiFromNewDate, dateForCardsFromApi, dateForApiFromCards } from './js/utils/functionsСonvertingDates';
 
 const apiKey = 'ce2d4e553e614a3fa2ef645ac1fac3ed';
 const pageSize = 7;
 const newsApiUrl = 'https://newsapi.org/v2/everything';
+// const newsApiUrl = 'https://praktikum.tk/news/v2/everything';
 
 const newsCard = new NewsCard();
 const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
@@ -25,7 +24,8 @@ const formValidator = new FormValidator();
 const dateTo = dateForApiFromNewDate(new Date());
 const dateFrom = dateForApiFromNewDate(new Date(new Date() - 1000 * 60 * 60 * 24 * 7));
 
-const URL = 'http://localhost:3000';
+// const URL = 'http://localhost:3000';
+const URL = 'http://newsnine.ga';
 
 const userApi = new UserApi({
   baseUrl: URL,
@@ -33,6 +33,7 @@ const userApi = new UserApi({
     'Content-Type': 'application/json',
   },
 });
+console.log(URL);
 
 const mainApi = new MainApi({
   baseUrl: URL,
@@ -46,7 +47,27 @@ const mainApi = new MainApi({
     dateTo, dateFrom, apiKey, pageSize, newsApiUrl,
   },
 ); */
-
+/*
+document.querySelector('.header__button').addEventListener('click', () => {
+  fetch('http://newsnine.ga/users/me', {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      console.log(`${localStorage.getItem('token')}`);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+});
+*/
 const buttonAuthorization = document.querySelector('#button-authorization');
 
 const popupRegistrationClose = document.querySelector('#registration-close');
@@ -70,51 +91,45 @@ const requestNewsApiError = document.querySelector('#requestNewsApiError');
 const results = document.querySelector('.results');
 const resultsContainer = document.querySelector('.results__container');
 const resultsButton = document.querySelector('.results__button');
+const headerMenuMobil = document.querySelector('#headerMenuMobil');
+const menuMobil = document.querySelector('#menuMobil');
+const buttonAuthorizationMobil = document.querySelector('#buttonAuthorizationMobil');
+const menuArticles = document.querySelector('#menuArticles');
+const menuLogout = document.querySelector('#menuLogout');
+const menuMobilClose = document.querySelector('#menuMobilClose');
 
 const { searchForm, registrationForm, loginForm } = document.forms;
+// слушатели для мобильного меню
 
-/*
-function dateForApiFromNewDate(date) {
-  const dateFormatApi = date.toISOString().substr(0, 10);
-  return dateFormatApi;
-}
-const arrMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
-function dateForCardsFromApi(date) {
-  const dateFormatCard = `${parseInt(date.substr(8, 2))} ${arrMonth[parseInt(date.substr(5, 2)) - 1]}, ${date.substr(0, 4)}`;
-  return dateFormatCard;
-}
-
-function dateForApiFromCards(date) {
-  const dateFormatRequestArr = date.split(' ');
-  const numberMonth = arrMonth.indexOf(dateFormatRequestArr[1].slice(0, -1)) + 1;
-  let dateFormatRequestMonth = 0;
-  if ((numberMonth) < 10) {
-    dateFormatRequestMonth = `0${numberMonth}`;
+headerMenuMobil.addEventListener('click', () => {
+  menuMobil.classList.add('menu_is-opened');
+  if (!localStorage.getItem('name')) {
+    buttonAuthorizationMobil.classList.add('header__text_is-opened');
+    menuArticles.classList.remove('header__text_is-opened');
+    menuLogout.classList.remove('header__text_is-opened');
   } else {
-    dateFormatRequestMonth = numberMonth;
+    buttonAuthorizationMobil.classList.remove('header__text_is-opened');
+    menuArticles.classList.add('header__text_is-opened');
+    menuLogout.classList.add('header__text_is-opened');
   }
-  let dateFormatRequestDay = 0;
-  if (dateFormatRequestArr[0] < 10) {
-    dateFormatRequestDay = `0${dateFormatRequestArr[0]}`;
-  } else {
-    dateFormatRequestDay = dateFormatRequestArr[0];
-  }
-  console.log(dateFormatRequestMonth);
-  const dateFormatApi = `${dateFormatRequestArr[2]}-${dateFormatRequestMonth}-${dateFormatRequestDay}`;
-  return dateFormatApi;
-}
-*/
-// const dateTo = (new Date()).toISOString().substr(0, 10);
-// const dateFrom = (new Date(new Date() - 1000 * 60 * 60 * 24 * 7)).toISOString().substr(0, 10);
-// console.log(localStorage.getItem('token'));
-/*
-const dateTo = dateForApiFromNewDate(new Date());
-const dateFrom = dateForApiFromNewDate(new Date(new Date() - 1000 * 60 * 60 * 24 * 7));
+});
 
-console.log(dateTo);
-console.log(dateFrom);
-*/
+menuMobilClose.addEventListener('click', () => {
+  menuMobil.classList.remove('menu_is-opened');
+});
+
+buttonAuthorizationMobil.addEventListener('click', () => {
+  menuMobil.classList.remove('menu_is-opened');
+  popupLogin.open();
+});
+
+menuLogout.addEventListener('click', () => {
+  if (window.confirm('Вы действительно хотите выйти?')) {
+    menuMobil.classList.remove('menu_is-opened');
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+  }
+});
 
 // слушатели валидации полей ввода
 document.querySelector('#email_login').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
@@ -125,7 +140,6 @@ document.querySelector('#name_reg').addEventListener('input', formValidator.setE
 document.querySelector('.search__text').addEventListener('input', () => {
   document.querySelector('.search__error').classList.remove('search__error_is-opened');
 });
-
 
 // функция, которая при загрузке запускает прелоудер или открывает сообщения"
 
@@ -141,20 +155,19 @@ function renderLoading(isLoading, element) {
 
 document.querySelector('.results__container').addEventListener('mouseover', (event) => {
   if (event.target.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
-      console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('name'));
     // console.log(event.target.closest('.card').querySelector('.card__button'));
-      event.target.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
-      event.target.style.backgroundImage = 'url(./images/icon-black.png)';
-
+    event.target.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
+    event.target.style.backgroundImage = 'url(./images/icon-black.png)';
   }
 });
 // слушатель иконки сохранить !!!!! сделать условие через и - &&
 document.querySelector('.results__container').addEventListener('mouseout', (event) => {
   if (event.target.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
-   // if (!localStorage.getItem('name')) {
+    // if (!localStorage.getItem('name')) {
     // console.log(event.target.closest('.card').querySelector('.card__button'));
-      event.target.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
-      event.target.style.backgroundImage = 'url(./images/icon-gray.png)';
+    event.target.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
+    event.target.style.backgroundImage = 'url(./images/icon-gray.png)';
   //  }
   }
 });
@@ -221,7 +234,7 @@ searchForm.addEventListener('submit', (event) => {
           //    results.appendChild(resultsContainer);
           //    resultsContainer.classList.add('results__container');
           results.classList.add('results_is-opened');
-          //    const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
+          // const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
           const arr = arrArticles.slice(0, 3);
           newsCardList.render.bind(newsCardList)(arr);
           // загрузили первые 3
@@ -338,20 +351,26 @@ loginForm.addEventListener('submit', (event) => {
       vectorArticles.classList.add('header__vector_is-opened');
       logout.classList.add('header__text_is-opened');
     })
-    .catch((err) => {
-      console.log(err);
-    });
-  // вставила запрос имени!!!!!
-  mainApi.getUserData.bind(mainApi)()
-    .then((result) => {
-      console.log('login name');
-      localStorage.setItem('name', result.name);
-
-      nameUser.textContent = localStorage.getItem('name');
-      nameUserMobil.textContent = localStorage.getItem('name');
+    .then(() => {
+    //  setTimeout(console.log('Подождем токен'), 100000);
+      setTimeout(() => console.log('Подождем токен ... '), 5000);
+      if (localStorage.getItem('token')) {
+        setTimeout(() => {
+          mainApi.getUserData.bind(mainApi)()
+            .then((result) => {
+              console.log('login name');
+              localStorage.setItem('name', result.name);
+              nameUser.textContent = localStorage.getItem('name');
+              nameUserMobil.textContent = localStorage.getItem('name');
+            })
+            .catch((err) => {
+              console.log('Ошибка. Запрос не выполнен: ', err);
+            });
+        }, 5000);
+      } else { console.log('токен еще не пришел'); }
     })
     .catch((err) => {
-      console.log('Ошибка. Запрос не выполнен: ', err);
+      console.log(err);
     });
 });
 
@@ -394,6 +413,7 @@ registrationForm.addEventListener('submit', (event) => {
 
 // слушатель открытия попапа регистрации (кнопка "Авторизоваться") поменяла на Login
 // !!!!! проверить кнопку
+
 buttonAuthorization.addEventListener('click', () => {
   popupLogin.open();
 });

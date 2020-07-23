@@ -44,7 +44,7 @@ export default class FormValidator {
       if (elem.id !== button.id) {
         if (!this.checkInputValidity(elem, button)) isValidForm = false;
       }
-    })
+    });
     this.setSubmitButtonState(button, isValidForm);
   }
 }
