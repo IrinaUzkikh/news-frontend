@@ -16,7 +16,6 @@ export default class MainApi {
     })
       .then((res) => {
         if (res.ok) {
-          console.log(res);
           return res.json();
         }
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
@@ -52,29 +51,3 @@ export default class MainApi {
     return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
   }
 }
-/*
-  getUserData() {
-    return this.requestToServer(`${this.baseUrl}/users/me`, 'GET');
-  }
-
-  getArticles() {
-    return this.requestToServer(`${this.baseUrl}/articles`, 'GET');
-  }
-
-  createArticle(newKeyword, newTitle, newText, newDate, newSource, newLink, newImage) {
-    return this.requestToServer(`${this.baseUrl}/articles`, 'POST', {
-      keyword: newKeyword,
-      title: newTitle,
-      text: newText,
-      date: newDate,
-      source: newSource,
-      link: newLink,
-      image: newImage,
-    });
-  }
-
-  removeArticle(event, cardId) {
-    return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
-  }
-}
-*/
