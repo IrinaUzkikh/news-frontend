@@ -1,7 +1,7 @@
 {
   "name": "news-frontend",
   "homepage": "https://github.com/IrinaUzkikh/news-frontend",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "news-frontend",
   "main": "index.js",
   "scripts": {

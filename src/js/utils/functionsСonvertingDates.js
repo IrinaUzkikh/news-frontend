@@ -26,7 +26,6 @@ function dateForApiFromCards(date) {
     const index = 0;
     dateFormatRequestDay = dateFormatRequestArr[index];
   }
-  console.log(dateFormatRequestMonth);
   const dateFormatApi = `${dateFormatRequestArr[2]}-${dateFormatRequestMonth}-${dateFormatRequestDay}`;
   return dateFormatApi;
 }

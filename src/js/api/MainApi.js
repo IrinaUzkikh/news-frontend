@@ -21,7 +21,7 @@ export default class MainApi {
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
       })
       .catch((err) => {
-      //  alert('Что-то пошло не так...');
+      //  alert('Сервер работает очень медленно. Пожалуйста, повторите свой запрос позже');
         console.log(err);
         throw err;
       });

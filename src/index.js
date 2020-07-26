@@ -1,18 +1,28 @@
 import './css/index.css';
+
 import NewsCard from './js/components/NewsCard';
 import NewsCardList from './js/components/NewsCardList';
 import UserApi from './js/api/UserApi';
 import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
-
 import Popup from './js/components/Popup';
 import FormValidator from './js/components/FormValidator';
-import { dateForApiFromNewDate, dateForCardsFromApi, dateForApiFromCards } from './js/utils/functionsСonvertingDates';
+import Header from './js/components/Header';
+import renderLoading from './js/utils/renderLoading';
 
-const apiKey = 'ce2d4e553e614a3fa2ef645ac1fac3ed';
-const pageSize = 7;
-const newsApiUrl = 'https://newsapi.org/v2/everything';
-// const newsApiUrl = 'https://praktikum.tk/news/v2/everything';
+import { dateForCardsFromApi, dateForApiFromCards } from './js/utils/functionsСonvertingDates';
+
+import {
+  apiKey, pageSize, newsApiUrl, URL, dateTo, dateFrom,
+} from './js/constants/constantsForApi';
+
+import {
+  buttonAuthorization, popupRegistrationClose, popupLoginClose, popupResultClose, login,
+  loginRegistration, register, nameUser, nameUserMobil, logout, processPreloader, nothingFound,
+  requestNewsApiError, results, resultsContainer, resultsButton, headerMenuMobil, menuMobil,
+  buttonAuthorizationMobil, menuLogout, menuMobilClose, errorRegistration,
+  enterButton, registerButton,
+} from './js/constants/constantsForElementSelectors';
 
 const newsCard = new NewsCard();
 const newsCardList = new NewsCardList(document.querySelector('.results__container'), newsCard);
@@ -20,12 +30,7 @@ const popupRegistration = new Popup(document.querySelector('#popup-registration'
 const popupLogin = new Popup(document.querySelector('#popup-login'));
 const popupResult = new Popup(document.querySelector('#popup-result'));
 const formValidator = new FormValidator();
-
-const dateTo = dateForApiFromNewDate(new Date());
-const dateFrom = dateForApiFromNewDate(new Date(new Date() - 1000 * 60 * 60 * 24 * 7));
-
-const URL = 'http://localhost:3000';
-// const URL = 'http://newsnine.ga';
+const header = new Header();
 
 const userApi = new UserApi({
   baseUrl: URL,
@@ -42,106 +47,7 @@ const mainApi = new MainApi({
   },
 });
 
-const buttonAuthorization = document.querySelector('#button-authorization');
-
-const popupRegistrationClose = document.querySelector('#registration-close');
-const popupLoginClose = document.querySelector('#login-close');
-const popupResultClose = document.querySelector('#result-close');
-
-const login = document.querySelector('#login');
-const loginRegistration = document.querySelector('#login-registration');
-const register = document.querySelector('#register');
-
-const nameUser = document.querySelector('#nameUser');
-const nameUserMobil = document.querySelector('#nameUserMobil');
-
-const vectorMain = document.querySelector('#vector-main');
-const vectorArticles = document.querySelector('#vector-articles');
-const savedArticles = document.querySelector('#saved-articles');
-const logout = document.querySelector('#logout');
-const processPreloader = document.querySelector('#processPreloader');
-const nothingFound = document.querySelector('#nothingFound');
-const requestNewsApiError = document.querySelector('#requestNewsApiError');
-const results = document.querySelector('.results');
-const resultsContainer = document.querySelector('.results__container');
-const resultsButton = document.querySelector('.results__button');
-const headerMenuMobil = document.querySelector('#headerMenuMobil');
-const menuMobil = document.querySelector('#menuMobil');
-const buttonAuthorizationMobil = document.querySelector('#buttonAuthorizationMobil');
-const menuArticles = document.querySelector('#menuArticles');
-const menuLogout = document.querySelector('#menuLogout');
-const menuMobilClose = document.querySelector('#menuMobilClose');
-
 const { searchForm, registrationForm, loginForm } = document.forms;
-// слушатели для мобильного меню
-
-headerMenuMobil.addEventListener('click', () => {
-  menuMobil.classList.add('menu_is-opened');
-  if (!localStorage.getItem('name')) {
-    buttonAuthorizationMobil.classList.add('header__text_is-opened');
-    menuArticles.classList.remove('header__text_is-opened');
-    menuLogout.classList.remove('header__text_is-opened');
-  } else {
-    buttonAuthorizationMobil.classList.remove('header__text_is-opened');
-    menuArticles.classList.add('header__text_is-opened');
-    menuLogout.classList.add('header__text_is-opened');
-  }
-});
-
-menuMobilClose.addEventListener('click', () => {
-  menuMobil.classList.remove('menu_is-opened');
-});
-
-buttonAuthorizationMobil.addEventListener('click', () => {
-  menuMobil.classList.remove('menu_is-opened');
-  popupLogin.open();
-});
-
-menuLogout.addEventListener('click', () => {
-  if (window.confirm('Вы действительно хотите выйти?')) {
-    menuMobil.classList.remove('menu_is-opened');
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
-  }
-});
-
-// слушатели валидации полей ввода
-document.querySelector('#email_login').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
-document.querySelector('#password_login').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
-document.querySelector('#email_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
-document.querySelector('#password_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
-document.querySelector('#name_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
-document.querySelector('.search__text').addEventListener('input', () => {
-  document.querySelector('.search__error').classList.remove('search__error_is-opened');
-});
-
-// функция, которая при загрузке запускает прелоудер или открывает сообщения"
-
-function renderLoading(isLoading, element) {
-  if (isLoading) {
-    element.classList.add('process_is-opened');
-  } else {
-    element.classList.remove('process_is-opened');
-  }
-}
-
-// слушатели иконки "сохранить"
-
-document.querySelector('.results__container').addEventListener('mouseover', (event) => {
-  const eventElement = event.target;
-  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
-    eventElement.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
-    eventElement.style.backgroundImage = 'url(./images/icon-black.png)';
-  }
-});
-
-document.querySelector('.results__container').addEventListener('mouseout', (event) => {
-  const eventElement = event.target;
-  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
-    eventElement.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
-    eventElement.style.backgroundImage = 'url(./images/icon-gray.png)';
-  }
-});
 
 // загрузка статей с NewsApi
 
@@ -233,41 +139,17 @@ document.querySelector('.results__container').addEventListener('click', (event) 
     const link = `${newCard.querySelector('.card__link').href}`;
     const image = `${newCard.querySelector('.card__image').style.backgroundImage.slice(5, -2)}`;
     const date = dateForApiFromCards(dateCard);
-    mainApi.createArticle.bind(mainApi)(keyword, title, text, date, source, link, image)
-      .then(() => {
-        const eventElement = event.target;
-        eventElement.style.backgroundImage = 'url(./images/icon-blue.png)';
-      })
-      .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      });
-  }
-});
-// слушатель открытия попапа логина пользователя
-login.addEventListener('click', () => {
-  popupRegistration.close();
-  popupLogin.open();
-});
-
-// слушатель закрытия попапа пользователя
-popupLoginClose.addEventListener('click', () => {
-  popupLogin.close();
-});
-// слушатель закрытия попапа Успешно зарегистрирован
-popupResultClose.addEventListener('click', () => {
-  popupResult.close();
-});
-// logout пользователя
-
-logout.addEventListener('click', () => {
-  if (window.confirm('Вы действительно хотите выйти?')) {
-    buttonAuthorization.classList.add('header__text_is-opened');
-    vectorMain.classList.add('header__vector_is-opened');
-    savedArticles.classList.remove('header__text_is-opened');
-    vectorArticles.classList.remove('header__vector_is-opened');
-    logout.classList.remove('header__text_is-opened');
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
+    setTimeout(() => console.log('Карточки сохраняются медленно...'), 5000);
+    setTimeout(() => {
+      mainApi.createArticle.bind(mainApi)(keyword, title, text, date, source, link, image)
+        .then(() => {
+          const eventElement = event.target;
+          eventElement.style.backgroundImage = 'url(./images/icon-blue.png)';
+        })
+        .catch((err) => {
+          console.log('Ошибка. Запрос не выполнен: ', err);
+        });
+    }, 5000);
   }
 });
 
@@ -283,15 +165,10 @@ loginForm.addEventListener('submit', (event) => {
     .then((res) => {
       localStorage.setItem('token', res.token);
       popupLogin.close();
-      buttonAuthorization.classList.remove('header__text_is-opened');
-      vectorMain.classList.remove('header__vector_is-opened');
-      savedArticles.classList.add('header__text_is-opened');
-      vectorArticles.classList.add('header__vector_is-opened');
-      logout.classList.add('header__text_is-opened');
+      header.headerAutorization();
     })
     .then(() => {
-    //  setTimeout(console.log('Подождем токен'), 100000);
-      setTimeout(() => console.log('Подождем токен ... '), 5000);
+      setTimeout(() => console.log('Подождем токен ... '), 7000);
       if (localStorage.getItem('token')) {
         setTimeout(() => {
           mainApi.getUserData.bind(mainApi)()
@@ -301,28 +178,16 @@ loginForm.addEventListener('submit', (event) => {
               nameUserMobil.textContent = localStorage.getItem('name');
             })
             .catch((err) => {
+              alert('Сервер работает очень медленно. Пожалуйста, повторите свой запрос позже');
               console.log('Ошибка. Запрос не выполнен: ', err);
             });
-        }, 5000);
+        }, 7000);
       } else { console.log('токен еще не пришел'); }
     })
     .catch((err) => {
+      alert('Такого пользователя нет');
       console.log(err);
     });
-});
-
-// открытие попапа Логин из формы Успешно доделать
-
-loginRegistration.addEventListener('click', () => {
-  popupResult.close();
-  popupLogin.open();
-});
-
-// открытие попапа Зарегистрироваться из формы Войти
-
-register.addEventListener('click', () => {
-  popupLogin.close();
-  popupRegistration.open();
 });
 
 // первоначальная регистрация пользователя
@@ -340,17 +205,120 @@ registrationForm.addEventListener('submit', (event) => {
     })
     .catch((err) => {
       console.log(err);
-      document.querySelector('#error-registration').classList.add('popup__error_user_active');
+      errorRegistration.classList.add('popup__error_user_active');
+      errorRegistration.textContent = 'Такой пользователь уже есть';
     });
+});
+
+// слушатель открытия попапа логина пользователя
+login.addEventListener('click', () => {
+  popupRegistration.close();
+  popupLogin.open();
+  formValidator.disableButton(enterButton);
+});
+
+// слушатель закрытия попапа пользователя
+popupLoginClose.addEventListener('click', () => {
+  popupLogin.close();
+});
+// слушатель закрытия попапа Успешно зарегистрирован
+popupResultClose.addEventListener('click', () => {
+  popupResult.close();
+});
+
+// logout пользователя
+
+logout.addEventListener('click', () => {
+  if (window.confirm('Вы действительно хотите выйти?')) {
+    header.headerStart();
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    window.location.reload();
+  }
 });
 
 // слушатель открытия попапа регистрации (кнопка "Авторизоваться")
 
 buttonAuthorization.addEventListener('click', () => {
   popupLogin.open();
+  formValidator.disableButton(enterButton);
 });
 
 // слушатель закрытия попапа регистрации
 popupRegistrationClose.addEventListener('click', () => {
   popupRegistration.close();
+});
+
+// открытие попапа Логин из формы Успешно
+
+loginRegistration.addEventListener('click', () => {
+  popupResult.close();
+  popupLogin.open();
+  formValidator.disableButton(enterButton);
+});
+
+// открытие попапа Зарегистрироваться из формы Войти
+
+register.addEventListener('click', () => {
+  popupLogin.close();
+  popupRegistration.open();
+  formValidator.disableButton(registerButton);
+});
+
+// слушатели иконки "сохранить"
+
+document.querySelector('.results__container').addEventListener('mouseover', (event) => {
+  const eventElement = event.target;
+  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
+    eventElement.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
+    eventElement.style.backgroundImage = 'url(./images/icon-black.png)';
+  }
+});
+
+document.querySelector('.results__container').addEventListener('mouseout', (event) => {
+  const eventElement = event.target;
+  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
+    eventElement.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
+    eventElement.style.backgroundImage = 'url(./images/icon-gray.png)';
+  }
+});
+
+// слушатели для мобильного меню
+
+headerMenuMobil.addEventListener('click', () => {
+  menuMobil.classList.add('menu_is-opened');
+  if (!localStorage.getItem('name')) {
+    header.headerMobilStart();
+  } else {
+    header.headerMobilAutorization();
+  }
+});
+
+menuMobilClose.addEventListener('click', () => {
+  menuMobil.classList.remove('menu_is-opened');
+});
+
+buttonAuthorizationMobil.addEventListener('click', () => {
+  menuMobil.classList.remove('menu_is-opened');
+  popupLogin.open();
+  formValidator.disableButton(enterButton);
+});
+
+menuLogout.addEventListener('click', () => {
+  if (window.confirm('Вы действительно хотите выйти?')) {
+    menuMobil.classList.remove('menu_is-opened');
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    window.location.reload();
+  }
+});
+
+// слушатели валидации полей ввода
+document.querySelector('#email_login').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#password_login').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#email_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#password_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('#name_reg').addEventListener('input', formValidator.setEventListeners.bind(formValidator));
+document.querySelector('.search__text').addEventListener('input', () => {
+  document.querySelector('.search__error').classList.remove('search__error_is-opened');
 });

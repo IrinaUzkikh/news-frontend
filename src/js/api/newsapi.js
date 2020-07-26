@@ -12,13 +12,12 @@ export default class NewsApi {
     return fetch(`${this.newsApiUrl}?q=${this.newsTopic}&from=${this.dateFrom}&to=${this.dateTo}&apiKey=${this.apiKey}&pageSize=${this.pageSize}`)
       .then((res) => {
         if (res.ok) {
-          console.log(res);
           return res.json();
         }
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
       })
       .catch((err) => {
-      //  alert('Что-то пошло не так...');
+        alert('Сервер работает очень медленно. Пожалуйста, повторите свой запрос позже');
         console.log(err);
         throw err;
       });

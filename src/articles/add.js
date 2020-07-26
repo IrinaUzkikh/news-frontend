@@ -6,13 +6,12 @@ import MainApi from '../js/api/MainApi';
 import { dateForCardsFromApi } from '../js/utils/functionsСonvertingDates';
 import quantityArticlesAndKeywords from '../js/utils/quantityArticlesAndKeywords';
 
-// const URL = 'http://newsnine.ga';
-const URL = 'http://localhost:3000';
+import { URL, frontPage } from '../js/constants/constantsForApi';
 
-const nameUserAdd = document.querySelector('#nameUserAdd');
-const nameUserAddMobil = document.querySelector('#nameUserAddMobil');
-const nameUserContent = document.querySelector('#nameUserContent');
-const headerMenuMobil = document.querySelector('#headerMenuMobil');
+import {
+  nameUserAdd, nameUserAddMobil, nameUserContent, headerMenuMobilAdd, menuMobilAdd,
+  menuMobilCloseAdd, menuLogoutAdd, logoutAdd,
+} from '../js/constants/constantsForElementSelectors';
 
 const mainApi = new MainApi({
   baseUrl: URL,
@@ -27,38 +26,34 @@ const newsCardList = new NewsCardList(document.querySelector('.results__containe
 nameUserAdd.textContent = localStorage.getItem('name');
 nameUserAddMobil.textContent = localStorage.getItem('name');
 nameUserContent.textContent = localStorage.getItem('name');
-const menuMobil = document.querySelector('#menuMobil');
-const menuMobilClose = document.querySelector('#menuMobilClose');
-const menuLogout = document.querySelector('#menuLogout');
-const logout = document.querySelector('#logout');
 
 // logout пользователя и переход на 1 страницу
 
-logout.addEventListener('click', () => {
+logoutAdd.addEventListener('click', () => {
   if (window.confirm('Вы действительно хотите выйти?')) {
     localStorage.removeItem('token');
     localStorage.removeItem('name');
-    document.location.href = '/';
+    document.location.href = frontPage;
   }
 });
 
-headerMenuMobil.addEventListener('click', () => {
-  menuMobil.classList.add('menu_is-opened');
+headerMenuMobilAdd.addEventListener('click', () => {
+  menuMobilAdd.classList.add('menu_is-opened');
 });
 
-menuMobilClose.addEventListener('click', () => {
-  menuMobil.classList.remove('menu_is-opened');
+menuMobilCloseAdd.addEventListener('click', () => {
+  menuMobilAdd.classList.remove('menu_is-opened');
 });
 
-menuLogout.addEventListener('click', () => {
+menuLogoutAdd.addEventListener('click', () => {
   if (window.confirm('Вы действительно хотите выйти?')) {
-    menuMobil.classList.remove('menu_is-opened');
+    menuMobilAdd.classList.remove('menu_is-opened');
     localStorage.removeItem('token');
     localStorage.removeItem('name');
-    document.location.href = '/';
+    document.location.href = frontPage;
   }
 });
-// слушатель иконки bookmark
+// слушатели иконки bookmark
 
 document.querySelector('.results__container').addEventListener('mouseover', (event) => {
   if (event.target.classList.contains('card__bookmark')) {
@@ -89,8 +84,8 @@ document.querySelector('.results__container').addEventListener('click', (event) 
       .catch((err) => {
         console.log('Ошибка. Запрос не выполнен: ', err);
       });
-    setTimeout(() => console.log('Пересчет количества статей ... '), 3000);
-    setTimeout(() => {
+  //  setTimeout(() => console.log('Пересчет количества статей ... '), 3000);
+  //  setTimeout(() => {
       mainApi.getArticles.bind(mainApi)()
         .then((res) => {
           const arr = res.data.map((object) => {
@@ -103,7 +98,7 @@ document.querySelector('.results__container').addEventListener('click', (event) 
         .catch((err) => {
           console.log('Ошибка. Запрос не выполнен: ', err);
         });
-    }, 5000);
+//    }, 5000);
   }
 });
 
@@ -116,7 +111,7 @@ window.addEventListener('load', () => {
         const {
           date: dateCard, image, keyword, link, source, text, title, _id: cardId,
         } = object;
-        const bookmark = 'url(../images/trash.png)';
+        const bookmark = 'url(./images/trash.png)';
         const page = 'articles';
         const date = dateForCardsFromApi(dateCard);
         return {

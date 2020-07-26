@@ -1,13 +1,11 @@
 export default class FormValidator {
   activeButton(element) {
     element.classList.add('popup__button_active');
-    //  element.style.color = 'white';
     element.removeAttribute('disabled');
   }
 
   disableButton(element) {
     element.classList.remove('popup__button_active');
-    //  element.style.color = 'rgba(0, 0, 0, .2)';
     element.setAttribute('disabled', true);
   }
 
