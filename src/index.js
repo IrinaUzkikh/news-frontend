@@ -21,7 +21,7 @@ import {
   loginRegistration, register, nameUser, nameUserMobil, logout, processPreloader, nothingFound,
   requestApiError, results, resultsContainer, resultsButton, headerMenuMobil, menuMobil,
   buttonAuthorizationMobil, menuLogout, menuMobilClose, errorRegistration,
-  enterButton, registerButton,
+  enterButton, registerButton, errorNamePassword,
 } from './js/constants/constantsForElementSelectors';
 
 const newsCard = new NewsCard();
@@ -208,6 +208,11 @@ loginForm.addEventListener('submit', (event) => {
     })
     .catch((err) => {
       console.log(err);
+      if (err.message.includes('401')) {
+        formValidator.disableButton(enterButton);
+        errorNamePassword.classList.add('popup__error_user_active');
+        errorNamePassword.textContent = 'Такого пользователя нет';
+      }
     });
 });
 
@@ -225,9 +230,12 @@ registrationForm.addEventListener('submit', (event) => {
       popupResult.open();
     })
     .catch((err) => {
-      console.log(err);
-      errorRegistration.classList.add('popup__error_user_active');
-      errorRegistration.textContent = 'Такой пользователь уже есть';
+      if (err.message.includes('409')) {
+        console.log(err);
+        errorRegistration.classList.add('popup__error_user_active');
+        errorRegistration.textContent = 'Такой пользователь уже есть';
+        formValidator.disableButton(registerButton);
+      }
     });
 });
 

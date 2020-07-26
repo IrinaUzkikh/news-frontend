@@ -48,6 +48,6 @@ export default class MainApi {
   }
 
   removeArticle(event, cardId) {
-    return this.requestToServer(`${this.baseUrl}/article/${cardId}`, 'DELETE');
+    return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
   }
 }

@@ -36,6 +36,7 @@ const menuLogoutAdd = document.querySelector('#menuLogoutAdd');
 const logoutAdd = document.querySelector('#logoutAdd');
 const enterButton = document.querySelector('#enterButton');
 const registerButton = document.querySelector('#registerButton');
+const errorNamePassword = document.querySelector('#errorNamePassword');
 
 export {
   nameUserAdd, nameUserAddMobil, nameUserContent, headerMenuMobilAdd, menuMobilAdd,
@@ -44,5 +45,5 @@ export {
   register, nameUser, nameUserMobil, vectorMain, vectorArticles, savedArticles, logout,
   processPreloader, nothingFound, requestApiError, results, resultsContainer,
   resultsButton, headerMenuMobil, menuMobil, buttonAuthorizationMobil, menuArticles,
-  menuLogout, menuMobilClose, errorRegistration, enterButton, registerButton,
+  menuLogout, menuMobilClose, errorRegistration, enterButton, registerButton, errorNamePassword,
 };
