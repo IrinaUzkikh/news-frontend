@@ -69,6 +69,11 @@
       <p class="process__text">Идет поиск новостей...</p>
     </section>
 
+    <section class="process" id="mainApiPreloader">
+      <i class="process__preloader"></i>
+      <p class="process__text">Обработка запроса...</p>
+    </section>
+
     <!-- Блок для "ничего не найдено", открывается добавлением классу process модификатора process_is-opened -->
     <section class="process" id="nothingFound">
       <img src="<%=require('./images/not-found_v1.png').default%>" class="process__image" alt="image">
@@ -76,10 +81,9 @@
       <p class="process__text">К сожалению по вашему запросу ничего не найдено.</p>
     </section>
 
-    <section class="process" id="requestNewsApiError">
+    <section class="process" id="requestApiError">
       <p class="process__no">Во время запроса произошла ошибка.
         Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</p>
-
     </section>
 
 <!-- Блок с карточками, открывается добавлением классу results модификатора results_is-opened -->
@@ -137,10 +141,6 @@
           <label class="popup__label" for="email_login">Email</label>
            <input type="email" id="email_login" class="popup__input" placeholder="Введите почту" required
            pattern="^\w+-?\w+(\w*-?\w+)*(\.\w+-?\w+(\w*-?\w+)*)*@\w+-?\w+(\w*-?\w+)*(\.\w+-?\w+(\w*-?\w+)*)*\.\w+-?\w+(\w*-?\w+)*(\.\w+-?\w+(\w*-?\w+)*)*$">
-           <!--
-           <input class="form__input" type="email" name="email"
-                        pattern="^\w+-?\w+(\w*-?\w+)*(\.\w+-?\w+(\w*-?\w+)*)*@\w+-?\w+(\w*-?\w+)*(\.\w+-?\w+(\w*-?\w+)*)*\.\w+-?\w+(\w*-?\w+)*(\.\w+-?\w+(\w*-?\w+)*)*$" placeholder="E-Mail" required />
-                        <span class="form__error">e-mail в формате: students-yandex@yandex.ru</span> -->
            <p class="popup__error" id ="error-email_login"></p>
            <label class="popup__label" for="password_login">Пароль</label>
            <input type="password" id="password_login" class="popup__input" placeholder="Введите пароль" required>

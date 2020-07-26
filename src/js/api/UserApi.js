@@ -19,7 +19,6 @@ export default class UserApi {
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
       })
       .catch((err) => {
-        // alert('Сервер работает очень медленно. Пожалуйста, повторите свой запрос позже');
         console.log(err);
         throw err;
       });

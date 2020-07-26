@@ -19,7 +19,7 @@ import {
 import {
   buttonAuthorization, popupRegistrationClose, popupLoginClose, popupResultClose, login,
   loginRegistration, register, nameUser, nameUserMobil, logout, processPreloader, nothingFound,
-  requestNewsApiError, results, resultsContainer, resultsButton, headerMenuMobil, menuMobil,
+  requestApiError, results, resultsContainer, resultsButton, headerMenuMobil, menuMobil,
   buttonAuthorizationMobil, menuLogout, menuMobilClose, errorRegistration,
   enterButton, registerButton,
 } from './js/constants/constantsForElementSelectors';
@@ -49,6 +49,29 @@ const mainApi = new MainApi({
 
 const { searchForm, registrationForm, loginForm } = document.forms;
 
+// функция для запроса имени пользователя
+
+function requestToServerForName() {
+  mainApi.getUserData.bind(mainApi)()
+    .then((result) => {
+      localStorage.setItem('name', result.name);
+      nameUser.textContent = localStorage.getItem('name');
+      nameUserMobil.textContent = localStorage.getItem('name');
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+}
+// загрузка и перерисовка первой страницы
+
+window.addEventListener('load', () => {
+  if (localStorage.getItem('isLoggedIn')) {
+    nameUser.textContent = localStorage.getItem('name');
+    nameUserMobil.textContent = localStorage.getItem('name');
+    header.headerAutorization();
+  } else { header.headerStart(); }
+});
+
 // загрузка статей с NewsApi
 
 searchForm.addEventListener('submit', (event) => {
@@ -59,7 +82,7 @@ searchForm.addEventListener('submit', (event) => {
     resultsContainer.removeChild(item);
   });
   renderLoading(false, nothingFound);
-  renderLoading(false, requestNewsApiError);
+  renderLoading(false, requestApiError);
 
   const newsTopic = searchForm.elements.newsTopic.value;
   if (newsTopic.length === 0) {
@@ -120,7 +143,7 @@ searchForm.addEventListener('submit', (event) => {
       })
       .catch((err) => {
         renderLoading(false, processPreloader);
-        renderLoading(true, requestNewsApiError);
+        renderLoading(true, requestApiError);
         console.log('Ошибка. Запрос не выполнен: ', err);
       });
   }
@@ -129,27 +152,37 @@ searchForm.addEventListener('submit', (event) => {
 // слушатель добавления карточки
 
 document.querySelector('.results__container').addEventListener('click', (event) => {
-  if (event.target.classList.contains('card__bookmark') && localStorage.getItem('name')) {
-    const newCard = event.target.closest('.card');
-    const keyword = `${newCard.querySelector('.card__keyword').textContent}`;
-    const title = `${newCard.querySelector('.card__title').textContent}`;
-    const text = `${newCard.querySelector('.card__text').textContent}`;
-    const dateCard = `${newCard.querySelector('.card__date').textContent}`;
-    const source = `${newCard.querySelector('.card__source').textContent}`;
-    const link = `${newCard.querySelector('.card__link').href}`;
-    const image = `${newCard.querySelector('.card__image').style.backgroundImage.slice(5, -2)}`;
-    const date = dateForApiFromCards(dateCard);
-    setTimeout(() => console.log('Карточки сохраняются медленно...'), 5000);
-    setTimeout(() => {
+  const eventElement = event.target;
+  if (eventElement.classList.contains('card__bookmark') && localStorage.getItem('isLoggedIn')) {
+    if (eventElement.style.backgroundImage.includes('icon-gray')) {
+      const newCard = eventElement.closest('.card');
+      const keyword = `${newCard.querySelector('.card__keyword').textContent}`;
+      const title = `${newCard.querySelector('.card__title').textContent}`;
+      const text = `${newCard.querySelector('.card__text').textContent}`;
+      const dateCard = `${newCard.querySelector('.card__date').textContent}`;
+      const source = `${newCard.querySelector('.card__source').textContent}`;
+      const link = `${newCard.querySelector('.card__link').href}`;
+      const image = `${newCard.querySelector('.card__image').style.backgroundImage.slice(5, -2)}`;
+      const date = dateForApiFromCards(dateCard);
       mainApi.createArticle.bind(mainApi)(keyword, title, text, date, source, link, image)
-        .then(() => {
-          const eventElement = event.target;
+        .then((res) => {
           eventElement.style.backgroundImage = 'url(./images/icon-blue.png)';
+          newCard.querySelector('.card__id').textContent = res.id;
         })
         .catch((err) => {
           console.log('Ошибка. Запрос не выполнен: ', err);
         });
-    }, 5000);
+    } else if (eventElement.style.backgroundImage.includes('icon-blue')) {
+      const cardId = `${eventElement.closest('.card').querySelector('.card__id').textContent}`;
+      mainApi.removeArticle.bind(mainApi)(event, cardId)
+        .then(() => {
+          newsCard.remove.bind(newsCardList)(event);
+          eventElement.style.backgroundImage = 'url(./images/icon-gray.png)';
+        })
+        .catch((err) => {
+          console.log('Ошибка. Запрос не выполнен: ', err);
+        });
+    }
   }
 });
 
@@ -164,28 +197,16 @@ loginForm.addEventListener('submit', (event) => {
   userApi.signIn.bind(userApi)(emailLogin, passwordLogin)
     .then((res) => {
       localStorage.setItem('token', res.token);
+      localStorage.setItem('isLoggedIn', 'true');
       popupLogin.close();
       header.headerAutorization();
     })
     .then(() => {
-      setTimeout(() => console.log('Подождем токен ... '), 7000);
       if (localStorage.getItem('token')) {
-        setTimeout(() => {
-          mainApi.getUserData.bind(mainApi)()
-            .then((result) => {
-              localStorage.setItem('name', result.name);
-              nameUser.textContent = localStorage.getItem('name');
-              nameUserMobil.textContent = localStorage.getItem('name');
-            })
-            .catch((err) => {
-              alert('Сервер работает очень медленно. Пожалуйста, повторите свой запрос позже');
-              console.log('Ошибка. Запрос не выполнен: ', err);
-            });
-        }, 7000);
-      } else { console.log('токен еще не пришел'); }
+        setTimeout(requestToServerForName, 5000);
+      } else { console.log('токен для авторизации еще не пришел'); }
     })
     .catch((err) => {
-      alert('Такого пользователя нет');
       console.log(err);
     });
 });
@@ -233,6 +254,7 @@ logout.addEventListener('click', () => {
     header.headerStart();
     localStorage.removeItem('token');
     localStorage.removeItem('name');
+    localStorage.removeItem('isLoggedIn');
     window.location.reload();
   }
 });
@@ -269,7 +291,7 @@ register.addEventListener('click', () => {
 
 document.querySelector('.results__container').addEventListener('mouseover', (event) => {
   const eventElement = event.target;
-  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
+  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('isLoggedIn')) {
     eventElement.closest('.card').querySelector('.card__button').classList.add('card__button_is-opened');
     eventElement.style.backgroundImage = 'url(./images/icon-black.png)';
   }
@@ -277,7 +299,7 @@ document.querySelector('.results__container').addEventListener('mouseover', (eve
 
 document.querySelector('.results__container').addEventListener('mouseout', (event) => {
   const eventElement = event.target;
-  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('name')) {
+  if (eventElement.classList.contains('card__bookmark') && !localStorage.getItem('isLoggedIn')) {
     eventElement.closest('.card').querySelector('.card__button').classList.remove('card__button_is-opened');
     eventElement.style.backgroundImage = 'url(./images/icon-gray.png)';
   }
@@ -287,7 +309,7 @@ document.querySelector('.results__container').addEventListener('mouseout', (even
 
 headerMenuMobil.addEventListener('click', () => {
   menuMobil.classList.add('menu_is-opened');
-  if (!localStorage.getItem('name')) {
+  if (!localStorage.getItem('isLoggedIn')) {
     header.headerMobilStart();
   } else {
     header.headerMobilAutorization();
@@ -309,6 +331,7 @@ menuLogout.addEventListener('click', () => {
     menuMobil.classList.remove('menu_is-opened');
     localStorage.removeItem('token');
     localStorage.removeItem('name');
+    localStorage.removeItem('isLoggedIn');
     window.location.reload();
   }
 });

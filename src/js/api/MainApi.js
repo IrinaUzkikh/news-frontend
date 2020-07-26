@@ -9,7 +9,8 @@ export default class MainApi {
     return fetch(url, {
       method: methodToRequest,
       headers: {
-        authorization: this.authorization,
+        // authorization: this.authorization,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': this.contentType,
       },
       body: JSON.stringify(bodyObject),
@@ -21,7 +22,6 @@ export default class MainApi {
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
       })
       .catch((err) => {
-      //  alert('Сервер работает очень медленно. Пожалуйста, повторите свой запрос позже');
         console.log(err);
         throw err;
       });
@@ -48,6 +48,6 @@ export default class MainApi {
   }
 
   removeArticle(event, cardId) {
-    return this.requestToServer(`${this.baseUrl}/articles/${cardId}`, 'DELETE');
+    return this.requestToServer(`${this.baseUrl}/article/${cardId}`, 'DELETE');
   }
 }

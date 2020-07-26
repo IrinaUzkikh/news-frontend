@@ -24,13 +24,11 @@ export default class Header {
     buttonAuthorizationMobil.classList.remove('header__text_is-opened');
     menuArticles.classList.add('header__text_is-opened');
     menuLogout.classList.add('header__text_is-opened');
-    console.log('aut');
   }
 
   headerMobilStart() {
     buttonAuthorizationMobil.classList.add('header__text_is-opened');
     menuArticles.classList.remove('header__text_is-opened');
     menuLogout.classList.remove('header__text_is-opened');
-    console.log('start');
   }
 }

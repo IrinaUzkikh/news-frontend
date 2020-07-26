@@ -33,6 +33,7 @@ logoutAdd.addEventListener('click', () => {
   if (window.confirm('Вы действительно хотите выйти?')) {
     localStorage.removeItem('token');
     localStorage.removeItem('name');
+    localStorage.removeItem('isLoggedIn');
     document.location.href = frontPage;
   }
 });
@@ -50,6 +51,7 @@ menuLogoutAdd.addEventListener('click', () => {
     menuMobilAdd.classList.remove('menu_is-opened');
     localStorage.removeItem('token');
     localStorage.removeItem('name');
+    localStorage.removeItem('isLoggedIn');
     document.location.href = frontPage;
   }
 });
@@ -84,44 +86,43 @@ document.querySelector('.results__container').addEventListener('click', (event) 
       .catch((err) => {
         console.log('Ошибка. Запрос не выполнен: ', err);
       });
-  //  setTimeout(() => console.log('Пересчет количества статей ... '), 3000);
-  //  setTimeout(() => {
-      mainApi.getArticles.bind(mainApi)()
-        .then((res) => {
-          const arr = res.data.map((object) => {
-            const
-              { keyword } = object;
-            return { keyword };
-          });
-          quantityArticlesAndKeywords(arr);
-        })
-        .catch((err) => {
-          console.log('Ошибка. Запрос не выполнен: ', err);
+    mainApi.getArticles.bind(mainApi)()
+      .then((res) => {
+        const arr = res.data.map((object) => {
+          const
+            { keyword } = object;
+          return { keyword };
         });
-//    }, 5000);
+        quantityArticlesAndKeywords(arr);
+      })
+      .catch((err) => {
+        console.log('Ошибка. Запрос не выполнен: ', err);
+      });
   }
 });
 
 // загрузка карточек на вторую страницу
 
 window.addEventListener('load', () => {
-  mainApi.getArticles.bind(mainApi)()
-    .then((res) => {
-      const arr = res.data.map((object) => {
-        const {
-          date: dateCard, image, keyword, link, source, text, title, _id: cardId,
-        } = object;
-        const bookmark = 'url(./images/trash.png)';
-        const page = 'articles';
-        const date = dateForCardsFromApi(dateCard);
-        return {
-          keyword, title, text, date, source, link, image, cardId, bookmark, page,
-        };
+  if (localStorage.getItem('isLoggedIn')) {
+    mainApi.getArticles.bind(mainApi)()
+      .then((res) => {
+        const arr = res.data.map((object) => {
+          const {
+            date: dateCard, image, keyword, link, source, text, title, _id: cardId,
+          } = object;
+          const bookmark = 'url(./images/trash.png)';
+          const page = 'articles';
+          const date = dateForCardsFromApi(dateCard);
+          return {
+            keyword, title, text, date, source, link, image, cardId, bookmark, page,
+          };
+        });
+        quantityArticlesAndKeywords(arr);
+        newsCardList.render.bind(newsCardList)(arr);
+      })
+      .catch((err) => {
+        console.log('Ошибка. Запрос не выполнен: ', err);
       });
-      quantityArticlesAndKeywords(arr);
-      newsCardList.render.bind(newsCardList)(arr);
-    })
-    .catch((err) => {
-      console.log('Ошибка. Запрос не выполнен: ', err);
-    });
+  } else { document.location.href = frontPage; }
 });

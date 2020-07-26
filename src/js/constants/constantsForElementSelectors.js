@@ -13,7 +13,7 @@ const savedArticles = document.querySelector('#saved-articles');
 const logout = document.querySelector('#logout');
 const processPreloader = document.querySelector('#processPreloader');
 const nothingFound = document.querySelector('#nothingFound');
-const requestNewsApiError = document.querySelector('#requestNewsApiError');
+const requestApiError = document.querySelector('#requestApiError');
 const results = document.querySelector('.results');
 const resultsContainer = document.querySelector('.results__container');
 const resultsButton = document.querySelector('.results__button');
@@ -42,7 +42,7 @@ export {
   menuMobilCloseAdd, menuLogoutAdd, logoutAdd, buttonAuthorization,
   popupRegistrationClose, popupLoginClose, popupResultClose, login, loginRegistration,
   register, nameUser, nameUserMobil, vectorMain, vectorArticles, savedArticles, logout,
-  processPreloader, nothingFound, requestNewsApiError, results, resultsContainer,
+  processPreloader, nothingFound, requestApiError, results, resultsContainer,
   resultsButton, headerMenuMobil, menuMobil, buttonAuthorizationMobil, menuArticles,
   menuLogout, menuMobilClose, errorRegistration, enterButton, registerButton,
 };
