@@ -10,6 +10,7 @@
   line-height: 22px;
   color: #1a1b22;;
   position: absolute;
+  cursor: url(../../../images/lapka.png), pointer;
 }
 
 .search__text::placeholder {

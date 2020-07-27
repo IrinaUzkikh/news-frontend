@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Удобный сервис для поиска новостей в Интернете по разным темам"/>
+    <meta name="author" content="Узких Ирина"/>
+    <title>Сохраненные статьи</title>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.add.css %>">
+    <link rel="icon" href="<%=require('../images/Favicon.png').default%>">
+
+</head>
+<body>
+  <div class="root">
+    <section class="search">
+      <header class="header header_articles">
+        <div class="header__newsexplorer header__newsexplorer_dark">NewsExplorer</div>
+        <img src="<%=require('../images/menu-gray.png').default%>" id="headerMenuMobilAdd" alt="menu" class="header__menu">
+        <div class="header__container">
+          <div class="header__main">
+            <a href = "../index.html" class="header__text header__text_is-opened header__text_dark" target="_blank">Главная</a>
+          </div>
+          <div class="header__main">
+            <a href = "./add.html" class="header__text header__text_is-opened header__text_dark">Сохранённые статьи</a>
+            <hr class="header__vector header__vector_is-opened">
+          </div>
+          <button id="logoutAdd" class="header__button header__button_dark header__text header__text_is-opened header__text_dark"><span id="nameUserAdd"></span><img src="<%=require('../images/Union-dark.png').default%>" alt="icon_logout" class="header__icon"></button>
+        </div>
+      </header>
+      <!-- Блок с меню для мобильного, открывается добавлением классу menu модификатора menu_is-opened на разрешении экрана меньше 570px-->
+      <div class="menu" id="menuMobilAdd">
+        <div class="menu__content">
+          <header class="header">
+            <div class="header__newsexplorer">NewsExplorer</div>
+            <img src="<%=require('../images/close-mobil.png').default%>" id="menuMobilCloseAdd" alt="menu" class="header__menu">
+          </header>
+         <nav class="menu__nav">
+          <a href = "../index.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Главная</a>
+          <a href = "./add.html" class="header__text header__text_is-opened header__text_mobil header__text_white" target="_blank">Сохранённые статьи</a>
+          <button id="menuLogoutAdd" class="header__button header__text_mobil header__text_is-opened header__button_mobil
+          header__button_white header__text header__text_white"><span id="nameUserAddMobil"></span>
+          <img src="<%=require('../images/Union.png').default%>" alt="icon_logout" class="header__icon"></button>
+        </nav>
+        </div>
+      </div>
+    </section>
+    <section class="content">
+      <p class="content__articles" id="articles">Сохранённые статьи</p>
+      <p class="content__number"><span id="nameUserContent"></span>, у вас <span id="quantityArticlesElement"></span> <span id="quantityArticlesText"></span></p>
+      <p class="content__words">По ключевым словам: <b><span id="firstWord"></span><span id="secondWord"></span> <span id="thirdWord"></span></b></p>
+    </section>
+
+    <section class="results results_is-opened">
+      <div class="results__container">
+      <!--  <button class="card__bookmark"><img src="<%=require('../images/trash.png').default%>" alt="trash"></button> -->
+      </div>
+    </section>
+
+    <footer class="footer">
+      <a href="../index.html"  target="_blank" class="footer__enter">© 2020 Supersite, Powered by News API</a>
+      <div class="footer__content">
+        <div class="footer__group">
+          <a href="../index.html"  target="_blank" class="footer__text">Главная</a>
+          <a href="https://praktikum.yandex.ru/profile/web-developer/" target="_blank" class="footer__text">Яндекс.Практикум</a>
+        </div>
+        <div class="footer__social">
+          <a href="https://github.com/IrinaUzkikh/news-frontend" target="_blank"><img src="<%=require('../images/github.png').default%>" alt="icon_github"></a>
+          <a href="https://www.facebook.com/" target="_blank"><img src="<%=require('../images/iconmonstr-facebook-6.png').default%>" alt="icon_facebook"></a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <script src="<%= htmlWebpackPlugin.files.chunks.add.entry%>"></script>
+</body>
+
+</html>

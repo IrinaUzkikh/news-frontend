@@ -1,3 +1,5 @@
+@import url(./_is-closed/results__button_is-closed.css);
+
 .results__button {
   font-family: Roboto, Arial, sans-serif;
   font-style: normal;
@@ -15,6 +17,8 @@
   background: #fff;
   border-radius: 80px;
   border: none;
+  outline: none;
+  cursor: url(../../../images/lapka.png), pointer;
 }
 
 @media (max-width: 768px) {

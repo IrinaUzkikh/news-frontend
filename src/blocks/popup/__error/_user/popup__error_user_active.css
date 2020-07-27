@@ -1,0 +1,8 @@
+.popup__error_user.popup__error_user_active {
+  margin: 24px auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 1;
+}
