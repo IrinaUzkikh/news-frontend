@@ -192,12 +192,12 @@ loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const emailLogin = loginForm.elements.email_login.value;
   const passwordLogin = loginForm.elements.password_login.value;
-  loginForm.elements.email_login.value = '';
-  loginForm.elements.password_login.value = '';
   userApi.signIn.bind(userApi)(emailLogin, passwordLogin)
     .then((res) => {
       localStorage.setItem('token', res.token);
       localStorage.setItem('isLoggedIn', 'true');
+      loginForm.elements.email_login.value = '';
+      loginForm.elements.password_login.value = '';
       popupLogin.close();
       header.headerAutorization();
     })
