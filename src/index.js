@@ -196,8 +196,6 @@ loginForm.addEventListener('submit', (event) => {
     .then((res) => {
       localStorage.setItem('token', res.token);
       localStorage.setItem('isLoggedIn', 'true');
-      loginForm.elements.email_login.value = '';
-      loginForm.elements.password_login.value = '';
       popupLogin.close();
       header.headerAutorization();
     })
@@ -214,6 +212,8 @@ loginForm.addEventListener('submit', (event) => {
         errorNamePassword.textContent = 'Такого пользователя нет';
       }
     });
+  loginForm.elements.email_login.value = '';
+  loginForm.elements.password_login.value = '';
 });
 
 // первоначальная регистрация пользователя
