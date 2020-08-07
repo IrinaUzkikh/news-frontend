@@ -8,7 +8,7 @@ const newsApiUrl = 'https://praktikum.tk/news/v2/everything';
 
 // const URL = 'http://localhost:3000';
 // const URL = 'http://newsnine.ga';
-const URL = 'https://api.newsnine.ga';
+const URL = 'https://api.news-nine.ga';
 
 const frontPage = 'https://irinauzkikh.github.io/news-frontend/';
 // const frontPage = '/';

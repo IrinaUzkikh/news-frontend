@@ -4,7 +4,7 @@ Version 2.0.0
 ### Ссылка на проект:
 `https://irinauzkikh.github.io/news-frontend/`
 ### Ссылка на сервер:
-`https://api.newsnine.ga`
+`https://api.news-nine.ga`
 ### Ссылка на бэкенд
 `https://github.com/IrinaUzkikh/news-backend`
 ### Описание проекта:
